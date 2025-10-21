@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  name      String?
+  email     String    @unique
+  password  String
+  role      Role      @default(USER)
+  bio       String?   // Author bio for E-E-A-T
+  avatar    String?   // Profile image for authorship
+  posts     Post[]
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+}
+
+model Post {
+  id        Int        @id @default(autoincrement())
+  title        String
+  slug         String       @unique
+  content      String       // HTML/JSON from editor
+  readTime     Int?
+  featureImage String?
+  featureAlt   String?      // ✅ alt text for SEO
+
+  // ✅ SEO fields
+  metaTitle    String?      // custom <title>
+  metaDesc     String?      // custom <meta description>
+  ogImage      String?      // OpenGraph image for social sharing
+  canonicalUrl String?      // in case of duplicate content
+
+  // ✅ Status
+  published    Boolean      @default(false)
+
+  // ✅ Stats
+  views        Int          @default(0)
+  likes        Int          @default(0)
+  shares       Int          @default(0)
+
+  // ✅ Relations
+  author       User         @relation(fields: [authorId], references: [id])
+  authorId     Int
+  categories   Category[]   @relation("PostCategories")
+  tags         Tag[]        @relation("PostTags")
+  comments     Comment[]
+
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+   // 🔹 Indexes
+  @@index([authorId])
+  @@index([published, createdAt])   // published posts sorted by date
+  @@index([views])
+  @@index([likes])
+  @@index([shares])
+}
+
+model Category {
+   id        Int        @id @default(autoincrement())
+  name  String  @unique
+  slug  String  @unique
+  posts Post[]  @relation("PostCategories")
+}
+
+model Tag {
+  id        Int        @id @default(autoincrement())
+  name  String  @unique
+  slug  String  @unique
+  posts Post[]  @relation("PostTags")
+}
+
+model Comment {
+  id        Int        @id @default(autoincrement())
+  content   String
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    Int
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  // 🔹 Indexes
+  @@index([postId, createdAt]) // fast post comments sorted by time
+  @@index([authorId])          // fast user comments
+  @@index([published])         // optional, if moderation is frequent
+}
+
+enum Role {
+  USER
+  ADMIN
+}

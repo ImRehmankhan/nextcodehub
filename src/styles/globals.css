@@ -1,0 +1,411 @@
+@import "tailwindcss";
+
+/* Root variables for both light and dark themes */
+:root {
+  /* Light theme colors - Modern blogging palette */
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #334155;
+  --muted: #f8fafc;
+  --muted-foreground: #64748b;
+  --accent: #f1f5f9;
+  --accent-foreground: #334155;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #f8fafc;
+  --ring: #2563eb;
+  
+  /* Blog-specific colors */
+  --blog-primary: #2563eb;
+  --blog-secondary: #8b5cf6;
+  --blog-accent: #06b6d4;
+  --blog-neutral: #64748b;
+  --blog-success: #10b981;
+  --blog-warning: #f59e0b;
+  --blog-error: #ef4444;
+  
+  /* Admin theme colors */
+  --admin-primary: #1e40af;
+  --admin-secondary: #7c3aed;
+  --admin-sidebar: #f8fafc;
+  --admin-sidebar-hover: #e2e8f0;
+  
+  /* Content colors */
+  --content-primary: #1a1a1a;
+  --content-secondary: #4a5568;
+  --content-tertiary: #718096;
+  --heading-color: #1a202c;
+  
+  /* Interactive states */
+  --hover-bg: #f7fafc;
+  --active-bg: #edf2f7;
+  --focus-ring: #2563eb40;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  /* Border radius */
+  --radius: 0.5rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+/* Dark theme overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --card: #1e293b;
+    --card-foreground: #f8fafc;
+    --popover: #1e293b;
+    --popover-foreground: #f8fafc;
+    --primary: #3b82f6;
+    --primary-foreground: #f8fafc;
+    --secondary: #334155;
+    --secondary-foreground: #f8fafc;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --accent: #334155;
+    --accent-foreground: #f8fafc;
+    --destructive: #f87171;
+    --destructive-foreground: #f8fafc;
+    --border: #334155;
+    --input: #334155;
+    --ring: #3b82f6;
+    
+    /* Blog-specific dark colors */
+    --blog-primary: #3b82f6;
+    --blog-secondary: #a855f7;
+    --blog-accent: #22d3ee;
+    --blog-neutral: #94a3b8;
+    --blog-success: #34d399;
+    --blog-warning: #fbbf24;
+    --blog-error: #f87171;
+    
+    /* Admin dark theme */
+    --admin-primary: #3b82f6;
+    --admin-secondary: #8b5cf6;
+    --admin-sidebar: #1e293b;
+    --admin-sidebar-hover: #334155;
+    
+    /* Content dark colors */
+    --content-primary: #f8fafc;
+    --content-secondary: #e2e8f0;
+    --content-tertiary: #cbd5e1;
+    --heading-color: #f1f5f9;
+    
+    /* Interactive dark states */
+    --hover-bg: #334155;
+    --active-bg: #475569;
+    --focus-ring: #3b82f640;
+    
+    /* Dark shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  }
+}
+
+/* Override dark theme when .light class is present */
+.light {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #334155;
+  --muted: #f8fafc;
+  --muted-foreground: #64748b;
+  --accent: #f1f5f9;
+  --accent-foreground: #334155;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #f8fafc;
+  --ring: #2563eb;
+  
+  --blog-primary: #2563eb;
+  --blog-secondary: #8b5cf6;
+  --blog-accent: #06b6d4;
+  --blog-neutral: #64748b;
+  --blog-success: #10b981;
+  --blog-warning: #f59e0b;
+  --blog-error: #ef4444;
+  
+  --admin-primary: #1e40af;
+  --admin-secondary: #7c3aed;
+  --admin-sidebar: #f8fafc;
+  --admin-sidebar-hover: #e2e8f0;
+  
+  --content-primary: #1a1a1a;
+  --content-secondary: #4a5568;
+  --content-tertiary: #718096;
+  --heading-color: #1a202c;
+  
+  --hover-bg: #f7fafc;
+  --active-bg: #edf2f7;
+  --focus-ring: #2563eb40;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* Force dark theme when .dark class is present */
+.dark {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: #1e293b;
+  --card-foreground: #f8fafc;
+  --popover: #1e293b;
+  --popover-foreground: #f8fafc;
+  --primary: #3b82f6;
+  --primary-foreground: #f8fafc;
+  --secondary: #334155;
+  --secondary-foreground: #f8fafc;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #334155;
+  --accent-foreground: #f8fafc;
+  --destructive: #f87171;
+  --destructive-foreground: #f8fafc;
+  --border: #334155;
+  --input: #334155;
+  --ring: #3b82f6;
+  
+  --blog-primary: #3b82f6;
+  --blog-secondary: #a855f7;
+  --blog-accent: #22d3ee;
+  --blog-neutral: #94a3b8;
+  --blog-success: #34d399;
+  --blog-warning: #fbbf24;
+  --blog-error: #f87171;
+  
+  --admin-primary: #3b82f6;
+  --admin-secondary: #8b5cf6;
+  --admin-sidebar: #1e293b;
+  --admin-sidebar-hover: #334155;
+  
+  --content-primary: #f8fafc;
+  --content-secondary: #e2e8f0;
+  --content-tertiary: #cbd5e1;
+  --heading-color: #f1f5f9;
+  
+  --hover-bg: #334155;
+  --active-bg: #475569;
+  --focus-ring: #3b82f640;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+}
+
+@theme inline {
+  /* Base theme colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  /* Blog theme colors */
+  --color-blog-primary: var(--blog-primary);
+  --color-blog-secondary: var(--blog-secondary);
+  --color-blog-accent: var(--blog-accent);
+  --color-blog-neutral: var(--blog-neutral);
+  --color-blog-success: var(--blog-success);
+  --color-blog-warning: var(--blog-warning);
+  --color-blog-error: var(--blog-error);
+  
+  /* Admin theme colors */
+  --color-admin-primary: var(--admin-primary);
+  --color-admin-secondary: var(--admin-secondary);
+  --color-admin-sidebar: var(--admin-sidebar);
+  --color-admin-sidebar-hover: var(--admin-sidebar-hover);
+  
+  /* Content colors */
+  --color-content-primary: var(--content-primary);
+  --color-content-secondary: var(--content-secondary);
+  --color-content-tertiary: var(--content-tertiary);
+  --color-heading: var(--heading-color);
+  
+  /* Interactive states */
+  --color-hover-bg: var(--hover-bg);
+  --color-active-bg: var(--active-bg);
+  
+  /* Font families */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Shadows */
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  
+  /* Border radius */
+  --radius: var(--radius);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+/* Base styles */
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+/* Smooth transitions for theme changes */
+html {
+  transition: color-scheme 0.2s;
+}
+
+body, 
+[class*="bg-"], 
+[class*="text-"], 
+[class*="border-"] {
+  transition: 
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+}
+
+/* Custom utility classes */
+.theme-transition {
+  transition: all 0.2s ease-in-out;
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Animation keyframes */
+@keyframes slide-in-from-top {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation utilities */
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.slide-in-from-top-2 {
+  animation: slide-in-from-top 0.3s ease-out;
+}
+
+.fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.scale-in {
+  animation: scale-in 0.3s ease-out;
+}
+
+/* Form enhancements */
+.form-input:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dark .form-input:focus {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
