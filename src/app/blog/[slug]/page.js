@@ -20,15 +20,30 @@ export async function generateMetadata({ params }) {
     }
   }
 
+  const description = post.content.substring(0, 160).replace(/<[^>]*>/g, '')
+
   return {
-    title: `${post.title} - NextCodeHub`,
-    description: post.content.substring(0, 160).replace(/<[^>]*>/g, ''),
+    title: `${post.title}`,
+    description: description,
+    keywords: [...post.categories.map(c => c.name), ...post.tags.map(t => t.name)],
+    authors: [{ name: post.author.name }],
     openGraph: {
       title: post.title,
-      description: post.content.substring(0, 160).replace(/<[^>]*>/g, ''),
+      description: description,
       type: "article",
       publishedTime: post.createdAt.toISOString(),
+      modifiedTime: post.updatedAt.toISOString(),
       authors: [post.author.name],
+      url: `https://nextcodehub.com/blog/${post.slug}`,
+      siteName: "NextCodeHub",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: description,
+    },
+    alternates: {
+      canonical: `https://nextcodehub.com/blog/${post.slug}`,
     },
   }
 }
@@ -96,8 +111,40 @@ export default async function BlogPostPage({ params }) {
     },
   })
 
+  // Add JSON-LD structured data
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.content.substring(0, 160).replace(/<[^>]*>/g, ''),
+    image: post.featuredImage || 'https://nextcodehub.com/default-blog-image.jpg',
+    datePublished: post.createdAt.toISOString(),
+    dateModified: post.updatedAt.toISOString(),
+    author: {
+      '@type': 'Person',
+      name: post.author.name,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'NextCodeHub',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://nextcodehub.com/logo.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://nextcodehub.com/blog/${post.slug}`,
+    },
+    keywords: [...post.categories.map(c => c.name), ...post.tags.map(t => t.name)].join(', '),
+  }
+
   return (
     <ViewerLayout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Breadcrumb */}
         <nav className="flex items-center space-x-2 text-sm text-content-secondary mb-8">

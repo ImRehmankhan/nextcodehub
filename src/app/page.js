@@ -202,6 +202,44 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Quick Links Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="bg-gradient-to-r from-blog-primary to-blog-secondary rounded-2xl p-8 md:p-12 text-white">
+          <div className="max-w-3xl">
+            <h2 className="text-3xl font-bold mb-4">Explore More</h2>
+            <p className="text-white/90 mb-6">
+              Discover our collection of helpful resources, tools, and information
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <Link
+                href="/about"
+                className="px-4 py-3 bg-white/20 hover:bg-white/30 rounded-lg font-medium text-center transition-all hover:scale-105"
+              >
+                About Us
+              </Link>
+              <Link
+                href="/contact"
+                className="px-4 py-3 bg-white/20 hover:bg-white/30 rounded-lg font-medium text-center transition-all hover:scale-105"
+              >
+                Contact
+              </Link>
+              <Link
+                href="/tools"
+                className="px-4 py-3 bg-white/20 hover:bg-white/30 rounded-lg font-medium text-center transition-all hover:scale-105"
+              >
+                Tools
+              </Link>
+              <Link
+                href="/privacy-policy"
+                className="px-4 py-3 bg-white/20 hover:bg-white/30 rounded-lg font-medium text-center transition-all hover:scale-105"
+              >
+                Privacy
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </ViewerLayout>
   )
 }

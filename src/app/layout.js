@@ -56,8 +56,35 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'NextCodeHub',
+    url: 'https://nextcodehub.com',
+    description: 'Learn web development with in-depth tutorials on JavaScript, React, Next.js, and more.',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: 'https://nextcodehub.com/search?q={search_term_string}',
+      'query-input': 'required name=search_term_string',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'NextCodeHub',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://nextcodehub.com/logo.png',
+      },
+    },
+  }
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning={true}
