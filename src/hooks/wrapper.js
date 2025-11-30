@@ -1,5 +1,4 @@
 
-export { API } from "./api";
-export { useAuth} from "./useAuth";
-export { default as prisma } from "@/lib/prisma";
+export { useCallAPI } from "./api";
 export { default as bcrypt } from "bcryptjs";
+export { default as Error } from "@/components/ui/Error";

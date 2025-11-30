@@ -409,3 +409,215 @@ body,
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
 }
+
+/* Rich Text Editor Styles */
+[contenteditable] {
+  outline: none;
+}
+
+[contenteditable]:empty:before {
+  content: attr(placeholder);
+  color: var(--muted-foreground);
+  pointer-events: none;
+}
+
+/* Editor content styling */
+.prose {
+  color: var(--content-primary);
+}
+
+.prose h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--heading-color);
+}
+
+.prose h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.875rem;
+  color: var(--heading-color);
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--heading-color);
+}
+
+.prose p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.prose a {
+  color: var(--blog-primary);
+  text-decoration: underline;
+}
+
+.prose a:hover {
+  color: var(--blog-secondary);
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--content-primary);
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose code {
+  background: var(--muted);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-family: 'Courier New', monospace;
+}
+
+.prose pre {
+  background: var(--muted);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+}
+
+.prose blockquote {
+  border-left: 4px solid var(--blog-primary);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--content-secondary);
+}
+
+.prose ul, .prose ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.prose li {
+  margin: 0.5rem 0;
+}
+
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.prose th, .prose td {
+  border: 1px solid var(--border);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.prose th {
+  background: var(--muted);
+  font-weight: 600;
+}
+
+/* Dark mode adjustments for prose */
+.dark .prose {
+  color: var(--content-primary);
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3 {
+  color: var(--heading-color);
+}
+
+.dark .prose code {
+  background: var(--muted);
+}
+
+.dark .prose pre {
+  background: var(--muted);
+}
+
+/* Editor Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-bottom {
+  from {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.slide-in-from-bottom-4 {
+  animation: slide-in-from-bottom 0.3s ease-out;
+}
+
+/* Gradient background animation */
+.bg-size-200 {
+  background-size: 200% 100%;
+}
+
+.bg-pos-0 {
+  background-position: 0% 0%;
+}
+
+.bg-pos-100 {
+  background-position: 100% 0%;
+  transition: background-position 0.5s ease;
+}
+
+/* Smooth scrollbar for editor */
+.prose::-webkit-scrollbar {
+  width: 10px;
+}
+
+.prose::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 10px;
+}
+
+.prose::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--blog-primary), var(--blog-secondary));
+  border-radius: 10px;
+}
+
+.prose::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--blog-secondary), var(--blog-primary));
+}
+

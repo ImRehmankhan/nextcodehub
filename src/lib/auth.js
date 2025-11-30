@@ -1,7 +1,7 @@
 // src/lib/auth.js
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import prisma from "@/lib/prisma";
+import { prisma} from "@/lib/useful";
 
 export const authOptions = {
   providers: [
@@ -16,7 +16,6 @@ export const authOptions = {
           throw new Error("Please provide both email and password");
         }
 
-        console.log("Attempting login for:", credentials.email);
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
@@ -26,16 +25,16 @@ export const authOptions = {
           throw new Error("Invalid email or password");
         }
 
-        const valid = credentials.password === user.password;
+        const valid = await bcrypt.compare(credentials.password, user.password);
         
         if (!valid) {
           throw new Error("Invalid email or password");
         }
 
         // Only allow ADMIN users to login
-        if (user.role !== 'ADMIN') {
-          throw new Error("Access denied. Admin privileges required.");
-        }
+        // if (user.role !== 'ADMIN') {
+        //   throw new Error("Access denied. Admin privileges required.");
+        // }
 
         return {
           id: user.id,

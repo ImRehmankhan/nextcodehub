@@ -1,154 +1,207 @@
-import Link from "next/link";
-import { ThemeToggle } from "@/components/theme-toggle";
+import ViewerLayout from "@/components/viewer/viewer-layout"
+import Link from "next/link"
+import { prisma } from "@/lib/useful"
+import Icon from "@/components/icon"
 
-export default function Home() {
+export const metadata = {
+  title: "Home - Web Development Tutorials & Resources",
+  description: "Discover the latest web development tutorials, tips, and tools. Learn JavaScript, React, Next.js and more with NextCodeHub.",
+}
+
+async function getLatestPosts() {
+  try {
+    const posts = await prisma.post.findMany({
+      where: { published: true },
+      take: 9,
+      orderBy: { createdAt: "desc" },
+      include: {
+        author: {
+          select: { name: true, email: true }
+        },
+        categories: {
+          select: { id: true, name: true, slug: true }
+        },
+        tags: {
+          select: { id: true, name: true, slug: true }
+        }
+      }
+    })
+    return posts
+  } catch (error) {
+    console.error("Error fetching posts:", error)
+    return []
+  }
+}
+
+export default async function HomePage() {
+  const latestPosts = await getLatestPosts()
+
   return (
-    <div className="min-h-screen bg-background theme-transition">
-      {/* Navigation */}
-      <nav className="bg-card border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="h-8 w-8 bg-gradient-to-r from-blog-primary to-blog-secondary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">NC</span>
-              </div>
-              <h1 className="text-xl font-bold text-heading">
-                NextCodeHub
-              </h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <ThemeToggle />
-              <Link
-                href="/admin"
-                className="bg-admin-primary hover:bg-admin-primary/90 text-white px-4 py-2 rounded-md text-sm font-medium theme-transition"
-              >
-                Admin
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+    <ViewerLayout>
       {/* Hero Section */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center">
-          <h1 className="text-4xl sm:text-6xl font-bold text-heading mb-6">
+      <section className="relative bg-gradient-to-br from-blog-primary/5 via-blog-secondary/5 to-transparent py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-heading mb-6 leading-tight">
             Welcome to{" "}
-            <span className="bg-gradient-to-r from-blog-primary to-blog-secondary bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blog-primary via-blog-secondary to-blog-primary bg-clip-text text-transparent">
               NextCodeHub
             </span>
           </h1>
-          <p className="text-xl text-content-secondary mb-8 max-w-2xl mx-auto">
-            A modern blogging platform built with Next.js, featuring a powerful admin dashboard 
-            for content management and beautiful theme switching.
+          <p className="text-xl sm:text-2xl text-content-secondary mb-8 max-w-3xl mx-auto">
+            Your ultimate destination for web development tutorials, tips, and tools. 
+            Learn modern technologies and build amazing projects.
           </p>
-          
-          <div className="flex gap-4 items-center justify-center flex-col sm:flex-row">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/admin"
-              className="bg-blog-primary hover:bg-blog-primary/90 text-white px-8 py-3 rounded-lg font-medium theme-transition flex items-center space-x-2"
+              href="/blog"
+              className="px-8 py-4 bg-gradient-to-r from-blog-primary to-blog-secondary text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-200 flex items-center space-x-2"
             >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
-              </svg>
-              <span>Admin Dashboard</span>
+              <Icon name="book" className="w-5 h-5" />
+              <span>Explore Tutorials</span>
             </Link>
             <Link
-              href="#features"
-              className="border border-border hover:bg-accent text-foreground px-8 py-3 rounded-lg font-medium theme-transition"
+              href="/about"
+              className="px-8 py-4 bg-muted hover:bg-muted/80 text-heading rounded-xl font-semibold hover:scale-105 transition-all duration-200"
             >
               Learn More
             </Link>
           </div>
         </div>
+      </section>
 
-        {/* Features Section */}
-        <section id="features" className="mt-20">
-          <h2 className="text-3xl font-bold text-heading text-center mb-12">
-            Features
-          </h2>
+      {/* Latest Posts Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="flex items-center justify-between mb-10">
+          <div>
+            <h2 className="text-3xl font-bold text-heading mb-2">Latest Articles</h2>
+            <p className="text-content-secondary">Stay updated with our newest tutorials and guides</p>
+          </div>
+          <Link
+            href="/blog"
+            className="hidden sm:flex items-center space-x-2 text-blog-primary hover:text-blog-secondary font-medium transition-colors"
+          >
+            <span>View All</span>
+            <span>→</span>
+          </Link>
+        </div>
+
+        {latestPosts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg theme-transition">
-              <div className="p-2 bg-blog-primary/10 rounded-lg w-fit mb-4">
-                <svg className="w-6 h-6 text-blog-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-heading mb-2">
-                Content Management
-              </h3>
-              <p className="text-content-secondary">
-                Create, edit, and manage blog posts with a powerful admin interface.
-              </p>
-            </div>
-
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg theme-transition">
-              <div className="p-2 bg-blog-secondary/10 rounded-lg w-fit mb-4">
-                <svg className="w-6 h-6 text-blog-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-heading mb-2">
-                Dark/Light Theme
-              </h3>
-              <p className="text-content-secondary">
-                Beautiful theme switching with system preference detection.
-              </p>
-            </div>
-
-            <div className="bg-card border border-border rounded-lg p-6 hover:shadow-lg theme-transition">
-              <div className="p-2 bg-blog-accent/10 rounded-lg w-fit mb-4">
-                <svg className="w-6 h-6 text-blog-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-heading mb-2">
-                Secure Authentication
-              </h3>
-              <p className="text-content-secondary">
-                Role-based access control with NextAuth.js integration.
-              </p>
-            </div>
+            {latestPosts.map((post) => (
+              <article
+                key={post.id}
+                className="group bg-card border border-border rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+              >
+                {post.featuredImage && (
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={post.featuredImage}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  </div>
+                )}
+                <div className="p-6">
+                  {post.categories.length > 0 && (
+                    <span className="inline-block px-3 py-1 bg-blog-primary/10 text-blog-primary rounded-full text-sm font-medium mb-3">
+                      {post.categories[0].name}
+                    </span>
+                  )}
+                  <Link href={`/blog/${post.slug}`}>
+                    <h3 className="text-xl font-bold text-heading mb-3 group-hover:text-blog-primary transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                  </Link>
+                  <p className="text-content-secondary text-sm mb-4 line-clamp-3">
+                    {post.excerpt || "Read more about this amazing article..."}
+                  </p>
+                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <div className="flex items-center space-x-4 text-xs text-content-secondary">
+                      <span className="flex items-center space-x-1">
+                        <Icon name="eye" className="w-4 h-4" />
+                        <span>{post.views || 0}</span>
+                      </span>
+                      <span className="flex items-center space-x-1">
+                        <Icon name="heart" className="w-4 h-4" />
+                        <span>{post.likes || 0}</span>
+                      </span>
+                    </div>
+                    <time className="text-xs text-content-secondary">
+                      {new Date(post.createdAt).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                      })}
+                    </time>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
-        </section>
-
-        {/* Stats Section */}
-        <section className="mt-20 bg-card border border-border rounded-lg p-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-blog-primary mb-2">0</div>
-              <div className="text-content-secondary">Blog Posts</div>
+        ) : (
+          <div className="text-center py-16">
+            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-muted flex items-center justify-center">
+              <Icon name="book" className="w-10 h-10 text-content-secondary" />
             </div>
-            <div>
-              <div className="text-3xl font-bold text-blog-secondary mb-2">0</div>
-              <div className="text-content-secondary">Categories</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-blog-accent mb-2">0</div>
-              <div className="text-content-secondary">Tags</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-blog-success mb-2">0</div>
-              <div className="text-content-secondary">Total Views</div>
-            </div>
+            <h3 className="text-2xl font-bold text-heading mb-2">No Posts Yet</h3>
+            <p className="text-content-secondary mb-6">We're working on creating amazing content for you!</p>
           </div>
-        </section>
-      </main>
+        )}
 
-      {/* Footer */}
-      <footer className="bg-card border-t border-border mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              <div className="h-6 w-6 bg-gradient-to-r from-blog-primary to-blog-secondary rounded"></div>
-              <span className="text-heading font-medium">NextCodeHub</span>
-            </div>
-            <p className="text-content-secondary text-sm">
-              © 2025 NextCodeHub. Built with Next.js and Tailwind CSS.
+        {latestPosts.length > 0 && (
+          <div className="text-center mt-12">
+            <Link
+              href="/blog"
+              className="inline-flex items-center space-x-2 px-6 py-3 bg-blog-primary text-white rounded-xl font-medium hover:shadow-lg hover:scale-105 transition-all duration-200"
+            >
+              <span>View All Articles</span>
+              <span>→</span>
+            </Link>
+          </div>
+        )}
+      </section>
+
+      {/* Features Section */}
+      <section className="bg-gradient-to-br from-muted via-transparent to-muted py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-heading mb-3">Why Choose NextCodeHub?</h2>
+            <p className="text-content-secondary max-w-2xl mx-auto">
+              We provide high-quality, practical content to help you become a better developer
             </p>
           </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-6 bg-card border border-border rounded-xl hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4">
+                <Icon name="book" className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-heading mb-2">In-Depth Tutorials</h3>
+              <p className="text-content-secondary">
+                Step-by-step guides covering everything from basics to advanced concepts
+              </p>
+            </div>
+            <div className="p-6 bg-card border border-border rounded-xl hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center mb-4">
+                <Icon name="code" className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-heading mb-2">Practical Examples</h3>
+              <p className="text-content-secondary">
+                Real-world code examples you can use in your projects immediately
+              </p>
+            </div>
+            <div className="p-6 bg-card border border-border rounded-xl hover:shadow-lg transition-shadow">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center mb-4">
+                <Icon name="layers" className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-heading mb-2">Latest Technologies</h3>
+              <p className="text-content-secondary">
+                Stay up-to-date with the newest tools and frameworks in web development
+              </p>
+            </div>
+          </div>
         </div>
-      </footer>
-    </div>
-  );
+      </section>
+    </ViewerLayout>
+  )
 }

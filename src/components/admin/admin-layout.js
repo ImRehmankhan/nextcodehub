@@ -3,48 +3,32 @@
 import { useState } from "react"
 import { useSession, signOut } from "next-auth/react"
 import { ThemeToggle } from "@/components/theme-toggle"
+import Icon from "@/components/icon"
 
 export default function AdminLayout({ children, activeSection = "dashboard", onSectionChange }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { data: session } = useSession()
 
-  const navigation = [
+      const navigation = [
     {
       name: "Dashboard",
       key: "dashboard",
-      icon: (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v3H8V5z" />
-        </svg>
-      ),
+      icon: <Icon name="dashboard" className="w-5 h-5" />,
     },
     {
       name: "Posts",
       key: "posts",
-      icon: (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.832 18.477 19.246 18 17.5 18c-1.746 0-3.332.477-4.5 1.253" />
-        </svg>
-      ),
+      icon: <Icon name="posts" className="w-5 h-5" />,
     },
     {
       name: "Categories",
       key: "categories",
-      icon: (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-        </svg>
-      ),
+      icon: <Icon name="categories" className="w-5 h-5" />,
     },
     {
       name: "Tags",
       key: "tags",
-      icon: (
-        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-        </svg>
-      ),
+      icon: <Icon name="tag" className="w-5 h-5" />,
     },
   ]
 
@@ -119,9 +103,11 @@ export default function AdminLayout({ children, activeSection = "dashboard", onS
             </div>
             <button
               onClick={() => signOut({ callbackUrl: "/admin/login" })}
-              className="w-full bg-destructive hover:bg-destructive/90 text-destructive-foreground px-3 py-2 rounded-md text-sm font-medium theme-transition"
+              aria-label="Sign out"
+              className="w-full flex items-center justify-center gap-2 bg-destructive hover:bg-destructive/90 text-destructive-foreground px-3 py-2 rounded-md text-sm font-medium theme-transition"
             >
-              Sign Out
+              <Icon name="logout" className="w-5 h-5" aria-hidden="true" />
+              
             </button>
           </div>
         </div>

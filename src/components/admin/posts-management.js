@@ -1,95 +1,23 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import { useCallAPI } from "@/hooks/wrapper"
+import Icon from "@/components/icon"
+import PostEditor from "./post-editor"
 
 export default function PostsManagement() {
-  const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(true)
+  const { getAll, add, update, remove } = useCallAPI("posts", "admin/posts");
+  
+  const { data: postsData, isLoading, error } = getAll;
+  const posts = postsData?.posts || [];
+  
   const [selectedPosts, setSelectedPosts] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(10)
   const [filterStatus, setFilterStatus] = useState("all")
   const [searchTerm, setSearchTerm] = useState("")
-
-  // Mock data - matches Prisma `Post` model (with relations included)
-  useEffect(() => {
-    const mockPosts = [
-      {
-        id: 1,
-        title: "Getting Started with Next.js 13",
-        slug: "getting-started-nextjs-13",
-        content: "<p>Intro to Next.js 13</p>",
-        readTime: 5,
-        featureImage: null,
-        featureAlt: null,
-        metaTitle: "Getting Started with Next.js 13",
-        metaDesc: "A quickstart guide",
-        ogImage: null,
-        canonicalUrl: null,
-        published: true,
-        views: 1245,
-        likes: 89,
-        shares: 12,
-        authorId: 1,
-        author: { id: 1, name: "John Doe", email: "john@example.com" },
-        categories: [ { id: 1, name: "Web Development", slug: "web-development" } ],
-        tags: [ { id: 1, name: "Next.js", slug: "nextjs" }, { id: 2, name: "React", slug: "react" } ],
-        createdAt: "2024-01-15",
-        updatedAt: "2024-01-16",
-      },
-      {
-        id: 2,
-        title: "Advanced React Hooks Patterns",
-        slug: "advanced-react-hooks-patterns",
-        content: "<p>Advanced Hooks</p>",
-        readTime: 8,
-        featureImage: null,
-        featureAlt: null,
-        metaTitle: null,
-        metaDesc: null,
-        ogImage: null,
-        canonicalUrl: null,
-        published: true,
-        views: 892,
-        likes: 67,
-        shares: 4,
-        authorId: 2,
-        author: { id: 2, name: "Jane Smith", email: "jane@example.com" },
-        categories: [ { id: 2, name: "React", slug: "react" } ],
-        tags: [ { id: 2, name: "React", slug: "react" }, { id: 3, name: "Hooks", slug: "hooks" } ],
-        createdAt: "2024-01-10",
-        updatedAt: "2024-01-10",
-      },
-      {
-        id: 3,
-        title: "TypeScript Best Practices",
-        slug: "typescript-best-practices",
-        content: "<p>TypeScript tips</p>",
-        readTime: 7,
-        featureImage: null,
-        featureAlt: null,
-        metaTitle: null,
-        metaDesc: null,
-        ogImage: null,
-        canonicalUrl: null,
-        published: false,
-        views: 0,
-        likes: 0,
-        shares: 0,
-        authorId: 3,
-        author: { id: 3, name: "Bob Johnson", email: "bob@example.com" },
-        categories: [ { id: 3, name: "Programming", slug: "programming" } ],
-        tags: [ { id: 4, name: "TypeScript", slug: "typescript" } ],
-        createdAt: "2024-01-20",
-        updatedAt: "2024-01-20",
-      },
-    ]
-
-    setTimeout(() => {
-      setPosts(mockPosts)
-      setLoading(false)
-    }, 500)
-  }, [])
+  const [showEditor, setShowEditor] = useState(false)
+  const [editingPost, setEditingPost] = useState(null)
 
   const stats = {
     total: posts.length,
@@ -135,9 +63,74 @@ export default function PostsManagement() {
     }
   }
 
-  const handleBulkAction = (action) => {
-    console.log(`Performing ${action} on posts:`, selectedPosts)
-    // TODO: Implement bulk actions
+  const handleBulkAction = async (action) => {
+    if (selectedPosts.length === 0) return
+
+    try {
+      if (action === 'delete') {
+        if (!confirm(`Are you sure you want to delete ${selectedPosts.length} selected posts? This action cannot be undone.`)) {
+          return
+        }
+        // Delete posts one by one (could be optimized with bulk delete endpoint)
+        for (const postId of selectedPosts) {
+          await remove.mutateAsync(postId)
+        }
+      } else if (action === 'publish' || action === 'draft') {
+        // Update posts status one by one
+        for (const postId of selectedPosts) {
+          const post = posts.find(p => p.id === postId)
+          if (post) {
+            await update.mutateAsync({ ...post, published: action === 'publish' })
+          }
+        }
+      }
+
+      setSelectedPosts([])
+    } catch (error) {
+      console.error(`Error performing ${action}:`, error)
+      alert(error.message) // Replace with proper error handling/toast
+    }
+  }
+
+  const handleEdit = (post) => {
+    setEditingPost(post)
+    setShowEditor(true)
+  }
+
+  const handleAddNew = () => {
+    setEditingPost(null)
+    setShowEditor(true)
+  }
+
+  const handleSavePost = async (postData) => {
+    try {
+      if (editingPost) {
+        await update.mutateAsync({ id: editingPost.id, ...postData })
+      } else {
+        await add.mutateAsync(postData)
+      }
+      setShowEditor(false)
+      setEditingPost(null)
+    } catch (error) {
+      console.error('Error saving post:', error)
+      throw error
+    }
+  }
+
+  const handleView = (post) => {
+    // TODO: Navigate to view page
+    console.log('View post:', post)
+  }
+
+  const handleDelete = async (postId) => {
+    if (confirm("Are you sure you want to delete this post? This action cannot be undone.")) {
+      try {
+        await remove.mutateAsync(postId)
+      } catch (error) {
+        console.error('Error deleting post:', error)
+        alert(error.message) // Replace with proper error handling/toast
+      }
+    }
   }
 
   const getStatusBadge = (published) => {
@@ -148,7 +141,7 @@ export default function PostsManagement() {
     return `${baseClasses} bg-yellow-100 text-yellow-800`
   }
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
@@ -199,9 +192,7 @@ export default function PostsManagement() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-2 border border-border rounded-lg bg-background text-heading placeholder-content-secondary focus:outline-none focus:ring-2 focus:ring-blog-primary focus:border-transparent"
               />
-              <svg className="absolute left-3 top-2.5 h-5 w-5 text-content-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <Icon name="search" className="absolute left-3 top-2.5 h-5 w-5 text-content-secondary" />
             </div>
 
             {/* Filter */}
@@ -216,10 +207,11 @@ export default function PostsManagement() {
             </select>
           </div>
 
-          <button className="bg-blog-primary hover:bg-blog-primary/90 text-white px-6 py-2 rounded-lg text-sm font-medium theme-transition flex items-center space-x-2">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
+          <button 
+            onClick={handleAddNew}
+            className="bg-blog-primary hover:bg-blog-primary/90 text-white px-6 py-2 rounded-lg text-sm font-medium theme-transition flex items-center space-x-2"
+          >
+            <Icon name="plus" className="w-4 h-4" />
             <span>Add New Post</span>
           </button>
         </div>
@@ -352,21 +344,26 @@ export default function PostsManagement() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <div className="flex items-center space-x-2">
-                      <button title="Edit" className="p-1 text-blog-primary hover:text-blog-primary/80 theme-transition">
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                        </svg>
+                      <button 
+                        onClick={() => handleEdit(post)}
+                        title="Edit" 
+                        className="p-1 text-blog-primary hover:text-blog-primary/80 theme-transition"
+                      >
+                        <Icon name="edit" className="w-5 h-5" />
                       </button>
-                      <button title="View" className="p-1 text-blue-600 hover:text-blue-500 theme-transition">
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                        </svg>
+                      <button 
+                        onClick={() => handleView(post)}
+                        title="View" 
+                        className="p-1 text-blue-600 hover:text-blue-500 theme-transition"
+                      >
+                        <Icon name="eye" className="w-5 h-5" />
                       </button>
-                      <button title="Delete" className="p-1 text-red-600 hover:text-red-500 theme-transition">
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3" />
-                        </svg>
+                      <button 
+                        onClick={() => handleDelete(post.id)}
+                        title="Delete" 
+                        className="p-1 text-red-600 hover:text-red-500 theme-transition"
+                      >
+                        <Icon name="trash" className="w-5 h-5" />
                       </button>
                     </div>
                   </td>
@@ -440,6 +437,18 @@ export default function PostsManagement() {
           </div>
         )}
       </div>
+
+      {/* Post Editor Modal */}
+      {showEditor && (
+        <PostEditor
+          post={editingPost}
+          onClose={() => {
+            setShowEditor(false)
+            setEditingPost(null)
+          }}
+          onSave={handleSavePost}
+        />
+      )}
     </div>
   )
 }
