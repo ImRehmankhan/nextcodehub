@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation"
+import Link from "next/link"
+import Image from "next/image"
 import ViewerLayout from "@/components/viewer/viewer-layout"
 import Icon from "@/components/icon"
 import prisma from "@/lib/prisma"
@@ -148,9 +150,9 @@ export default async function BlogPostPage({ params }) {
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Breadcrumb */}
         <nav className="flex items-center space-x-2 text-sm text-content-secondary mb-8">
-          <a href="/" className="hover:text-blog-primary transition-colors">Home</a>
+          <Link href="/" className="hover:text-blog-primary transition-colors">Home</Link>
           <Icon name="chevron-right" className="w-4 h-4" />
-          <a href="/blog" className="hover:text-blog-primary transition-colors">Blog</a>
+          <Link href="/blog" className="hover:text-blog-primary transition-colors">Blog</Link>
           <Icon name="chevron-right" className="w-4 h-4" />
           {post.categories.length > 0 && (
             <>
@@ -219,11 +221,13 @@ export default async function BlogPostPage({ params }) {
 
         {/* Featured Image Placeholder */}
         {post.featuredImage && (
-          <div className="mb-12 rounded-2xl overflow-hidden">
-            <img
+          <div className="mb-12 rounded-2xl overflow-hidden relative h-96">
+            <Image
               src={post.featuredImage}
               alt={post.title}
-              className="w-full h-auto"
+              fill
+              className="object-cover"
+              priority
             />
           </div>
         )}

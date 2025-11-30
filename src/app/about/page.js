@@ -1,3 +1,4 @@
+import Link from "next/link"
 import ViewerLayout from "@/components/viewer/viewer-layout"
 import Icon from "@/components/icon"
 
@@ -31,7 +32,7 @@ export default function AboutPage() {
               At NextCodeHub, our mission is to make web development accessible, understandable, and enjoyable for everyone—from complete beginners taking their first steps in coding to experienced developers looking to master the latest technologies. We believe that quality education should be free and available to all who seek it.
             </p>
             <p className="text-content-secondary text-lg leading-relaxed">
-              We are committed to creating in-depth, well-researched tutorials that not only teach you how to code but also help you understand the "why" behind every concept. Our goal is to help you build a strong foundation in web development that will serve you throughout your career.
+              We are committed to creating in-depth, well-researched tutorials that not only teach you how to code but also help you understand the &quot;why&quot; behind every concept. Our goal is to help you build a strong foundation in web development that will serve you throughout your career.
             </p>
           </section>
 
@@ -80,7 +81,7 @@ export default function AboutPage() {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-heading mb-4">Our Story</h2>
             <p className="text-content-secondary text-lg leading-relaxed mb-4">
-              NextCodeHub was founded with a simple vision: to create a comprehensive, reliable resource for web developers of all skill levels. We recognized that while there's a wealth of information available online, finding quality, up-to-date tutorials that actually help you learn can be challenging.
+              NextCodeHub was founded with a simple vision: to create a comprehensive, reliable resource for web developers of all skill levels. We recognized that while there&apos;s a wealth of information available online, finding quality, up-to-date tutorials that actually help you learn can be challenging.
             </p>
             <p className="text-content-secondary text-lg leading-relaxed mb-4">
               Our team consists of experienced developers, technical writers, and educators who are passionate about sharing knowledge. Each piece of content on NextCodeHub is thoroughly researched, tested, and reviewed to ensure accuracy and clarity.
@@ -146,7 +147,7 @@ export default function AboutPage() {
           <section className="mb-12">
             <h2 className="text-3xl font-bold text-heading mb-4">Join Our Community</h2>
             <p className="text-content-secondary text-lg leading-relaxed mb-6">
-              NextCodeHub is more than just a tutorial website—it's a community of learners and builders. Whether you're just starting your coding journey or you're a seasoned developer, there's always something new to learn and share.
+              NextCodeHub is more than just a tutorial website—it&apos;s a community of learners and builders. Whether you&apos;re just starting your coding journey or you&apos;re a seasoned developer, there&apos;s always something new to learn and share.
             </p>
             <p className="text-content-secondary text-lg leading-relaxed mb-6">
               We encourage you to engage with our content, leave comments, ask questions, and share your own experiences. Your feedback helps us improve and create better content for everyone.
@@ -159,19 +160,19 @@ export default function AboutPage() {
               Explore our comprehensive collection of tutorials and start building amazing projects today.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
+              <Link
                 href="/blog"
                 className="px-8 py-4 bg-gradient-to-r from-blog-primary to-blog-secondary text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-200 flex items-center space-x-2"
               >
                 <Icon name="book" className="w-5 h-5 text-white" />
                 <span className="text-white">Browse Tutorials</span>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/contact"
                 className="px-8 py-4 bg-card border-2 border-border text-heading rounded-xl font-semibold hover:bg-muted hover:scale-105 transition-all duration-200"
               >
                 Get in Touch
-              </a>
+              </Link>
             </div>
           </section>
         </div>

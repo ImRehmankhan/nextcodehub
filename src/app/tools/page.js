@@ -1,3 +1,4 @@
+import Link from "next/link"
 import ViewerLayout from "@/components/viewer/viewer-layout"
 import Icon from "@/components/icon"
 

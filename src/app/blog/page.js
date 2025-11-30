@@ -1,5 +1,6 @@
 import ViewerLayout from "@/components/viewer/viewer-layout"
 import Link from "next/link"
+import Image from "next/image"
 import { prisma } from "@/lib/useful"
 import Icon from "@/components/icon"
 
@@ -221,10 +222,11 @@ export default async function BlogPage({ searchParams }) {
                       {post.featuredImage && (
                         <div className="md:col-span-1">
                           <div className="relative h-48 md:h-full overflow-hidden">
-                            <img
+                            <Image
                               src={post.featuredImage}
                               alt={post.title}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                              fill
+                              className="object-cover group-hover:scale-110 transition-transform duration-300"
                             />
                           </div>
                         </div>

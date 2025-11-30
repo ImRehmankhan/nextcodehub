@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
+import Image from "next/image"
 import Icon from "@/components/icon"
 import { useCallAPI } from "@/hooks/wrapper"
 
@@ -279,14 +280,15 @@ export default function PostEditor({ post, onClose, onSave }) {
                     placeholder="https://example.com/image.jpg"
                   />
                   {formData.featuredImage && (
-                    <div className="mt-3 relative group/img">
-                      <img 
+                    <div className="mt-3 relative group/img h-40 rounded-lg overflow-hidden">
+                      <Image
                         src={formData.featuredImage} 
                         alt="Preview" 
-                        className="w-full h-40 object-cover rounded-lg border-2 border-border shadow-md"
+                        fill
+                        className="object-cover border-2 border-border shadow-md"
                         onError={(e) => e.target.style.display = 'none'}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity rounded-lg flex items-end justify-center pb-3">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity flex items-end justify-center pb-3">
                         <span className="text-white text-sm font-medium">Featured Image Preview</span>
                       </div>
                     </div>
@@ -397,11 +399,12 @@ export default function PostEditor({ post, onClose, onSave }) {
               
               <article className="prose prose-lg max-w-none bg-background/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-border shadow-xl">
                 {formData.featuredImage && (
-                  <div className="relative -mx-8 -mt-8 mb-8 overflow-hidden rounded-t-2xl">
-                    <img 
+                  <div className="relative -mx-8 -mt-8 mb-8 overflow-hidden rounded-t-2xl h-80">
+                    <Image
                       src={formData.featuredImage} 
                       alt={formData.title}
-                      className="w-full h-80 object-cover m-0"
+                      fill
+                      className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                   </div>

@@ -1,9 +1,10 @@
+import Link from "next/link"
 import ViewerLayout from "@/components/viewer/viewer-layout"
 import Icon from "@/components/icon"
 
 export const metadata = {
   title: "Contact Us - Get in Touch with NextCodeHub",
-  description: "Have questions or feedback? Contact NextCodeHub team for support, collaboration opportunities, or general inquiries. We'd love to hear from you!",
+  description: "Have questions or feedback? Contact NextCodeHub team for support, collaboration opportunities, or general inquiries. We&apos;d love to hear from you!",
 }
 
 export default function ContactPage() {
@@ -196,16 +197,16 @@ export default function ContactPage() {
               <h3 className="text-xl font-bold text-heading mb-4">Common Questions</h3>
               <ul className="space-y-3">
                 <li>
-                  <a href="/blog" className="text-blog-primary hover:text-blog-secondary transition-colors flex items-center space-x-2">
+                  <Link href="/blog" className="text-blog-primary hover:text-blog-secondary transition-colors flex items-center space-x-2">
                     <Icon name="chevron-right" className="w-4 h-4" />
                     <span>Browse all tutorials</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/about" className="text-blog-primary hover:text-blog-secondary transition-colors flex items-center space-x-2">
+                  <Link href="/about" className="text-blog-primary hover:text-blog-secondary transition-colors flex items-center space-x-2">
                     <Icon name="chevron-right" className="w-4 h-4" />
                     <span>Learn about our mission</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="/privacy-policy" className="text-blog-primary hover:text-blog-secondary transition-colors flex items-center space-x-2">
@@ -226,7 +227,7 @@ export default function ContactPage() {
 
         {/* Additional Info Section */}
         <div className="mt-16 bg-card border border-border rounded-2xl p-8">
-          <h2 className="text-2xl font-bold text-heading mb-6 text-center">We're Here to Help</h2>
+          <h2 className="text-2xl font-bold text-heading mb-6 text-center">We&apos;re Here to Help</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -234,7 +235,7 @@ export default function ContactPage() {
               </div>
               <h3 className="font-semibold text-heading mb-2">Technical Support</h3>
               <p className="text-sm text-content-secondary">
-                Having trouble with a tutorial? Found a bug in our code examples? Let us know and we'll help you out.
+                Having trouble with a tutorial? Found a bug in our code examples? Let us know and we&apos;ll help you out.
               </p>
             </div>
             <div className="text-center">
@@ -243,7 +244,7 @@ export default function ContactPage() {
               </div>
               <h3 className="font-semibold text-heading mb-2">Tutorial Requests</h3>
               <p className="text-sm text-content-secondary">
-                Want us to cover a specific topic? Suggest new tutorial ideas and we'll prioritize community requests.
+                Want us to cover a specific topic? Suggest new tutorial ideas and we&apos;ll prioritize community requests.
               </p>
             </div>
             <div className="text-center">

@@ -1,5 +1,6 @@
 import ViewerLayout from "@/components/viewer/viewer-layout"
 import Link from "next/link"
+import Image from "next/image"
 import { prisma } from "@/lib/useful"
 import Icon from "@/components/icon"
 
@@ -94,10 +95,11 @@ export default async function HomePage() {
               >
                 {post.featuredImage && (
                   <div className="relative h-48 overflow-hidden">
-                    <img
+                    <Image
                       src={post.featuredImage}
                       alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   </div>
