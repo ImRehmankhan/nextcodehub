@@ -1,33 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient()
-
 export default async function sitemap() {
-  // Get all published blog posts
-  const posts = await prisma.post.findMany({
-    where: {
-      published: true
-    },
-    select: {
-      slug: true,
-      updatedAt: true
-    }
-  })
-
-  // Get all categories
-  const categories = await prisma.category.findMany({
-    select: {
-      slug: true
-    }
-  })
-
-  // Get all tags
-  const tags = await prisma.tag.findMany({
-    select: {
-      slug: true
-    }
-  })
-
   const baseUrl = 'https://nextcodehub.com'
 
   // Static pages
@@ -82,29 +55,64 @@ export default async function sitemap() {
     },
   ]
 
-  // Blog post pages
-  const blogPages = posts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.updatedAt,
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }))
+  try {
+    const prisma = new PrismaClient()
 
-  // Category pages
-  const categoryPages = categories.map((category) => ({
-    url: `${baseUrl}/category/${category.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.6,
-  }))
+    // Get all published blog posts
+    const posts = await prisma.post.findMany({
+      where: {
+        published: true
+      },
+      select: {
+        slug: true,
+        updatedAt: true
+      }
+    })
 
-  // Tag pages
-  const tagPages = tags.map((tag) => ({
-    url: `${baseUrl}/tag/${tag.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'daily',
-    priority: 0.5,
-  }))
+    // Get all categories
+    const categories = await prisma.category.findMany({
+      select: {
+        slug: true
+      }
+    })
 
-  return [...staticPages, ...blogPages, ...categoryPages, ...tagPages]
+    // Get all tags
+    const tags = await prisma.tag.findMany({
+      select: {
+        slug: true
+      }
+    })
+
+    await prisma.$disconnect()
+
+    // Blog post pages
+    const blogPages = posts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.updatedAt,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    }))
+
+    // Category pages
+    const categoryPages = categories.map((category) => ({
+      url: `${baseUrl}/category/${category.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.6,
+    }))
+
+    // Tag pages
+    const tagPages = tags.map((tag) => ({
+      url: `${baseUrl}/tag/${tag.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.5,
+    }))
+
+    return [...staticPages, ...blogPages, ...categoryPages, ...tagPages]
+  } catch (error) {
+    console.error('Error generating sitemap:', error)
+    // Return only static pages if database connection fails
+    return staticPages
+  }
 }

@@ -34,7 +34,7 @@ export function ThemeProvider({
     updateActualTheme(storedTheme || defaultTheme)
 
     return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
+  }, [defaultTheme, storageKey, theme])
 
   const updateActualTheme = (currentTheme) => {
     const root = window.document.documentElement
