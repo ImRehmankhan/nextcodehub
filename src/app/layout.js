@@ -50,9 +50,9 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code', // Add after Google Search Console setup
-  },
+  // verification: {
+  //   google: 'your-google-verification-code', // Add after Google Search Console setup
+  // },
 };
 
 export default function RootLayout({ children }) {
@@ -80,10 +80,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}/>
+        <meta name="google-site-verification" content="jBt3gt1Q4eH4buPymGOpuSIGmMRb2u2SiA1dPdyI3LU" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
