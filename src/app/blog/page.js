@@ -4,6 +4,8 @@ import Image from "next/image"
 import { prisma } from "@/lib/useful"
 import Icon from "@/components/icon"
 
+export const dynamic = 'force-dynamic'
+
 export const metadata = {
   title: "Blog - Web Development Tutorials",
   description: "Browse all our web development tutorials, guides, and articles. Learn JavaScript, React, Next.js, and more.",

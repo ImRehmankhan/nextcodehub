@@ -1,5 +1,3 @@
-import { PrismaClient } from '@prisma/client'
-
 export default async function sitemap() {
   const baseUrl = 'https://nextcodehub.com'
 
@@ -56,31 +54,34 @@ export default async function sitemap() {
   ]
 
   try {
+    // Use a dynamic import so the build won't fail if Prisma client
+    // hasn't been generated at module-evaluation time.
+    const { PrismaClient } = await import('@prisma/client')
     const prisma = new PrismaClient()
 
     // Get all published blog posts
     const posts = await prisma.post.findMany({
       where: {
-        published: true
+        published: true,
       },
       select: {
         slug: true,
-        updatedAt: true
-      }
+        updatedAt: true,
+      },
     })
 
     // Get all categories
     const categories = await prisma.category.findMany({
       select: {
-        slug: true
-      }
+        slug: true,
+      },
     })
 
     // Get all tags
     const tags = await prisma.tag.findMany({
       select: {
-        slug: true
-      }
+        slug: true,
+      },
     })
 
     await prisma.$disconnect()
