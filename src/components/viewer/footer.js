@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import Icon from "@/components/icon"
 
 export default function Footer() {
@@ -34,9 +35,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center space-x-3 mb-4 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blog-primary to-blog-secondary flex items-center justify-center shadow-lg">
-                <Icon name="book" className="w-6 h-6 text-white" />
-              </div>
+              <Image src="/logo.png" alt="NextCodeHub Logo" width={40} height={40} className="rounded-xl shadow-lg" />
               <span className="text-xl font-bold bg-gradient-to-r from-blog-primary to-blog-secondary bg-clip-text text-transparent">
                 NextCodeHub
               </span>

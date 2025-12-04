@@ -112,8 +112,12 @@ export default async function sitemap() {
 
     return [...staticPages, ...blogPages, ...categoryPages, ...tagPages]
   } catch (error) {
-    console.error('Error generating sitemap:', error)
-    // Return only static pages if database connection fails
+    // Don't print the full stack during build — return static pages silently.
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('Warning: sitemap generation fell back to static pages. Error:', error.message || error)
+    } else {
+      console.warn('Sitemap: database unavailable during generation — returning static pages.')
+    }
     return staticPages
   }
 }
