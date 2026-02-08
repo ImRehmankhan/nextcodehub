@@ -40,33 +40,34 @@ export default async function HomePage() {
   return (
     <ViewerLayout>
       {/* Hero Section - Modern Fuel-Themed */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-sky-50 via-blue-50 to-cyan-50 dark:from-slate-900 dark:via-blue-950 dark:to-cyan-950 py-24 px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden bg-surface dark:bg-background py-24 px-4 sm:px-6 lg:px-8">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-sky-400/10 dark:bg-sky-400/5 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-400/10 dark:bg-amber-400/5 rounded-full blur-3xl animate-pulse delay-700"></div>
-          <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-emerald-400/10 dark:bg-emerald-400/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 dark:bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/10 dark:bg-accent/5 rounded-full blur-3xl animate-pulse delay-700"></div>
+          <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-success/10 dark:bg-success/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg mb-6 border border-sky-200 dark:border-sky-800">
-            <span className="text-2xl">⚡</span>
-            <span className="text-sm font-semibold text-sky-600 dark:text-sky-400">Smart Fuel Management Tools</span>
+          <div className="inline-flex items-center gap-2 bg-surface/80 dark:bg-background/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg mb-6 border border-primary">
+            <Icon name="zap" className="w-5 h-5 text-primary" />
+            <span className="text-sm font-semibold text-primary">Smart Fuel Management Tools</span>
           </div>
           
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-            <span className="text-slate-900 dark:text-white">Calculate</span>{" "}
-            <span className="bg-gradient-to-r from-sky-500 via-blue-600 to-cyan-500 bg-clip-text text-transparent animate-gradient">
+            <span className="text-foreground">Calculate</span>{" "}
+            <span className="text-primary">
               Fuel Costs
             </span>
             <br />
-            <span className="text-slate-700 dark:text-slate-300">& Save Money</span>
+            <span className="text-foreground">& Save Money</span>
           </h1>
           
-          <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-300 mb-10 max-w-4xl mx-auto leading-relaxed">
-            🚗 Calculate fuel costs, petrol mileage, and MPG instantly
-            <br />
-            <span className="text-lg font-medium text-sky-600 dark:text-sky-400">
+          <p className="text-xl sm:text-2xl text-secondary-foreground mb-10 max-w-4xl mx-auto leading-relaxed flex flex-col items-center gap-2">
+            <span className="flex items-center gap-2">
+              <Icon name="car" className="w-6 h-6" /> Calculate fuel costs, petrol mileage, and MPG instantly
+            </span>
+            <span className="text-lg font-medium text-accent">
               Free tools to optimize your vehicle's efficiency and track expenses
             </span>
           </p>
@@ -74,9 +75,9 @@ export default async function HomePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
             <Link
               href="/tools/fuel-cost-calculator"
-              className="group px-8 py-5 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white rounded-2xl font-bold hover:shadow-2xl hover:shadow-sky-500/30 hover:scale-105 transition-all duration-300 flex items-center gap-3"
+              className="group px-8 py-5 bg-primary hover:bg-primary/90 text-white rounded-2xl font-bold hover:shadow-2xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300 flex items-center gap-3"
             >
-              <span className="text-2xl group-hover:scale-110 transition-transform">⛽</span>
+              <Icon name="fuel" className="w-7 h-7 group-hover:scale-110 transition-transform" />
               <div className="text-left">
                 <div>Fuel Cost Calculator</div>
                 <div className="text-xs font-normal opacity-90">Calculate trip fuel costs</div>
@@ -84,32 +85,32 @@ export default async function HomePage() {
             </Link>
             <Link
               href="/tools/petrol-mileage-calculator"
-              className="px-8 py-5 bg-white dark:bg-slate-800 hover:bg-gradient-to-r hover:from-amber-50 hover:to-orange-50 dark:hover:from-slate-700 dark:hover:to-slate-600 text-slate-900 dark:text-white border-2 border-sky-200 dark:border-sky-800 rounded-2xl font-bold hover:border-sky-400 dark:hover:border-sky-600 hover:scale-105 transition-all duration-300 flex items-center gap-3 shadow-lg"
+              className="px-8 py-5 bg-surface dark:bg-background hover:bg-muted dark:hover:bg-muted text-foreground border-2 border-primary rounded-2xl font-bold hover:border-accent hover:scale-105 transition-all duration-300 flex items-center gap-3 shadow-lg"
             >
-              <span className="text-2xl">📊</span>
+              <Icon name="bar-chart" className="w-7 h-7" />
               <div className="text-left">
                 <div>Mileage Calculator</div>
-                <div className="text-xs font-normal text-slate-600 dark:text-slate-400">Track efficiency</div>
+                <div className="text-xs font-normal text-secondary-foreground">Track efficiency</div>
               </div>
             </Link>
           </div>
           
           {/* Trust Indicators */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-600 dark:text-slate-400">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-secondary-foreground">
             <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
+              <Icon name="check-circle" className="w-4 h-4 text-success" />
               <span>100% Free</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
+              <Icon name="check-circle" className="w-4 h-4 text-success" />
               <span>No Registration</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
+              <Icon name="check-circle" className="w-4 h-4 text-success" />
               <span>Instant Results</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="text-green-500">✓</span>
+              <Icon name="check-circle" className="w-4 h-4 text-success" />
               <span>Privacy Protected</span>
             </div>
           </div>
@@ -119,10 +120,10 @@ export default async function HomePage() {
       {/* Fuel Calculator Tools Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 -mt-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+          <h2 className="text-4xl font-bold text-foreground mb-4">
             Popular Fuel Calculators
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300">
+          <p className="text-xl text-secondary-foreground">
             Choose the perfect calculator for your needs
           </p>
         </div>
@@ -132,68 +133,62 @@ export default async function HomePage() {
             {
               title: "Fuel Cost Calculator",
               description: "Calculate total fuel costs for any trip. Get instant estimates for fuel expenses, cost per km/mile, and budget planning.",
-              icon: "⛽",
+              icon: "fuel",
               href: "/tools/fuel-cost-calculator",
-              gradient: "from-sky-500 to-cyan-500",
-              bgGradient: "from-sky-50 to-cyan-50 dark:from-sky-950/50 dark:to-cyan-950/50"
+              color: "primary"
             },
             {
               title: "Petrol Mileage Calculator",
               description: "Track your vehicle's petrol mileage and efficiency. Monitor km/L, consumption rates, and optimize fuel economy.",
-              icon: "📊",
+              icon: "bar-chart",
               href: "/tools/petrol-mileage-calculator",
-              gradient: "from-green-500 to-emerald-500",
-              bgGradient: "from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50"
+              color: "success"
             },
             {
               title: "MPG Calculator",
               description: "Calculate miles per gallon (MPG) for your vehicle. Convert between units and track fuel efficiency metrics.",
-              icon: "🚗",
+              icon: "car",
               href: "/tools/mpg-calculator",
-              gradient: "from-purple-500 to-pink-500",
-              bgGradient: "from-purple-50 to-pink-50 dark:from-purple-950/50 dark:to-pink-950/50"
+              color: "accent"
             },
             {
               title: "Gas Price Calculator",
               description: "Estimate gas costs based on current prices. Find the cheapest gas and budget your fuel expenses accurately.",
-              icon: "💰",
+              icon: "dollar-sign",
               href: "/tools/gas-price-calculator",
-              gradient: "from-orange-500 to-red-500",
-              bgGradient: "from-orange-50 to-red-50 dark:from-orange-950/50 dark:to-red-950/50"
+              color: "warning"
             },
             {
               title: "Fuel Expense Calculator",
               description: "Track and manage monthly fuel expenses. Budget fuel costs and monitor spending patterns over time.",
-              icon: "💳",
+              icon: "coins",
               href: "/tools/fuel-expense-calculator",
-              gradient: "from-indigo-500 to-blue-500",
-              bgGradient: "from-indigo-50 to-blue-50 dark:from-indigo-950/50 dark:to-blue-950/50"
+              color: "info"
             },
             {
               title: "Road Trip Fuel Calculator",
               description: "Plan fuel costs for road trips. Estimate total gas expenses, plan fuel stops, and budget your journey.",
-              icon: "🗺️",
+              icon: "map",
               href: "/tools/road-trip-fuel-calculator",
-              gradient: "from-teal-500 to-cyan-500",
-              bgGradient: "from-teal-50 to-cyan-50 dark:from-teal-950/50 dark:to-cyan-950/50"
+              color: "accent"
             }
           ].map((tool, index) => (
             <Link
               key={index}
               href={tool.href}
-              className={`group relative overflow-hidden bg-gradient-to-br ${tool.bgGradient} border-2 border-white/50 dark:border-slate-700/50 rounded-2xl p-8 hover:shadow-2xl hover:shadow-${tool.gradient.split('-')[1]}-500/20 transition-all duration-500 hover:-translate-y-3 hover:scale-105`}
+              className="group relative overflow-hidden bg-surface dark:bg-background border-2 border-border hover:border-primary rounded-2xl p-8 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-3 hover:scale-105"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br opacity-10 rounded-full -mr-16 -mt-16"></div>
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${tool.gradient} flex items-center justify-center text-3xl mb-5 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300`}>
-                {tool.icon}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16"></div>
+              <div className={`w-16 h-16 rounded-2xl bg-${tool.color} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300`}>
+                <Icon name={tool.icon} className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-sky-600 group-hover:to-blue-600 transition-all duration-300">
+              <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-all duration-300">
                 {tool.title}
               </h3>
-              <p className="text-slate-600 dark:text-slate-300 text-base leading-relaxed">
+              <p className="text-secondary-foreground text-base leading-relaxed">
                 {tool.description}
               </p>
-              <div className="mt-6 flex items-center text-sky-600 dark:text-sky-400 font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
+              <div className="mt-6 flex items-center text-primary font-semibold group-hover:gap-3 gap-2 transition-all duration-300">
                 <span>Try Now</span>
                 <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
               </div>
@@ -203,13 +198,13 @@ export default async function HomePage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="bg-gradient-to-br from-sky-100 via-blue-50 to-cyan-100 dark:from-slate-800 dark:via-blue-900/30 dark:to-cyan-900/30 py-20 px-4 sm:px-6 lg:px-8">
+      <section className="bg-muted py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+            <h2 className="text-4xl font-bold text-foreground mb-4">
               Why Use Our Fuel Calculators?
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-300">
+            <p className="text-xl text-secondary-foreground">
               Make smarter decisions about your fuel consumption
             </p>
           </div>
@@ -217,30 +212,32 @@ export default async function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
-                icon: "💡",
+                icon: "lightbulb",
                 title: "Smart Insights",
                 description: "Get detailed analytics about your fuel consumption and costs"
               },
               {
-                icon: "💰",
+                icon: "dollar-sign",
                 title: "Save Money",
                 description: "Identify opportunities to reduce fuel expenses and optimize routes"
               },
               {
-                icon: "📈",
+                icon: "trending-up",
                 title: "Track Progress",
                 description: "Monitor your vehicle's efficiency over time with accurate data"
               },
               {
-                icon: "🌍",
+                icon: "sparkles",
                 title: "Eco-Friendly",
                 description: "Reduce your carbon footprint by optimizing fuel consumption"
               }
             ].map((benefit, index) => (
-              <div key={index} className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                <div className="text-5xl mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{benefit.title}</h3>
-                <p className="text-slate-600 dark:text-slate-300">{benefit.description}</p>
+              <div key={index} className="bg-surface dark:bg-background rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                <div className="mb-4">
+                  <Icon name={benefit.icon} className="w-12 h-12 text-primary" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-3">{benefit.title}</h3>
+                <p className="text-secondary-foreground">{benefit.description}</p>
               </div>
             ))}
           </div>

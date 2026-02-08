@@ -2,6 +2,7 @@ import FuelCalculator from '@/components/tools/FuelCalculator';
 import ViewerLayout from '@/components/viewer/viewer-layout';
 import AdSenseBlock from '@/components/ui/AdSenseBlock';
 import { FuelCalculatorSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
+import Icon from '@/components/icon';
 
 const faqs = [
   {
@@ -76,7 +77,7 @@ export default function MPGCalculatorPage() {
             understand how economical your vehicle is.
           </p>
 
-          <div className="bg-blue-50 dark:bg-blue-900 p-6 rounded-lg mb-8">
+          <div className="bg-muted p-6 rounded-lg mb-8">
             <h3 className="text-xl font-semibold mb-3">MPG Formula:</h3>
             <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-lg">
               <p className="text-2xl font-bold">MPG = Miles Driven ÷ Gallons Used</p>
@@ -104,7 +105,7 @@ export default function MPGCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
+              <h3 className="text-xl font-semibold mb-3 text-primary">
                 Good MPG (30-40 MPG)
               </h3>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
@@ -178,7 +179,7 @@ export default function MPGCalculatorPage() {
             <p className="mb-2"><strong>Ending odometer:</strong> 10,350 miles</p>
             <p className="mb-2"><strong>Miles driven:</strong> 350 miles</p>
             <p className="mb-2"><strong>Gallons to refill:</strong> 12.5 gallons</p>
-            <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg">
+            <div className="mt-4 p-4 bg-muted rounded-lg">
               <p className="text-lg"><strong>Calculation:</strong> 350 miles ÷ 12.5 gallons = 28 MPG</p>
             </div>
           </div>
@@ -221,7 +222,7 @@ export default function MPGCalculatorPage() {
 
           <div className="space-y-4 mb-8">
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-start">
-              <span className="text-2xl mr-4">🚗</span>
+              <Icon name="car" className="w-6 h-6 mr-4 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold mb-1">1. Maintain Steady Speed</h4>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -231,7 +232,7 @@ export default function MPGCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-start">
-              <span className="text-2xl mr-4">⚙️</span>
+              <Icon name="gauge" className="w-6 h-6 mr-4 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold mb-1">2. Keep Tires Properly Inflated</h4>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -241,7 +242,7 @@ export default function MPGCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-start">
-              <span className="text-2xl mr-4">🏋️</span>
+              <Icon name="weight" className="w-6 h-6 mr-4 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold mb-1">3. Remove Excess Weight</h4>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -251,7 +252,7 @@ export default function MPGCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-start">
-              <span className="text-2xl mr-4">🌡️</span>
+              <Icon name="thermometer" className="w-6 h-6 mr-4 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold mb-1">4. Limit AC Usage</h4>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -261,7 +262,7 @@ export default function MPGCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-start">
-              <span className="text-2xl mr-4">🔧</span>
+              <Icon name="wrench" className="w-6 h-6 mr-4 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold mb-1">5. Regular Maintenance</h4>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -271,7 +272,7 @@ export default function MPGCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-start">
-              <span className="text-2xl mr-4">🚦</span>
+              <Icon name="alert-triangle" className="w-6 h-6 mr-4 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold mb-1">6. Avoid Aggressive Driving</h4>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -281,7 +282,7 @@ export default function MPGCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-start">
-              <span className="text-2xl mr-4">⏱️</span>
+              <Icon name="timer" className="w-6 h-6 mr-4 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold mb-1">7. Minimize Idling</h4>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -291,7 +292,7 @@ export default function MPGCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-start">
-              <span className="text-2xl mr-4">🏔️</span>
+              <Icon name="mountain" className="w-6 h-6 mr-4 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold mb-1">8. Reduce Aerodynamic Drag</h4>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -301,7 +302,7 @@ export default function MPGCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-start">
-              <span className="text-2xl mr-4">🗺️</span>
+              <Icon name="map" className="w-6 h-6 mr-4 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold mb-1">9. Plan Your Routes</h4>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -311,7 +312,7 @@ export default function MPGCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-start">
-              <span className="text-2xl mr-4">⛽</span>
+              <Icon name="fuel" className="w-6 h-6 mr-4 flex-shrink-0 mt-1" />
               <div>
                 <h4 className="font-semibold mb-1">10. Use Recommended Fuel Grade</h4>
                 <p className="text-sm text-gray-700 dark:text-gray-300">
@@ -388,11 +389,11 @@ export default function MPGCalculatorPage() {
               Use our free MPG calculator to monitor your vehicle's fuel efficiency. Regular tracking helps you:
             </p>
             <ul className="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
-              <li>💰 Save hundreds of dollars annually on fuel costs</li>
-              <li>🔍 Detect mechanical issues before they become expensive repairs</li>
-              <li>📊 Compare different driving routes and habits</li>
-              <li>🌱 Reduce your carbon footprint and environmental impact</li>
-              <li>🚗 Make informed decisions when buying your next vehicle</li>
+              <li className="flex items-start gap-2"><Icon name="dollar-sign" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span>Save hundreds of dollars annually on fuel costs</span></li>
+              <li className="flex items-start gap-2"><Icon name="wrench" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span>Detect mechanical issues before they become expensive repairs</span></li>
+              <li className="flex items-start gap-2"><Icon name="bar-chart" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span>Compare different driving routes and habits</span></li>
+              <li className="flex items-start gap-2"><Icon name="target" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span>Reduce your carbon footprint and environmental impact</span></li>
+              <li className="flex items-start gap-2"><Icon name="car" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span>Make informed decisions when buying your next vehicle</span></li>
             </ul>
           </div>
         </div>

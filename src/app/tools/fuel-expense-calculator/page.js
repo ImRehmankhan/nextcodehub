@@ -2,6 +2,7 @@ import FuelCalculator from '@/components/tools/FuelCalculator';
 import AdSenseBlock from '@/components/ui/AdSenseBlock';
 import { FuelCalculatorSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
 import ViewerLayout from '@/components/viewer/viewer-layout';
+import Icon from '@/components/icon';
 
 export const metadata = {
   title: 'Fuel Expense Calculator – Track & Calculate Monthly Fuel Costs Instantly',
@@ -124,8 +125,8 @@ export default function FuelExpenseCalculatorPage() {
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
-                  👤 Personal Commuter
+                <h3 className="text-xl font-semibold mb-3 text-primary flex items-center gap-2">
+                  <Icon name="car" className="w-5 h-5" /> Personal Commuter
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>Short Commute (10 mi/day):</strong> $80-$120/month</li>
@@ -137,8 +138,8 @@ export default function FuelExpenseCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
-                  👨‍👩‍👧‍👦 Family Household
+                <h3 className="text-xl font-semibold mb-3 text-primary flex items-center gap-2">
+                  <Icon name="car" className="w-5 h-5" /> Family Household
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>Single Vehicle:</strong> $200-$350/month</li>
@@ -150,8 +151,8 @@ export default function FuelExpenseCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
-                  🚗 Business/Rideshare
+                <h3 className="text-xl font-semibold mb-3 text-primary flex items-center gap-2">
+                  <Icon name="car" className="w-5 h-5" /> Business/Rideshare
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>Sales Rep (Territory):</strong> $400-$800/month</li>
@@ -163,8 +164,8 @@ export default function FuelExpenseCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
-                  🚚 Commercial/Fleet
+                <h3 className="text-xl font-semibold mb-3 text-primary flex items-center gap-2">
+                  <Icon name="car" className="w-5 h-5" /> Commercial/Fleet
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>Pickup Truck (Contractor):</strong> $500-$900/month</li>
@@ -182,7 +183,7 @@ export default function FuelExpenseCalculatorPage() {
 
             <div className="space-y-4 mb-8">
               <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900 dark:to-emerald-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">💰 Create a Realistic Fuel Budget</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="dollar-sign" className="w-5 h-5" /> Create a Realistic Fuel Budget</h4>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li>• Track actual expenses for 2-3 months to establish baseline</li>
                   <li>• Add 10-15% buffer for price fluctuations and unexpected trips</li>
@@ -194,7 +195,7 @@ export default function FuelExpenseCalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900 dark:to-cyan-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">📊 Track and Analyze Expenses</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="bar-chart" className="w-5 h-5" /> Track and Analyze Expenses</h4>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li>• Use apps like Fuelio, GasBuddy, or MileIQ for automatic tracking</li>
                   <li>• Create spreadsheet with: date, odometer, gallons, price, total cost</li>
@@ -206,7 +207,7 @@ export default function FuelExpenseCalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900 dark:to-pink-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">🎯 Expense Reduction Tactics</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="target" className="w-5 h-5" /> Expense Reduction Tactics</h4>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li>• Carpool 2-3 days/week to cut commute costs by 40-60%</li>
                   <li>• Use public transit for part of commute (park & ride)</li>
@@ -218,7 +219,7 @@ export default function FuelExpenseCalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900 dark:to-red-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">💳 Maximize Fuel Rewards</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="dollar-sign" className="w-5 h-5" /> Maximize Fuel Rewards</h4>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li>• Credit cards with 3-5% cashback on gas (Chase Freedom, Citi Custom Cash)</li>
                   <li>• Grocery store fuel points (Kroger, Safeway: $0.10-$1.00/gal discount)</li>
@@ -280,7 +281,7 @@ export default function FuelExpenseCalculatorPage() {
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="bg-indigo-50 dark:bg-indigo-900 p-6 rounded-lg">
-                <h4 className="text-xl font-semibold mb-3">💼 Business Expense Example</h4>
+                <h4 className="text-xl font-semibold mb-3 flex items-center gap-2"><Icon name="dollar-sign" className="w-5 h-5" /> Business Expense Example</h4>
                 <div className="space-y-3">
                   <div>
                     <p className="font-semibold">Scenario:</p>
@@ -294,19 +295,19 @@ export default function FuelExpenseCalculatorPage() {
                   <div className="pt-3 border-t border-indigo-200 dark:border-indigo-700">
                     <p className="font-semibold">Monthly Calculations:</p>
                     <ul className="text-sm space-y-1">
-                      <li>📏 Total miles: 1,760 miles</li>
-                      <li>⛽ Gallons needed: 67.7 gallons</li>
-                      <li>💰 Total expense: $247.11</li>
-                      <li>📊 Cost per mile: $0.140</li>
-                      <li>💵 Annual expense: $2,965.32</li>
-                      <li>🎯 Tax deduction (std): $1,179.20</li>
+                <li className="flex items-center gap-2"><Icon name="map" className="w-4 h-4" /> Total miles: 1,760 miles</li>
+                    <li className="flex items-center gap-2"><Icon name="fuel" className="w-4 h-4" /> Gallons needed: 67.7 gallons</li>
+                    <li className="flex items-center gap-2"><Icon name="dollar-sign" className="w-4 h-4" /> Total expense: $247.11</li>
+                    <li className="flex items-center gap-2"><Icon name="bar-chart" className="w-4 h-4" /> Cost per mile: $0.140</li>
+                    <li className="flex items-center gap-2"><Icon name="dollar-sign" className="w-4 h-4" /> Annual expense: $2,965.32</li>
+                    <li className="flex items-center gap-2"><Icon name="target" className="w-4 h-4" /> Tax deduction (std): $1,179.20</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
               <div className="bg-green-50 dark:bg-green-900 p-6 rounded-lg">
-                <h4 className="text-xl font-semibold mb-3">👨‍👩‍👧 Family Budget Example</h4>
+                <h4 className="text-xl font-semibold mb-3 flex items-center gap-2"><Icon name="car" className="w-5 h-5" /> Family Budget Example</h4>
                 <div className="space-y-3">
                   <div>
                     <p className="font-semibold">Scenario:</p>
@@ -320,12 +321,12 @@ export default function FuelExpenseCalculatorPage() {
                   <div className="pt-3 border-t border-green-200 dark:border-green-700">
                     <p className="font-semibold">Monthly Budget:</p>
                     <ul className="text-sm space-y-1">
-                      <li>🚗 Car 1 fuel: $70.00</li>
-                      <li>🚙 Car 2 fuel: $63.64</li>
-                      <li>💰 Total expense: $133.64</li>
-                      <li>📊 Combined MPG: 26.5</li>
-                      <li>💵 Annual expense: $1,603.68</li>
-                      <li>🎯 % of $5k/mo income: 2.7%</li>
+                    <li className="flex items-center gap-2"><Icon name="car" className="w-4 h-4" /> Car 1 fuel: $70.00</li>
+                    <li className="flex items-center gap-2"><Icon name="car" className="w-4 h-4" /> Car 2 fuel: $63.64</li>
+                    <li className="flex items-center gap-2"><Icon name="dollar-sign" className="w-4 h-4" /> Total expense: $133.64</li>
+                    <li className="flex items-center gap-2"><Icon name="bar-chart" className="w-4 h-4" /> Combined MPG: 26.5</li>
+                    <li className="flex items-center gap-2"><Icon name="dollar-sign" className="w-4 h-4" /> Annual expense: $1,603.68</li>
+                    <li className="flex items-center gap-2"><Icon name="target" className="w-4 h-4" /> % of $5k/mo income: 2.7%</li>
                     </ul>
                   </div>
                 </div>
@@ -338,7 +339,7 @@ export default function FuelExpenseCalculatorPage() {
 
             <div className="grid md:grid-cols-3 gap-4 mb-8">
               <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
-                <h4 className="font-semibold text-lg mb-2 text-blue-600">🔵 Fuelio</h4>
+                <h4 className="font-semibold text-lg mb-2 text-blue-600 flex items-center gap-2"><Icon name="fuel" className="w-5 h-5" /> Fuelio</h4>
                 <p className="text-sm mb-2">Comprehensive fuel tracking</p>
                 <ul className="text-xs space-y-1">
                   <li>✓ MPG tracking</li>
@@ -349,7 +350,7 @@ export default function FuelExpenseCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
-                <h4 className="font-semibold text-lg mb-2 text-green-600">🟢 MileIQ</h4>
+                <h4 className="font-semibold text-lg mb-2 text-green-600 flex items-center gap-2"><Icon name="map" className="w-5 h-5" /> MileIQ</h4>
                 <p className="text-sm mb-2">Automatic mileage logging</p>
                 <ul className="text-xs space-y-1">
                   <li>✓ GPS-based tracking</li>
@@ -360,7 +361,7 @@ export default function FuelExpenseCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
-                <h4 className="font-semibold text-lg mb-2 text-purple-600">🟣 Everlance</h4>
+                <h4 className="font-semibold text-lg mb-2 text-purple-600 flex items-center gap-2"><Icon name="bar-chart" className="w-5 h-5" /> Everlance</h4>
                 <p className="text-sm mb-2">Expense & mileage tracking</p>
                 <ul className="text-xs space-y-1">
                   <li>✓ Auto-trip detection</li>
@@ -371,7 +372,7 @@ export default function FuelExpenseCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
-                <h4 className="font-semibold text-lg mb-2 text-red-600">🔴 GasBuddy</h4>
+                <h4 className="font-semibold text-lg mb-2 text-red-600 flex items-center gap-2"><Icon name="fuel" className="w-5 h-5" /> GasBuddy</h4>
                 <p className="text-sm mb-2">Price finding & tracking</p>
                 <ul className="text-xs space-y-1">
                   <li>✓ Find cheap gas</li>
@@ -382,7 +383,7 @@ export default function FuelExpenseCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
-                <h4 className="font-semibold text-lg mb-2 text-orange-600">🟠 Driversnote</h4>
+                <h4 className="font-semibold text-lg mb-2 text-orange-600 flex items-center gap-2"><Icon name="car" className="w-5 h-5" /> Driversnote</h4>
                 <p className="text-sm mb-2">Tax-focused tracking</p>
                 <ul className="text-xs space-y-1">
                   <li>✓ Auto-tracking</li>
@@ -393,7 +394,7 @@ export default function FuelExpenseCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
-                <h4 className="font-semibold text-lg mb-2 text-teal-600">🟦 Stride</h4>
+                <h4 className="font-semibold text-lg mb-2 text-teal-600 flex items-center gap-2"><Icon name="trending-up" className="w-5 h-5" /> Stride</h4>
                 <p className="text-sm mb-2">Gig worker focused</p>
                 <ul className="text-xs space-y-1">
                   <li>✓ Free for drivers</li>

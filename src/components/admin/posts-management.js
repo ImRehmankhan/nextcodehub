@@ -328,10 +328,10 @@ export default function PostsManagement() {
                     <div className="text-sm text-heading">{post.categories?.[0]?.name}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex space-x-4 text-sm text-content-secondary">
-                      <span title="Views">{post.views} 👁️</span>
-                      <span title="Likes">{post.likes} ❤️</span>
-                      <span title="Comments">{post.comments} 💬</span>
+                    <div className="flex space-x-4 text-sm text-content-secondary items-center">
+                      <span className="flex items-center gap-1" title="Views"><Icon name="eye" className="w-4 h-4" /> {post.views}</span>
+                      <span className="flex items-center gap-1" title="Likes"><Icon name="heart" className="w-4 h-4" /> {post.likes}</span>
+                      <span className="flex items-center gap-1" title="Comments"><Icon name="message" className="w-4 h-4" /> {post.comments}</span>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">

@@ -2,6 +2,7 @@ import FuelCalculator from '@/components/tools/FuelCalculator';
 import AdSenseBlock from '@/components/ui/AdSenseBlock';
 import { FuelCalculatorSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
 import ViewerLayout from '@/components/viewer/viewer-layout';
+import Icon from '@/components/icon';
 
 export const metadata = {
   title: 'Petrol Mileage Calculator – Calculate Petrol Cost & Efficiency Instantly',
@@ -96,7 +97,7 @@ export default function PetrolMileageCalculatorPage() {
               How to Calculate Petrol Mileage Manually:
             </h3>
 
-            <div className="bg-blue-50 dark:bg-blue-900 p-6 rounded-lg mb-6">
+            <div className="bg-muted p-6 rounded-lg mb-6">
               <ol className="space-y-3 text-gray-700 dark:text-gray-300">
                 <li><strong>Step 1:</strong> Fill your petrol tank to full capacity</li>
                 <li><strong>Step 2:</strong> Reset your trip meter to zero</li>
@@ -115,8 +116,8 @@ export default function PetrolMileageCalculatorPage() {
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-green-600 dark:text-green-400">
-                  🚗 Small & Compact Cars
+                <h3 className="text-xl font-semibold mb-3 text-green-600 dark:text-green-400 flex items-center gap-2">
+                  <Icon name="car" className="w-5 h-5" /> Small & Compact Cars
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>City Driving:</strong> 14-18 km/L</li>
@@ -128,8 +129,8 @@ export default function PetrolMileageCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-green-600 dark:text-green-400">
-                  🚙 Mid-Size Sedans
+                <h3 className="text-xl font-semibold mb-3 text-green-600 dark:text-green-400 flex items-center gap-2">
+                  <Icon name="car" className="w-5 h-5" /> Mid-Size Sedans
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>City Driving:</strong> 11-14 km/L</li>
@@ -141,8 +142,8 @@ export default function PetrolMileageCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-green-600 dark:text-green-400">
-                  🏎️ SUVs & Crossovers
+                <h3 className="text-xl font-semibold mb-3 text-green-600 dark:text-green-400 flex items-center gap-2">
+                  <Icon name="car" className="w-5 h-5" /> SUVs & Crossovers
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>Compact SUV:</strong> 10-14 km/L</li>
@@ -154,8 +155,8 @@ export default function PetrolMileageCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-green-600 dark:text-green-400">
-                  ⚡ Hybrid & Eco Vehicles
+                <h3 className="text-xl font-semibold mb-3 text-green-600 dark:text-green-400 flex items-center gap-2">
+                  <Icon name="zap" className="w-5 h-5" /> Hybrid & Eco Vehicles
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>Mild Hybrid:</strong> 18-22 km/L</li>
@@ -173,7 +174,7 @@ export default function PetrolMileageCalculatorPage() {
 
             <div className="space-y-4 mb-8">
               <div className="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900 dark:to-orange-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">🚦 Driving Conditions (Impact: 20-40%)</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="alert-triangle" className="w-5 h-5" /> Driving Conditions (Impact: 20-40%)</h4>
                 <p className="text-gray-700 dark:text-gray-300">
                   City driving with frequent stops reduces mileage by 30-40% compared to highway driving. 
                   Traffic congestion, traffic lights, and stop-and-go patterns significantly increase fuel consumption.
@@ -181,7 +182,7 @@ export default function PetrolMileageCalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900 dark:to-cyan-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">🏃 Driving Behavior (Impact: 15-30%)</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="trending-up" className="w-5 h-5" /> Driving Behavior (Impact: 15-30%)</h4>
                 <p className="text-gray-700 dark:text-gray-300">
                   Aggressive acceleration, hard braking, and speeding can reduce mileage by 33%. Smooth, 
                   predictive driving with gradual acceleration improves efficiency significantly.
@@ -189,7 +190,7 @@ export default function PetrolMileageCalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900 dark:to-teal-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">🔧 Vehicle Maintenance (Impact: 10-25%)</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="wrench" className="w-5 h-5" /> Vehicle Maintenance (Impact: 10-25%)</h4>
                 <p className="text-gray-700 dark:text-gray-300">
                   Dirty air filters, worn spark plugs, incorrect tire pressure, and old engine oil can reduce 
                   mileage by 25%. Regular maintenance ensures optimal performance.
@@ -197,7 +198,7 @@ export default function PetrolMileageCalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900 dark:to-pink-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">❄️ Weather & AC Usage (Impact: 10-20%)</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="snowflake" className="w-5 h-5" /> Weather & AC Usage (Impact: 10-20%)</h4>
                 <p className="text-gray-700 dark:text-gray-300">
                   Air conditioning can reduce mileage by 20% in city driving. Cold weather also decreases 
                   efficiency by 10-15% as engines take longer to reach optimal temperature.
@@ -205,7 +206,7 @@ export default function PetrolMileageCalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-900 dark:to-amber-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">⚖️ Vehicle Load (Impact: 5-15%)</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="scale" className="w-5 h-5" /> Vehicle Load (Impact: 5-15%)</h4>
                 <p className="text-gray-700 dark:text-gray-300">
                   Every 50 kg of extra weight reduces mileage by 1-2%. Roof racks and cargo carriers increase 
                   aerodynamic drag, reducing highway mileage by up to 25%.
@@ -267,12 +268,12 @@ export default function PetrolMileageCalculatorPage() {
                 <div>
                   <h5 className="font-semibold mb-2">Calculated Results:</h5>
                   <ul className="space-y-1">
-                    <li>📏 Monthly Distance: 1,100 km</li>
-                    <li>⛽ Petrol Required: 84.6 liters</li>
-                    <li>💰 Monthly Cost: $131.13</li>
-                    <li>📊 Cost per km: $0.119</li>
-                    <li>📈 Annual Fuel Cost: $1,573.56</li>
-                    <li>🔢 Consumption: 7.69 L/100km</li>
+                    <li className="flex items-center gap-2"><Icon name="map" className="w-4 h-4" /> Monthly Distance: 1,100 km</li>
+                    <li className="flex items-center gap-2"><Icon name="fuel" className="w-4 h-4" /> Petrol Required: 84.6 liters</li>
+                    <li className="flex items-center gap-2"><Icon name="dollar-sign" className="w-4 h-4" /> Monthly Cost: $131.13</li>
+                    <li className="flex items-center gap-2"><Icon name="bar-chart" className="w-4 h-4" /> Cost per km: $0.119</li>
+                    <li className="flex items-center gap-2"><Icon name="trending-up" className="w-4 h-4" /> Annual Fuel Cost: $1,573.56</li>
+                    <li className="flex items-center gap-2"><Icon name="gauge" className="w-4 h-4" /> Consumption: 7.69 L/100km</li>
                   </ul>
                 </div>
               </div>

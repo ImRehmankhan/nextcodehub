@@ -2,6 +2,7 @@ import FuelCalculator from '@/components/tools/FuelCalculator';
 import AdSenseBlock from '@/components/ui/AdSenseBlock';
 import { FuelCalculatorSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
 import ViewerLayout from '@/components/viewer/viewer-layout';
+import Icon from '@/components/icon';
 
 export const metadata = {
   title: 'Gas Price Calculator – Calculate Gas Cost & Mileage Expenses Instantly',
@@ -115,8 +116,8 @@ export default function GasPriceCalculatorPage() {
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-red-600 dark:text-red-400">
-                  🔴 Highest Gas Price States
+                <h3 className="text-xl font-semibold mb-3 text-red-600 dark:text-red-400 flex items-center gap-2">
+                  <Icon name="trending-up" className="w-5 h-5" /> Highest Gas Price States
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>California:</strong> $4.20 - $5.50/gallon</li>
@@ -128,8 +129,8 @@ export default function GasPriceCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-green-600 dark:text-green-400">
-                  🟢 Lowest Gas Price States
+                <h3 className="text-xl font-semibold mb-3 text-green-600 dark:text-green-400 flex items-center gap-2">
+                  <Icon name="trending-down" className="w-5 h-5" /> Lowest Gas Price States
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>Texas:</strong> $2.90 - $3.60/gallon</li>
@@ -141,8 +142,8 @@ export default function GasPriceCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
-                  🔵 Urban vs Rural Pricing
+                <h3 className="text-xl font-semibold mb-3 text-primary flex items-center gap-2">
+                  <Icon name="map" className="w-5 h-5" /> Urban vs Rural Pricing
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>Major Cities:</strong> $0.15-$0.30 higher</li>
@@ -154,8 +155,8 @@ export default function GasPriceCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-purple-600 dark:text-purple-400">
-                  🟣 Seasonal Price Variations
+                <h3 className="text-xl font-semibold mb-3 text-purple-600 dark:text-purple-400 flex items-center gap-2">
+                  <Icon name="bar-chart" className="w-5 h-5" /> Seasonal Price Variations
                 </h3>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li><strong>Summer (May-Aug):</strong> Peak prices (+15-20%)</li>
@@ -173,7 +174,7 @@ export default function GasPriceCalculatorPage() {
 
             <div className="space-y-4 mb-8">
               <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900 dark:to-emerald-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">💳 Smart Filling Strategies</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="lightbulb" className="w-5 h-5" /> Smart Filling Strategies</h4>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li>• Fill up on Monday-Wednesday (typically 5-10 cents cheaper than weekends)</li>
                   <li>• Use gas rewards credit cards (2-5% cashback on gas purchases)</li>
@@ -185,7 +186,7 @@ export default function GasPriceCalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900 dark:to-cyan-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">📱 Use Technology to Save</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="smartphone" className="w-5 h-5" /> Use Technology to Save</h4>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li>• GasBuddy app - find cheapest gas nearby and earn points</li>
                   <li>• Waze navigation - shows gas prices along your route</li>
@@ -196,7 +197,7 @@ export default function GasPriceCalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900 dark:to-orange-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">🚗 Vehicle Efficiency Tips</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="car" className="w-5 h-5" /> Vehicle Efficiency Tips</h4>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li>• Remove roof racks and carriers when not in use (improve MPG by 25% on highway)</li>
                   <li>• Reduce weight - every 100 lbs reduces MPG by 1-2%</li>
@@ -208,7 +209,7 @@ export default function GasPriceCalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900 dark:to-pink-900 p-5 rounded-lg">
-                <h4 className="font-semibold text-lg mb-2">🔧 Maintenance for Better MPG</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="wrench" className="w-5 h-5" /> Maintenance for Better MPG</h4>
                 <ul className="space-y-2 text-gray-700 dark:text-gray-300">
                   <li>• Keep tires properly inflated (improve MPG by 3%)</li>
                   <li>• Use recommended motor oil grade (improve MPG by 1-2%)</li>

@@ -39,7 +39,7 @@ export function ThemeProvider({
   const updateActualTheme = (currentTheme) => {
     const root = window.document.documentElement
     
-    // Remove existing theme classes
+    // Remove existing theme classes and attributes
     root.classList.remove('light', 'dark')
     
     let resolvedTheme = currentTheme
@@ -50,8 +50,9 @@ export function ThemeProvider({
         : 'light'
     }
     
-    // Apply the resolved theme
+    // Apply the resolved theme (both class and data-attribute for compatibility)
     root.classList.add(resolvedTheme)
+    root.setAttribute('data-theme', resolvedTheme)
     setActualTheme(resolvedTheme)
   }
 

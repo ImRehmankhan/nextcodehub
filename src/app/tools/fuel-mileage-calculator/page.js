@@ -2,6 +2,7 @@ import FuelCalculator from '@/components/tools/FuelCalculator';
 import ViewerLayout from '@/components/viewer/viewer-layout';
 import AdSenseBlock from '@/components/ui/AdSenseBlock';
 import { FuelCalculatorSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
+import Icon from '@/components/icon';
 
 const faqs = [
   {
@@ -86,7 +87,7 @@ export default function FuelMileageCalculatorPage() {
               <p className="text-sm">20+ km/L (47+ MPG)</p>
               <p className="text-xs mt-2">Hybrid & Electric vehicles</p>
             </div>
-            <div className="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg">
+            <div className="bg-muted p-4 rounded-lg">
               <h4 className="font-bold text-lg mb-2">Good</h4>
               <p className="text-sm">15-20 km/L (35-47 MPG)</p>
               <p className="text-xs mt-2">Efficient cars & sedans</p>
@@ -102,7 +103,7 @@ export default function FuelMileageCalculatorPage() {
             How to Calculate Fuel Mileage
           </h2>
 
-          <div className="bg-blue-50 dark:bg-blue-900 p-6 rounded-lg mb-6">
+          <div className="bg-muted p-6 rounded-lg mb-6">
             <h4 className="text-xl font-semibold mb-3">Manual Calculation Method:</h4>
             <ol className="space-y-2">
               <li><strong>Step 1:</strong> Fill your tank completely</li>
@@ -120,7 +121,7 @@ export default function FuelMileageCalculatorPage() {
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
+              <h3 className="text-xl font-semibold mb-3 text-primary">
                 Driving Habits
               </h3>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
@@ -132,7 +133,7 @@ export default function FuelMileageCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
+              <h3 className="text-xl font-semibold mb-3 text-primary">
                 Vehicle Condition
               </h3>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
@@ -144,7 +145,7 @@ export default function FuelMileageCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
+              <h3 className="text-xl font-semibold mb-3 text-primary">
                 Environmental Factors
               </h3>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
@@ -156,7 +157,7 @@ export default function FuelMileageCalculatorPage() {
             </div>
 
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
+              <h3 className="text-xl font-semibold mb-3 text-primary">
                 Usage Patterns
               </h3>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
@@ -251,11 +252,11 @@ export default function FuelMileageCalculatorPage() {
               potential issues early. Use our calculator to:
             </p>
             <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-              <li>📊 Track changes in fuel efficiency over time</li>
-              <li>🔧 Detect maintenance needs before they become expensive</li>
-              <li>💰 Optimize your driving habits to save money</li>
-              <li>🌱 Reduce your environmental impact</li>
-              <li>📈 Compare different vehicles or fuel types</li>
+              <li className="flex items-center gap-2"><Icon name="bar-chart" className="w-5 h-5 text-sky-500" /> Track changes in fuel efficiency over time</li>
+              <li className="flex items-center gap-2"><Icon name="wrench" className="w-5 h-5 text-sky-500" /> Detect maintenance needs before they become expensive</li>
+              <li className="flex items-center gap-2"><Icon name="dollar-sign" className="w-5 h-5 text-sky-500" /> Optimize your driving habits to save money</li>
+              <li className="flex items-center gap-2"><Icon name="sparkles" className="w-5 h-5 text-sky-500" /> Reduce your environmental impact</li>
+              <li className="flex items-center gap-2"><Icon name="trending-up" className="w-5 h-5 text-sky-500" /> Compare different vehicles or fuel types</li>
             </ul>
           </div>
         </div>

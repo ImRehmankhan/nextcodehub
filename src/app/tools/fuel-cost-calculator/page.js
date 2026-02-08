@@ -2,6 +2,7 @@ import FuelCalculator from '@/components/tools/FuelCalculator';
 import AdSenseBlock from '@/components/ui/AdSenseBlock';
 import { FuelCalculatorSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
 import ViewerLayout from '@/components/viewer/viewer-layout';
+import Icon from '@/components/icon';
 
 export const metadata = {
   title: 'Fuel Cost Calculator – Calculate Petrol Expense Per KM Instantly | Free Tool',
@@ -99,7 +100,7 @@ export default function FuelCostCalculatorPage() {
               Example Calculation
             </h2>
 
-            <div className="bg-blue-50 dark:bg-blue-900 p-6 rounded-lg mb-6">
+            <div className="bg-muted p-6 rounded-lg mb-6">
               <h4 className="text-xl font-semibold mb-3">Road Trip Example:</h4>
               <ul className="space-y-2">
                 <li><strong>Distance:</strong> 300 km (one-way)</li>
@@ -125,7 +126,7 @@ export default function FuelCostCalculatorPage() {
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
+                <h3 className="text-xl font-semibold mb-3 text-primary">
                   ✓ Accurate Results
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300">
@@ -134,7 +135,7 @@ export default function FuelCostCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
+                <h3 className="text-xl font-semibold mb-3 text-primary">
                   ✓ Trip Planning
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300">
@@ -143,7 +144,7 @@ export default function FuelCostCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
+                <h3 className="text-xl font-semibold mb-3 text-primary">
                   ✓ Budget Management
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300">
@@ -152,7 +153,7 @@ export default function FuelCostCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
+                <h3 className="text-xl font-semibold mb-3 text-primary">
                   ✓ Free & Easy
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300">
@@ -186,15 +187,15 @@ export default function FuelCostCalculatorPage() {
               </h3>
               <div className="grid md:grid-cols-3 gap-4">
                 <a href="/tools/fuel-mileage-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-lg transition-shadow">
-                  <h4 className="font-semibold text-blue-600 dark:text-blue-400 mb-2">Fuel Mileage Calculator</h4>
+                  <h4 className="font-semibold text-primary mb-2">Fuel Mileage Calculator</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Calculate vehicle fuel efficiency</p>
                 </a>
                 <a href="/tools/petrol-mileage-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-lg transition-shadow">
-                  <h4 className="font-semibold text-blue-600 dark:text-blue-400 mb-2">Petrol Mileage Calculator</h4>
+                  <h4 className="font-semibold text-primary mb-2">Petrol Mileage Calculator</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Track petrol consumption</p>
                 </a>
                 <a href="/tools/mpg-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-lg transition-shadow">
-                  <h4 className="font-semibold text-blue-600 dark:text-blue-400 mb-2">MPG Calculator</h4>
+                  <h4 className="font-semibold text-primary mb-2">MPG Calculator</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Calculate miles per gallon</p>
                 </a>
               </div>
@@ -207,11 +208,11 @@ export default function FuelCostCalculatorPage() {
                 Pro Tips for Saving Fuel Costs
               </h3>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-                <li>🚗 <strong>Plan your route:</strong> Use GPS to avoid traffic and find the shortest route</li>
-                <li>⚡ <strong>Regular maintenance:</strong> Keep your engine tuned for optimal efficiency</li>
-                <li>🌡️ <strong>Minimize AC use:</strong> Use it wisely to save up to 20% on fuel</li>
-                <li>🎯 <strong>Smooth driving:</strong> Avoid sudden acceleration and braking</li>
-                <li>📊 <strong>Track your mileage:</strong> Monitor fuel efficiency to spot problems early</li>
+                <li className="flex items-start gap-2"><Icon name="car" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span><strong>Plan your route:</strong> Use GPS to avoid traffic and find the shortest route</span></li>
+                <li className="flex items-start gap-2"><Icon name="zap" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span><strong>Regular maintenance:</strong> Keep your engine tuned for optimal efficiency</span></li>
+                <li className="flex items-start gap-2"><Icon name="thermometer" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span><strong>Minimize AC use:</strong> Use it wisely to save up to 20% on fuel</span></li>
+                <li className="flex items-start gap-2"><Icon name="target" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span><strong>Smooth driving:</strong> Avoid sudden acceleration and braking</span></li>
+                <li className="flex items-start gap-2"><Icon name="bar-chart" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span><strong>Track your mileage:</strong> Monitor fuel efficiency to spot problems early</span></li>
               </ul>
             </div>
           </div>

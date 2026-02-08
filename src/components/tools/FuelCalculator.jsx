@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Icon from '@/components/icon';
 
 // Currency configurations
 const CURRENCIES = {
@@ -142,17 +143,17 @@ export default function FuelCalculator({ variant = 'general' }) {
 
   return (
     <div className="fuel-calculator">
-      <div className="w-full max-w-7xl mx-auto bg-white dark:bg-slate-800 rounded-3xl shadow-2xl overflow-hidden border-2 border-sky-100 dark:border-slate-700">
+      <div className="w-full max-w-7xl mx-auto bg-surface dark:bg-background rounded-3xl shadow-2xl overflow-hidden border-2 border-primary">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px] lg:min-h-[700px]">
           {/* Left Panel - Inputs */}
-          <div className="p-8 lg:p-10 overflow-y-auto bg-gradient-to-br from-sky-500 via-blue-600 to-cyan-600 dark:from-blue-900 dark:to-cyan-900">
+          <div className="p-8 lg:p-10 overflow-y-auto bg-primary dark:bg-background">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center text-4xl shadow-lg">
-                ⛽
+              <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
+                <Icon name="fuel" className="w-10 h-10 text-white" />
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-white">Fuel Calculator</h2>
-                <p className="text-blue-100 text-sm">Calculate your trip costs</p>
+                <p className="text-accent text-sm">Calculate your trip costs</p>
               </div>
             </div>
 
@@ -161,7 +162,7 @@ export default function FuelCalculator({ variant = 'general' }) {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                    <span>🌍</span>
+                    <Icon name="gauge" className="w-4 h-4" />
                     Unit System
                   </label>
                   <div className="flex gap-2">
@@ -169,7 +170,7 @@ export default function FuelCalculator({ variant = 'general' }) {
                       onClick={() => setInputs(prev => ({ ...prev, unit: 'metric' }))}
                       className={`flex-1 px-4 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
                         inputs.unit === 'metric'
-                          ? 'bg-white text-sky-600 shadow-xl scale-105'
+                          ? 'bg-white text-primary shadow-xl scale-105'
                           : 'bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm'
                       }`}
                     >
@@ -179,7 +180,7 @@ export default function FuelCalculator({ variant = 'general' }) {
                       onClick={() => setInputs(prev => ({ ...prev, unit: 'imperial' }))}
                       className={`flex-1 px-4 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
                         inputs.unit === 'imperial'
-                          ? 'bg-white text-sky-600 shadow-xl scale-105'
+                          ? 'bg-white text-primary shadow-xl scale-105'
                           : 'bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm'
                       }`}
                     >
@@ -190,15 +191,15 @@ export default function FuelCalculator({ variant = 'general' }) {
 
                 <div>
                   <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                    <span>💱</span>
-                    Currency {loadingRates && '⏳'}
+                    <Icon name="dollar-sign" className="w-4 h-4" />
+                    Currency {loadingRates && <Icon name="clock" className="w-4 h-4 animate-spin" />}
                   </label>
                   <select
                     name="currency"
                     value={inputs.currency}
                     onChange={handleInputChange}
                     disabled={loadingRates}
-                    className="w-full px-4 py-3 rounded-xl text-sm font-medium bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-4 focus:ring-white/50 transition-all disabled:opacity-50 shadow-lg"
+                    className="w-full px-4 py-3 rounded-xl text-sm font-medium bg-white dark:bg-surface text-foreground focus:ring-4 focus:ring-white/50 transition-all disabled:opacity-50 shadow-lg"
                   >
                     {Object.entries(CURRENCIES).map(([code, { symbol, name }]) => (
                       <option key={code} value={code}>
@@ -208,7 +209,7 @@ export default function FuelCalculator({ variant = 'general' }) {
                   </select>
                   {ratesError && (
                     <p className="text-xs text-yellow-200 mt-2 flex items-center gap-1">
-                      <span>⚠️</span> Using offline rates
+                      <Icon name="alert-triangle" className="w-4 h-4" /> Using offline rates
                     </p>
                   )}
                 </div>
@@ -217,7 +218,7 @@ export default function FuelCalculator({ variant = 'general' }) {
               {/* Trip Type */}
               <div>
                 <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                  <span>🔄</span>
+                  <Icon name="route" className="w-4 h-4" />
                   Trip Type
                 </label>
                 <div className="flex gap-2">
@@ -225,7 +226,7 @@ export default function FuelCalculator({ variant = 'general' }) {
                     onClick={() => setInputs(prev => ({ ...prev, tripType: 'oneway' }))}
                     className={`flex-1 px-4 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
                       inputs.tripType === 'oneway'
-                        ? 'bg-white text-sky-600 shadow-xl scale-105'
+                        ? 'bg-white text-primary shadow-xl scale-105'
                         : 'bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm'
                     }`}
                   >
@@ -235,7 +236,7 @@ export default function FuelCalculator({ variant = 'general' }) {
                     onClick={() => setInputs(prev => ({ ...prev, tripType: 'roundtrip' }))}
                     className={`flex-1 px-4 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
                       inputs.tripType === 'roundtrip'
-                        ? 'bg-white text-sky-600 shadow-xl scale-105'
+                        ? 'bg-white text-primary shadow-xl scale-105'
                         : 'bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm'
                     }`}
                   >
@@ -247,7 +248,7 @@ export default function FuelCalculator({ variant = 'general' }) {
               {/* Distance Input */}
               <div>
                 <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                  <span>📏</span>
+                  <Icon name="route" className="w-4 h-4" />
                   Distance ({inputs.unit === 'metric' ? 'km' : 'miles'})
                 </label>
                 <input
@@ -256,14 +257,14 @@ export default function FuelCalculator({ variant = 'general' }) {
                   value={inputs.distance}
                   onChange={handleInputChange}
                   placeholder="Enter distance"
-                  className="w-full px-5 py-4 rounded-xl bg-white/95 dark:bg-slate-700 text-slate-900 dark:text-white text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg placeholder:text-slate-400"
+                  className="w-full px-5 py-4 rounded-xl bg-white/95 dark:bg-surface text-foreground text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg placeholder:text-secondary-foreground"
                 />
               </div>
 
               {/* Fuel Efficiency */}
               <div>
                 <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                  <span>⚙️</span>
+                  <Icon name="gauge" className="w-4 h-4" />
                   Fuel Efficiency ({inputs.unit === 'metric' ? 'km/L' : 'MPG'})
                 </label>
                 <input
@@ -272,18 +273,18 @@ export default function FuelCalculator({ variant = 'general' }) {
                   value={inputs.efficiency}
                   onChange={handleInputChange}
                   placeholder={inputs.unit === 'metric' ? 'e.g., 15' : 'e.g., 25'}
-                  className="w-full px-5 py-4 rounded-xl bg-white/95 dark:bg-slate-700 text-slate-900 dark:text-white text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg placeholder:text-slate-400"
+                  className="w-full px-5 py-4 rounded-xl bg-white/95 dark:bg-surface text-foreground text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg placeholder:text-secondary-foreground"
                 />
               </div>
 
               {/* Fuel Price */}
               <div>
                 <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                  <span>💰</span>
+                  <Icon name="dollar-sign" className="w-4 h-4" />
                   Fuel Price ({CURRENCIES[inputs.currency]?.symbol || '$'} per {inputs.unit === 'metric' ? 'Liter' : 'Gallon'})
                 </label>
                 <div className="relative">
-                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 font-bold text-lg">
+                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-secondary-foreground font-bold text-lg">
                     {CURRENCIES[inputs.currency]?.symbol || '$'}
                   </span>
                   <input
@@ -293,12 +294,12 @@ export default function FuelCalculator({ variant = 'general' }) {
                     onChange={handleInputChange}
                     placeholder={inputs.unit === 'metric' ? '1.50' : '3.50'}
                     step="0.01"
-                    className="w-full pl-12 pr-5 py-4 rounded-xl bg-white/95 dark:bg-slate-700 text-slate-900 dark:text-white text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg placeholder:text-slate-400"
+                    className="w-full pl-12 pr-5 py-4 rounded-xl bg-white/95 dark:bg-surface text-foreground text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg placeholder:text-secondary-foreground"
                   />
                 </div>
                 {exchangeRates && inputs.currency !== 'USD' && inputs.fuelPrice && (
-                  <p className="text-sm text-blue-100 mt-2 flex items-center gap-1">
-                    <span>💱</span>
+                  <p className="text-sm text-accent mt-2 flex items-center gap-1">
+                    <Icon name="dollar-sign" className="w-4 h-4" />
                     ≈ ${(parseFloat(inputs.fuelPrice) / exchangeRates[inputs.currency]).toFixed(2)} USD
                   </p>
                 )}
@@ -307,19 +308,19 @@ export default function FuelCalculator({ variant = 'general' }) {
               {/* Vehicle Type */}
               <div>
                 <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                  <span>🚗</span>
+                  <Icon name="car" className="w-4 h-4" />
                   Vehicle Type
                 </label>
                 <select
                   name="vehicleType"
                   value={inputs.vehicleType}
                   onChange={handleInputChange}
-                  className="w-full px-5 py-4 rounded-xl bg-white/95 dark:bg-slate-700 text-slate-900 dark:text-white text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg"
+                  className="w-full px-5 py-4 rounded-xl bg-white/95 dark:bg-surface text-foreground text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg"
                 >
-                  <option value="car">🚗 Car</option>
-                  <option value="bike">🏍️ Motorcycle</option>
-                  <option value="truck">🚚 Truck</option>
-                  <option value="suv">🚙 SUV</option>
+                  <option value="car">Car</option>
+                  <option value="bike">Motorcycle</option>
+                  <option value="truck">Truck</option>
+                  <option value="suv">SUV</option>
                 </select>
               </div>
 
@@ -328,81 +329,81 @@ export default function FuelCalculator({ variant = 'general' }) {
                 onClick={resetCalculator}
                 className="w-full bg-white/20 hover:bg-white/40 text-white font-bold py-4 rounded-xl transition-all duration-300 backdrop-blur-sm border-2 border-white/30 hover:border-white/50 hover:shadow-xl flex items-center justify-center gap-2"
               >
-                <span>🔄</span>
+                <Icon name="x" className="w-5 h-5" />
                 <span>Reset Calculator</span>
               </button>
             </div>
           </div>
 
           {/* Right Panel - Results */}
-          <div className="p-8 lg:p-10 overflow-y-auto bg-gradient-to-br from-slate-50 to-sky-50 dark:from-slate-900 dark:to-slate-800">
+          <div className="p-8 lg:p-10 overflow-y-auto bg-surface dark:bg-background">
             {results ? (
               <div className="h-full flex flex-col">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center text-4xl shadow-xl">
-                    📊
+                  <div className="w-16 h-16 rounded-2xl bg-success flex items-center justify-center shadow-xl">
+                    <Icon name="bar-chart" className="w-10 h-10 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-3xl font-bold text-slate-900 dark:text-white">Your Results</h3>
-                    <p className="text-slate-600 dark:text-slate-300 text-sm">Trip cost breakdown</p>
+                    <h3 className="text-3xl font-bold text-foreground">Your Results</h3>
+                    <p className="text-secondary-foreground text-sm">Trip cost breakdown</p>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-gradient-to-br from-sky-500 to-blue-600 p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
+                  <div className="bg-primary p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-sm font-bold opacity-90">Fuel Required</p>
-                      <span className="text-2xl">⛽</span>
+                      <Icon name="fuel" className="w-7 h-7" />
                     </div>
                     <p className="text-3xl font-extrabold">
                       {results.fuelRequired} {results.unit}
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-emerald-500 to-green-600 p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
+                  <div className="bg-success p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-sm font-bold opacity-90">Total Cost</p>
-                      <span className="text-2xl">💰</span>
+                      <Icon name="dollar-sign" className="w-7 h-7" />
                     </div>
                     <p className="text-3xl font-extrabold">
                       {results.currencySymbol}{results.totalCost}
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-violet-500 to-purple-600 p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
+                  <div className="bg-accent p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-sm font-bold opacity-90">Cost per {results.distanceUnit}</p>
-                      <span className="text-2xl">📍</span>
+                      <Icon name="map-pin" className="w-7 h-7" />
                     </div>
                     <p className="text-3xl font-extrabold">
                       {results.currencySymbol}{results.costPerUnit}
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-amber-500 to-orange-600 p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
+                  <div className="bg-warning p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-sm font-bold opacity-90">Total Distance</p>
-                      <span className="text-2xl">📏</span>
+                      <Icon name="route" className="w-7 h-7" />
                     </div>
                     <p className="text-3xl font-extrabold">
                       {results.totalDistance} {results.distanceUnit}
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-rose-500 to-red-600 p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
+                  <div className="bg-error p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-sm font-bold opacity-90">Consumption Rate</p>
-                      <span className="text-2xl">⚡</span>
+                      <Icon name="zap" className="w-7 h-7" />
                     </div>
                     <p className="text-2xl font-extrabold">
                       {results.fuelConsumptionRate} {results.unit}/100{results.distanceUnit}
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-teal-500 to-cyan-600 p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
+                  <div className="bg-info p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-sm font-bold opacity-90">Efficiency</p>
-                      <span className="text-2xl">⚙️</span>
+                      <Icon name="gauge" className="w-7 h-7" />
                     </div>
                     <p className="text-2xl font-extrabold">
                       {inputs.efficiency} {results.efficiencyUnit}
@@ -411,16 +412,16 @@ export default function FuelCalculator({ variant = 'general' }) {
                 </div>
 
                 {/* Summary */}
-                <div className="mt-4 p-4 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/50 dark:to-indigo-900/50 rounded-xl border-l-4 border-blue-500">
-                  <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-                    <strong className="text-blue-600 dark:text-blue-400">Summary:</strong> For a {results.tripType === 'roundtrip' ? 'round trip' : 'one-way trip'} 
+                <div className="mt-4 p-4 bg-muted rounded-xl border-l-4 border-primary">
+                  <p className="text-sm text-foreground leading-relaxed">
+                    <strong className="text-primary">Summary:</strong> For a {results.tripType === 'roundtrip' ? 'round trip' : 'one-way trip'} 
                     of <strong>{results.totalDistance} {results.distanceUnit}</strong> in your <strong>{results.vehicleType}</strong>, 
                     you'll need <strong>{results.fuelRequired} {results.unit}</strong> of fuel, 
                     costing <strong>{results.currencySymbol}{results.totalCost}</strong> at {results.currencySymbol}{inputs.fuelPrice} per {results.unit}.
                   </p>
                   {exchangeRates && inputs.currency !== 'USD' && (
-                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
-                      💱 Equivalent to <strong>${(results.totalCost / exchangeRates[inputs.currency]).toFixed(2)} USD</strong>
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 flex items-center gap-1">
+                      <Icon name="dollar-sign" className="w-3 h-3" /> Equivalent to <strong>${(results.totalCost / exchangeRates[inputs.currency]).toFixed(2)} USD</strong>
                     </p>
                   )}
                 </div>
@@ -428,7 +429,9 @@ export default function FuelCalculator({ variant = 'general' }) {
             ) : (
               <div className="h-full flex items-center justify-center">
                 <div className="text-center">
-                  <div className="text-8xl mb-4">📝</div>
+                  <div className="mb-4 flex justify-center">
+                    <Icon name="pencil" className="w-24 h-24 text-gray-300 dark:text-gray-600" />
+                  </div>
                   <h3 className="text-2xl font-bold text-gray-400 dark:text-gray-500 mb-2">
                     Enter Your Details
                   </h3>

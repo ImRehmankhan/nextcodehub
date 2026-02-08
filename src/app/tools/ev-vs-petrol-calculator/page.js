@@ -1,6 +1,7 @@
 import AdSenseBlock from '@/components/ui/AdSenseBlock';
 import { FuelCalculatorSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
 import ViewerLayout from '@/components/viewer/viewer-layout';
+import Icon from '@/components/icon';
 
 
 export const metadata = {
@@ -61,8 +62,8 @@ export default function EVvsPetrolCalculatorPage() {
           {/* Comparison Calculator Coming Soon */}
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mb-8">
             <div className="text-center mb-8">
-              <div className="inline-block p-4 bg-blue-100 dark:bg-blue-900 rounded-full mb-4">
-                <svg className="w-16 h-16 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="inline-block p-4 bg-muted rounded-full mb-4">
+                <svg className="w-16 h-16 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
@@ -84,8 +85,8 @@ export default function EVvsPetrolCalculatorPage() {
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900 dark:to-emerald-900 p-6 rounded-lg">
-                <h3 className="text-2xl font-semibold mb-4 text-green-700 dark:text-green-300">
-                  ⚡ Electric Vehicle (EV)
+                <h3 className="text-2xl font-semibold mb-4 text-green-700 dark:text-green-300 flex items-center gap-2">
+                  <Icon name="zap" className="w-6 h-6" /> Electric Vehicle (EV)
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="bg-white dark:bg-gray-800 p-3 rounded">
@@ -114,8 +115,8 @@ export default function EVvsPetrolCalculatorPage() {
               </div>
 
               <div className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900 dark:to-red-900 p-6 rounded-lg">
-                <h3 className="text-2xl font-semibold mb-4 text-orange-700 dark:text-orange-300">
-                  ⛽ Petrol/Gas Vehicle
+                <h3 className="text-2xl font-semibold mb-4 text-orange-700 dark:text-orange-300 flex items-center gap-2">
+                  <Icon name="fuel" className="w-6 h-6" /> Petrol/Gas Vehicle
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="bg-white dark:bg-gray-800 p-3 rounded">
@@ -154,12 +155,12 @@ export default function EVvsPetrolCalculatorPage() {
                 <div>
                   <h4 className="text-xl font-semibold mb-4 text-green-700 dark:text-green-300">Electric Vehicle (75k miles)</h4>
                   <ul className="space-y-2 text-sm">
-                    <li>🚗 Purchase: $50,000</li>
-                    <li>💵 Tax Credit: -$7,500</li>
-                    <li>⚡ Electricity: $3,000</li>
-                    <li>🔧 Maintenance: $2,000</li>
-                    <li>🛡️ Insurance: $8,500</li>
-                    <li>📉 Resale Value: -$25,000</li>
+                    <li className="flex items-center gap-2"><Icon name="car" className="w-4 h-4" /> Purchase: $50,000</li>
+                    <li className="flex items-center gap-2"><Icon name="dollar-sign" className="w-4 h-4" /> Tax Credit: -$7,500</li>
+                    <li className="flex items-center gap-2"><Icon name="zap" className="w-4 h-4" /> Electricity: $3,000</li>
+                    <li className="flex items-center gap-2"><Icon name="wrench" className="w-4 h-4" /> Maintenance: $2,000</li>
+                    <li className="flex items-center gap-2"><Icon name="shield" className="w-4 h-4" /> Insurance: $8,500</li>
+                    <li className="flex items-center gap-2"><Icon name="trending-down" className="w-4 h-4" /> Resale Value: -$25,000</li>
                     <li className="pt-2 border-t-2 border-green-300 font-bold text-lg">
                       <strong>Net 5-Year Cost: $31,000</strong>
                     </li>
@@ -172,12 +173,12 @@ export default function EVvsPetrolCalculatorPage() {
                 <div>
                   <h4 className="text-xl font-semibold mb-4 text-orange-700 dark:text-orange-300">Petrol Vehicle (75k miles)</h4>
                   <ul className="space-y-2 text-sm">
-                    <li>🚗 Purchase: $38,000</li>
-                    <li>💵 Tax Credit: $0</li>
-                    <li>⛽ Gasoline: $10,000</li>
-                    <li>🔧 Maintenance: $5,000</li>
-                    <li>🛡️ Insurance: $7,500</li>
-                    <li>📉 Resale Value: -$18,000</li>
+                    <li className="flex items-center gap-2"><Icon name="car" className="w-4 h-4" /> Purchase: $38,000</li>
+                    <li className="flex items-center gap-2"><Icon name="dollar-sign" className="w-4 h-4" /> Tax Credit: $0</li>
+                    <li className="flex items-center gap-2"><Icon name="fuel" className="w-4 h-4" /> Gasoline: $10,000</li>
+                    <li className="flex items-center gap-2"><Icon name="wrench" className="w-4 h-4" /> Maintenance: $5,000</li>
+                    <li className="flex items-center gap-2"><Icon name="shield" className="w-4 h-4" /> Insurance: $7,500</li>
+                    <li className="flex items-center gap-2"><Icon name="trending-down" className="w-4 h-4" /> Resale Value: -$18,000</li>
                     <li className="pt-2 border-t-2 border-orange-300 font-bold text-lg">
                       <strong>Net 5-Year Cost: $42,500</strong>
                     </li>
@@ -189,8 +190,8 @@ export default function EVvsPetrolCalculatorPage() {
               </div>
 
               <div className="mt-6 p-4 bg-green-100 dark:bg-green-800 rounded-lg text-center">
-                <p className="text-lg font-bold text-green-800 dark:text-green-200">
-                  💰 5-Year EV Savings: $11,500 ($2,300/year)
+                <p className="text-lg font-bold text-green-800 dark:text-green-200 flex items-center justify-center gap-2">
+                  <Icon name="dollar-sign" className="w-5 h-5" /> 5-Year EV Savings: $11,500 ($2,300/year)
                 </p>
                 <p className="text-sm text-green-700 dark:text-green-300 mt-2">
                   Break-even point: ~2.5 years for average drivers
@@ -204,7 +205,7 @@ export default function EVvsPetrolCalculatorPage() {
 
             <div className="grid md:grid-cols-3 gap-4 mb-8">
               <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
-                <h4 className="font-semibold text-lg mb-2">📍 Driving Habits</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="map" className="w-5 h-5" /> Driving Habits</h4>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>High mileage:</strong> EV saves more</li>
                   <li>• <strong>City driving:</strong> EV excels</li>
@@ -214,7 +215,7 @@ export default function EVvsPetrolCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
-                <h4 className="font-semibold text-lg mb-2">🏠 Home Setup</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="zap" className="w-5 h-5" /> Home Setup</h4>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>Home charger:</strong> Essential</li>
                   <li>• <strong>Installation:</strong> $500-$2,000</li>
@@ -224,7 +225,7 @@ export default function EVvsPetrolCalculatorPage() {
               </div>
 
               <div className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow">
-                <h4 className="font-semibold text-lg mb-2">📊 Incentives</h4>
+                <h4 className="font-semibold text-lg mb-2 flex items-center gap-2"><Icon name="bar-chart" className="w-5 h-5" /> Incentives</h4>
                 <ul className="text-sm space-y-1">
                   <li>• <strong>Federal:</strong> Up to $7,500</li>
                   <li>• <strong>State:</strong> $0-$5,000</li>

@@ -25,7 +25,9 @@ export default function ToolsPage() {
         </div>
          <div className="max-w-3xl mx-auto">
           <div className="bg-card border border-border rounded-2xl p-8 text-center">
-            <div className="text-5xl mb-4">💰</div>
+            <div className="mb-4 flex justify-center">
+              <Icon name="dollar-sign" className="w-16 h-16 text-sky-500" />
+            </div>
             <h3 className="text-2xl font-bold text-heading mb-4">Start Saving on Fuel Today</h3>
             <p className="text-content-secondary mb-6">
               Use our free fuel calculators to track expenses, optimize mileage, and save money on every trip.

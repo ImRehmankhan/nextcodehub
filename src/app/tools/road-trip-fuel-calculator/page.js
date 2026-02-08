@@ -2,6 +2,7 @@ import FuelCalculator from '@/components/tools/FuelCalculator';
 import AdSenseBlock from '@/components/ui/AdSenseBlock';
 import { FuelCalculatorSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
 import ViewerLayout from '@/components/viewer/viewer-layout';
+import Icon from '@/components/icon';
 
 export const metadata = {
   title: 'Road Trip Fuel Calculator – Calculate Trip Gas Cost & Mileage',
@@ -73,14 +74,14 @@ export default function RoadTripFuelCalculatorPage() {
               your costs before you hit the road.
             </p>
 
-            <div className="bg-blue-50 dark:bg-blue-900 p-6 rounded-lg mb-8">
+            <div className="bg-muted p-6 rounded-lg mb-8">
               <h3 className="text-2xl font-semibold mb-4">Road Trip Fuel Planning Tips:</h3>
               <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-                <li>🗺️ <strong>Plan your route:</strong> Use Google Maps or Waze to find the most fuel-efficient path</li>
-                <li>⛽ <strong>Research gas prices:</strong> Check GasBuddy for cheaper stations along your route</li>
-                <li>🚗 <strong>Pack light:</strong> Every 100 lbs reduces MPG by 1-2%</li>
-                <li>🌡️ <strong>Minimize AC usage:</strong> Open windows at low speeds, AC at highway speeds</li>
-                <li>📍 <strong>Fill up strategically:</strong> Avoid highway exits and tourist areas (20-40% markup)</li>
+                <li className="flex items-start gap-2"><Icon name="map" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span><strong>Plan your route:</strong> Use Google Maps or Waze to find the most fuel-efficient path</span></li>
+                <li className="flex items-start gap-2"><Icon name="fuel" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span><strong>Research gas prices:</strong> Check GasBuddy for cheaper stations along your route</span></li>
+                <li className="flex items-start gap-2"><Icon name="car" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span><strong>Pack light:</strong> Every 100 lbs reduces MPG by 1-2%</span></li>
+                <li className="flex items-start gap-2"><Icon name="thermometer" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span><strong>Minimize AC usage:</strong> Open windows at low speeds, AC at highway speeds</span></li>
+                <li className="flex items-start gap-2"><Icon name="map" className="w-5 h-5 flex-shrink-0 mt-0.5" /> <span><strong>Fill up strategically:</strong> Avoid highway exits and tourist areas (20-40% markup)</span></li>
               </ul>
             </div>
 
@@ -105,15 +106,15 @@ export default function RoadTripFuelCalculatorPage() {
               <h3 className="text-2xl font-bold mb-4">More Fuel Calculators</h3>
               <div className="grid md:grid-cols-3 gap-4">
                 <a href="/tools/fuel-cost-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-lg transition-shadow">
-                  <h4 className="font-semibold text-blue-600 mb-2">Fuel Cost Calculator</h4>
+                  <h4 className="font-semibold text-primary mb-2">Fuel Cost Calculator</h4>
                   <p className="text-sm text-gray-600">General fuel cost calculations</p>
                 </a>
                 <a href="/tools/gas-price-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-lg transition-shadow">
-                  <h4 className="font-semibold text-blue-600 mb-2">Gas Price Calculator</h4>
+                  <h4 className="font-semibold text-primary mb-2">Gas Price Calculator</h4>
                   <p className="text-sm text-gray-600">Current gas price estimates</p>
                 </a>
                 <a href="/tools/diesel-cost-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-lg transition-shadow">
-                  <h4 className="font-semibold text-blue-600 mb-2">Diesel Cost Calculator</h4>
+                  <h4 className="font-semibold text-primary mb-2">Diesel Cost Calculator</h4>
                   <p className="text-sm text-gray-600">Calculate diesel expenses</p>
                 </a>
               </div>

@@ -2,6 +2,7 @@ import FuelCalculator from '@/components/tools/FuelCalculator';
 import AdSenseBlock from '@/components/ui/AdSenseBlock';
 import { FuelCalculatorSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
 import ViewerLayout from '@/components/viewer/viewer-layout';
+import Icon from '@/components/icon';
 
 
 export const metadata = {
@@ -76,8 +77,8 @@ export default function DieselCostCalculatorPage() {
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className="bg-green-50 dark:bg-green-900 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3 text-green-700 dark:text-green-300">
-                  ✅ Diesel Advantages
+                <h3 className="text-xl font-semibold mb-3 text-green-700 dark:text-green-300 flex items-center gap-2">
+                  <Icon name="check-circle" className="w-5 h-5" /> Diesel Advantages
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li>• 20-30% better fuel economy</li>
@@ -90,8 +91,8 @@ export default function DieselCostCalculatorPage() {
               </div>
 
               <div className="bg-red-50 dark:bg-red-900 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3 text-red-700 dark:text-red-300">
-                  ⚠️ Diesel Disadvantages
+                <h3 className="text-xl font-semibold mb-3 text-red-700 dark:text-red-300 flex items-center gap-2">
+                  <Icon name="alert-triangle" className="w-5 h-5" /> Diesel Disadvantages
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li>• Higher purchase price ($3,000-$5,000)</li>
@@ -110,7 +111,7 @@ export default function DieselCostCalculatorPage() {
               Diesel vs Petrol Cost Comparison
             </h2>
 
-            <div className="bg-blue-50 dark:bg-blue-900 p-6 rounded-lg mb-8">
+            <div className="bg-muted p-6 rounded-lg mb-8">
               <h4 className="text-xl font-semibold mb-4">Example: 30,000 Miles Annual Driving</h4>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -134,8 +135,8 @@ export default function DieselCostCalculatorPage() {
                   </ul>
                 </div>
               </div>
-              <p className="mt-4 font-semibold text-green-700 dark:text-green-300">
-                💰 Diesel Savings: $749/year or $3,745 over 5 years
+              <p className="mt-4 font-semibold text-green-700 dark:text-green-300 flex items-center gap-2">
+                <Icon name="dollar-sign" className="w-5 h-5" /> Diesel Savings: $749/year or $3,745 over 5 years
               </p>
             </div>
 
@@ -158,15 +159,15 @@ export default function DieselCostCalculatorPage() {
               <h3 className="text-2xl font-bold mb-4">Related Calculators</h3>
               <div className="grid md:grid-cols-3 gap-4">
                 <a href="/tools/fuel-cost-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-lg transition-shadow">
-                  <h4 className="font-semibold text-blue-600 mb-2">Fuel Cost Calculator</h4>
+                  <h4 className="font-semibold text-primary mb-2">Fuel Cost Calculator</h4>
                   <p className="text-sm text-gray-600">Universal fuel calculations</p>
                 </a>
                 <a href="/tools/ev-vs-petrol-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-lg transition-shadow">
-                  <h4 className="font-semibold text-blue-600 mb-2">EV vs Petrol Calculator</h4>
+                  <h4 className="font-semibold text-primary mb-2">EV vs Petrol Calculator</h4>
                   <p className="text-sm text-gray-600">Compare electric and fuel costs</p>
                 </a>
                 <a href="/tools/fuel-expense-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg hover:shadow-lg transition-shadow">
-                  <h4 className="font-semibold text-blue-600 mb-2">Fuel Expense Calculator</h4>
+                  <h4 className="font-semibold text-primary mb-2">Fuel Expense Calculator</h4>
                   <p className="text-sm text-gray-600">Track monthly fuel budget</p>
                 </a>
               </div>
