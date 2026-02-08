@@ -3,8 +3,8 @@ import ViewerLayout from "@/components/viewer/viewer-layout"
 import Icon from "@/components/icon"
 
 export const metadata = {
-  title: "Developer Tools - NextCodeHub",
-  description: "Discover useful developer tools and utilities to enhance your web development workflow. Free online tools for developers.",
+  title: "Fuel Calculator Tools – Calculate Petrol, Gas & Mileage Costs",
+  description: "Free fuel calculator tools to calculate petrol mileage, gas costs, MPG, and fuel expenses. Optimize your vehicle fuel efficiency and save money.",
 }
 
 export default function ToolsPage() {
@@ -22,6 +22,29 @@ export default function ToolsPage() {
           <p className="text-xl text-content-secondary max-w-3xl mx-auto">
             Explore our collection of free developer tools and utilities to boost your productivity.
           </p>
+        </div>
+         <div className="max-w-3xl mx-auto">
+          <div className="bg-card border border-border rounded-2xl p-8 text-center">
+            <div className="text-5xl mb-4">💰</div>
+            <h3 className="text-2xl font-bold text-heading mb-4">Start Saving on Fuel Today</h3>
+            <p className="text-content-secondary mb-6">
+              Use our free fuel calculators to track expenses, optimize mileage, and save money on every trip.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/tools/fuel-cost-calculator"
+                className="px-8 py-4 bg-gradient-to-r from-blog-primary to-blog-secondary text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-200"
+              >
+                Try Fuel Calculator
+              </Link>
+              <Link
+                href="/blog"
+                className="px-8 py-4 bg-card border-2 border-border text-heading rounded-xl font-semibold hover:bg-muted hover:scale-105 transition-all duration-200"
+              >
+                Read Fuel Saving Tips
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Coming Soon Notice */}
@@ -139,48 +162,8 @@ export default function ToolsPage() {
           </div>
         </div>
 
-        {/* Stay Updated Section */}
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-card border border-border rounded-2xl p-8 text-center">
-            <Icon name="bell" className="w-12 h-12 text-blog-primary mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-heading mb-4">Want to Be Notified?</h3>
-            <p className="text-content-secondary mb-6">
-              We'll announce the launch of our developer tools on our blog and social media. Stay tuned for updates!
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="/blog"
-                className="px-8 py-4 bg-gradient-to-r from-blog-primary to-blog-secondary text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-200 flex items-center space-x-2"
-              >
-                <Icon name="book" className="w-5 h-5" />
-                <span>Read Our Blog</span>
-              </a>
-              <a
-                href="/contact"
-                className="px-8 py-4 bg-card border-2 border-border text-heading rounded-xl font-semibold hover:bg-muted hover:scale-105 transition-all duration-200"
-              >
-                Contact Us
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Feature Request Section */}
-        <div className="mt-16 bg-gradient-to-r from-blog-primary/10 via-blog-secondary/10 to-blog-primary/10 rounded-2xl p-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h3 className="text-2xl font-bold text-heading mb-4">Have a Tool Suggestion?</h3>
-            <p className="text-content-secondary mb-6">
-              We'd love to hear what tools would be most useful for your development workflow. Share your ideas with us!
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center space-x-2 px-8 py-4 bg-card border-2 border-border text-heading rounded-xl font-semibold hover:bg-muted hover:scale-105 transition-all duration-200"
-            >
-              <Icon name="message-square" className="w-5 h-5" />
-              <span>Suggest a Tool</span>
-            </a>
-          </div>
-        </div>
+        {/* CTA Section */}
+       
       </div>
     </ViewerLayout>
   )

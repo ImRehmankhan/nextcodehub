@@ -2,47 +2,57 @@
 
 /* Root variables for both light and dark themes */
 :root {
-  /* Light theme colors - Modern blogging palette */
-  --background: #ffffff;
-  --foreground: #1a1a1a;
+  /* Light theme colors - Modern Fuel-themed palette */
+  --background: #fafbfc;
+  --foreground: #1e293b;
   --card: #ffffff;
-  --card-foreground: #1a1a1a;
+  --card-foreground: #1e293b;
   --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #2563eb;
+  --popover-foreground: #1e293b;
+  --primary: #0ea5e9;
   --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
-  --secondary-foreground: #334155;
+  --secondary-foreground: #475569;
   --muted: #f8fafc;
   --muted-foreground: #64748b;
-  --accent: #f1f5f9;
-  --accent-foreground: #334155;
+  --accent: #e0f2fe;
+  --accent-foreground: #0c4a6e;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --border: #e2e8f0;
-  --input: #f8fafc;
-  --ring: #2563eb;
+  --input: #ffffff;
+  --ring: #0ea5e9;
+  
+  /* Fuel-specific theme colors */
+  --fuel-primary: #0ea5e9;
+  --fuel-secondary: #f59e0b;
+  --fuel-accent: #10b981;
+  --fuel-dark: #0c4a6e;
+  --fuel-light: #e0f2fe;
+  --fuel-warning: #f97316;
+  --fuel-success: #22c55e;
+  --fuel-info: #3b82f6;
   
   /* Blog-specific colors */
-  --blog-primary: #2563eb;
-  --blog-secondary: #8b5cf6;
-  --blog-accent: #06b6d4;
+  --blog-primary: #0ea5e9;
+  --blog-secondary: #f59e0b;
+  --blog-accent: #10b981;
   --blog-neutral: #64748b;
-  --blog-success: #10b981;
+  --blog-success: #22c55e;
   --blog-warning: #f59e0b;
   --blog-error: #ef4444;
   
   /* Admin theme colors */
-  --admin-primary: #1e40af;
-  --admin-secondary: #7c3aed;
+  --admin-primary: #0c4a6e;
+  --admin-secondary: #0369a1;
   --admin-sidebar: #f8fafc;
-  --admin-sidebar-hover: #e2e8f0;
+  --admin-sidebar-hover: #e0f2fe;
   
   /* Content colors */
-  --content-primary: #1a1a1a;
-  --content-secondary: #4a5568;
-  --content-tertiary: #718096;
-  --heading-color: #1a202c;
+  --content-primary: #1e293b;
+  --content-secondary: #475569;
+  --content-tertiary: #64748b;
+  --heading-color: #0f172a;
   
   /* Interactive states */
   --hover-bg: #f7fafc;
@@ -67,37 +77,47 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0f172a;
-    --foreground: #f8fafc;
+    --foreground: #f1f5f9;
     --card: #1e293b;
-    --card-foreground: #f8fafc;
+    --card-foreground: #f1f5f9;
     --popover: #1e293b;
-    --popover-foreground: #f8fafc;
-    --primary: #3b82f6;
-    --primary-foreground: #f8fafc;
+    --popover-foreground: #f1f5f9;
+    --primary: #38bdf8;
+    --primary-foreground: #0f172a;
     --secondary: #334155;
-    --secondary-foreground: #f8fafc;
+    --secondary-foreground: #f1f5f9;
     --muted: #1e293b;
     --muted-foreground: #94a3b8;
-    --accent: #334155;
-    --accent-foreground: #f8fafc;
+    --accent: #1e40af;
+    --accent-foreground: #e0f2fe;
     --destructive: #f87171;
-    --destructive-foreground: #f8fafc;
+    --destructive-foreground: #ffffff;
     --border: #334155;
-    --input: #334155;
-    --ring: #3b82f6;
+    --input: #1e293b;
+    --ring: #38bdf8;
+    
+    /* Fuel-specific dark colors */
+    --fuel-primary: #38bdf8;
+    --fuel-secondary: #fbbf24;
+    --fuel-accent: #34d399;
+    --fuel-dark: #0c4a6e;
+    --fuel-light: #1e3a8a;
+    --fuel-warning: #fb923c;
+    --fuel-success: #4ade80;
+    --fuel-info: #60a5fa;
     
     /* Blog-specific dark colors */
-    --blog-primary: #3b82f6;
-    --blog-secondary: #a855f7;
-    --blog-accent: #22d3ee;
+    --blog-primary: #38bdf8;
+    --blog-secondary: #fbbf24;
+    --blog-accent: #34d399;
     --blog-neutral: #94a3b8;
-    --blog-success: #34d399;
+    --blog-success: #4ade80;
     --blog-warning: #fbbf24;
     --blog-error: #f87171;
     
     /* Admin dark theme */
-    --admin-primary: #3b82f6;
-    --admin-secondary: #8b5cf6;
+    --admin-primary: #38bdf8;
+    --admin-secondary: #60a5fa;
     --admin-sidebar: #1e293b;
     --admin-sidebar-hover: #334155;
     
@@ -122,31 +142,40 @@
 
 /* Override dark theme when .light class is present */
 .light {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
+  --background: #fafbfc;
+  --foreground: #1e293b;
   --card: #ffffff;
-  --card-foreground: #1a1a1a;
+  --card-foreground: #1e293b;
   --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #2563eb;
+  --popover-foreground: #1e293b;
+  --primary: #0ea5e9;
   --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
-  --secondary-foreground: #334155;
+  --secondary-foreground: #475569;
   --muted: #f8fafc;
   --muted-foreground: #64748b;
-  --accent: #f1f5f9;
-  --accent-foreground: #334155;
+  --accent: #e0f2fe;
+  --accent-foreground: #0c4a6e;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --border: #e2e8f0;
-  --input: #f8fafc;
-  --ring: #2563eb;
+  --input: #ffffff;
+  --ring: #0ea5e9;
   
-  --blog-primary: #2563eb;
-  --blog-secondary: #8b5cf6;
-  --blog-accent: #06b6d4;
+  --fuel-primary: #0ea5e9;
+  --fuel-secondary: #f59e0b;
+  --fuel-accent: #10b981;
+  --fuel-dark: #0c4a6e;
+  --fuel-light: #e0f2fe;
+  --fuel-warning: #f97316;
+  --fuel-success: #22c55e;
+  --fuel-info: #3b82f6;
+  
+  --blog-primary: #0ea5e9;
+  --blog-secondary: #f59e0b;
+  --blog-accent: #10b981;
   --blog-neutral: #64748b;
-  --blog-success: #10b981;
+  --blog-success: #22c55e;
   --blog-warning: #f59e0b;
   --blog-error: #ef4444;
   
@@ -173,35 +202,44 @@
 /* Force dark theme when .dark class is present */
 .dark {
   --background: #0f172a;
-  --foreground: #f8fafc;
+  --foreground: #f1f5f9;
   --card: #1e293b;
-  --card-foreground: #f8fafc;
+  --card-foreground: #f1f5f9;
   --popover: #1e293b;
-  --popover-foreground: #f8fafc;
-  --primary: #3b82f6;
-  --primary-foreground: #f8fafc;
+  --popover-foreground: #f1f5f9;
+  --primary: #38bdf8;
+  --primary-foreground: #0f172a;
   --secondary: #334155;
-  --secondary-foreground: #f8fafc;
+  --secondary-foreground: #f1f5f9;
   --muted: #1e293b;
   --muted-foreground: #94a3b8;
-  --accent: #334155;
-  --accent-foreground: #f8fafc;
+  --accent: #1e40af;
+  --accent-foreground: #e0f2fe;
   --destructive: #f87171;
-  --destructive-foreground: #f8fafc;
+  --destructive-foreground: #ffffff;
   --border: #334155;
-  --input: #334155;
-  --ring: #3b82f6;
+  --input: #1e293b;
+  --ring: #38bdf8;
   
-  --blog-primary: #3b82f6;
-  --blog-secondary: #a855f7;
-  --blog-accent: #22d3ee;
+  --fuel-primary: #38bdf8;
+  --fuel-secondary: #fbbf24;
+  --fuel-accent: #34d399;
+  --fuel-dark: #0c4a6e;
+  --fuel-light: #1e3a8a;
+  --fuel-warning: #fb923c;
+  --fuel-success: #4ade80;
+  --fuel-info: #60a5fa;
+  
+  --blog-primary: #38bdf8;
+  --blog-secondary: #fbbf24;
+  --blog-accent: #34d399;
   --blog-neutral: #94a3b8;
-  --blog-success: #34d399;
+  --blog-success: #4ade80;
   --blog-warning: #fbbf24;
   --blog-error: #f87171;
   
-  --admin-primary: #3b82f6;
-  --admin-secondary: #8b5cf6;
+  --admin-primary: #38bdf8;
+  --admin-secondary: #60a5fa;
   --admin-sidebar: #1e293b;
   --admin-sidebar-hover: #334155;
   

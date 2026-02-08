@@ -1,0 +1,28 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://nextcodehub.com/sitemap.xml
+
+# Google AdSense
+User-agent: Mediapartners-Google
+Allow: /
+
+# Google bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+# Bing bot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
