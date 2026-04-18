@@ -79,8 +79,32 @@ export default function RootLayout({ children }) {
   }
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Theme initialization script - Run before React hydrates to prevent flash */}
+        <script 
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const storageKey = 'nextcodehub-theme';
+                const storedTheme = localStorage.getItem(storageKey);
+                const defaultTheme = 'system';
+                const theme = storedTheme || defaultTheme;
+                
+                const root = document.documentElement;
+                let resolvedTheme = theme;
+                
+                if (theme === 'system') {
+                  resolvedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+                
+                root.classList.remove('light', 'dark');
+                root.classList.add(resolvedTheme);
+                root.setAttribute('data-theme', resolvedTheme);
+              })();
+            `
+          }}
+        />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}/>
         <meta name="google-site-verification" content="jBt3gt1Q4eH4buPymGOpuSIGmMRb2u2SiA1dPdyI3LU" />
         {/* Add Google AdSense script here after approval */}

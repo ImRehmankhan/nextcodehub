@@ -14,32 +14,15 @@ export function ThemeProvider({
   storageKey = 'theme',
   ...props 
 }) {
-  const [theme, setTheme] = useState(defaultTheme)
+  const [theme, setTheme] = useState(null)
   const [actualTheme, setActualTheme] = useState('light')
+  const [isMounted, setIsMounted] = useState(false)
 
-  useEffect(() => {
-    // Get theme from localStorage or use default
-    const storedTheme = localStorage.getItem(storageKey)
-    if (storedTheme) {
-      setTheme(storedTheme)
-    }
-
-    // Listen for system theme changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handleChange = () => {
-      updateActualTheme(theme)
-    }
-    
-    mediaQuery.addEventListener('change', handleChange)
-    updateActualTheme(storedTheme || defaultTheme)
-
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [defaultTheme, storageKey, theme])
-
+  // Determine the actual theme to display
   const updateActualTheme = (currentTheme) => {
     const root = window.document.documentElement
     
-    // Remove existing theme classes and attributes
+    // Remove existing theme classes
     root.classList.remove('light', 'dark')
     
     let resolvedTheme = currentTheme
@@ -50,24 +33,51 @@ export function ThemeProvider({
         : 'light'
     }
     
-    // Apply the resolved theme (both class and data-attribute for compatibility)
+    // Apply the resolved theme
     root.classList.add(resolvedTheme)
     root.setAttribute('data-theme', resolvedTheme)
     setActualTheme(resolvedTheme)
   }
 
-  const handleSetTheme = (newTheme) => {
-    localStorage.setItem(storageKey, newTheme)
-    setTheme(newTheme)
-    updateActualTheme(newTheme)
-  }
-
+  // Initialize theme from localStorage or system preference
   useEffect(() => {
+    const storedTheme = localStorage.getItem(storageKey)
+    const initialTheme = storedTheme || defaultTheme
+    setTheme(initialTheme)
+    updateActualTheme(initialTheme)
+    setIsMounted(true)
+
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handleChange = () => {
+      const current = localStorage.getItem(storageKey) || defaultTheme
+      if (current === 'system') {
+        updateActualTheme('system')
+      }
+    }
+    
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [storageKey, defaultTheme])
+
+  // Update actual theme whenever theme changes
+  useEffect(() => {
+    if (theme === null) return
     updateActualTheme(theme)
   }, [theme])
 
+  const handleSetTheme = (newTheme) => {
+    setTheme(newTheme)
+    localStorage.setItem(storageKey, newTheme)
+  }
+
+  // Prevent rendering until theme is loaded (prevents hydration mismatch)
+  if (!isMounted) {
+    return <>{children}</>
+  }
+
   const value = {
-    theme,
+    theme: theme || defaultTheme,
     setTheme: handleSetTheme,
     actualTheme
   }
