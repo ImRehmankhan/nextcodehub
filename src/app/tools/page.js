@@ -49,25 +49,10 @@ export default function ToolsPage() {
           </div>
         </div>
 
-        {/* Coming Soon Notice */}
-        <div className="max-w-3xl mx-auto mb-16">
-          <div className="bg-gradient-to-br from-blog-primary/10 to-blog-secondary/10 border border-border rounded-2xl p-12 text-center">
-            <div className="w-24 h-24 bg-gradient-to-br from-blog-primary to-blog-secondary rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl">
-              <Icon name="settings" className="w-12 h-12 text-white" />
-            </div>
-            <h2 className="text-3xl font-bold text-heading mb-4">Coming Soon!</h2>
-            <p className="text-lg text-content-secondary leading-relaxed mb-8">
-              We're working hard to bring you a comprehensive suite of developer tools. Our tools section will include useful utilities for web development, code formatting, conversion tools, and much more.
-            </p>
-            <div className="inline-flex items-center space-x-2 px-6 py-3 bg-muted rounded-xl text-content-primary">
-              <Icon name="calendar" className="w-5 h-5" />
-              <span className="font-medium">Expected Launch: Q2 2026</span>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Planned Tools Grid */}
-        <div className="mb-16">
+        <div className="my-16">
           <h2 className="text-3xl font-bold text-heading mb-8 text-center">
             Planned Tools & Features
           </h2>

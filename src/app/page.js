@@ -135,42 +135,42 @@ export default async function HomePage() {
               description: "Calculate total fuel costs for any trip. Get instant estimates for fuel expenses, cost per km/mile, and budget planning.",
               icon: "fuel",
               href: "/tools/fuel-cost-calculator",
-              color: "primary"
+              bgColor: "bg-green-600"
             },
             {
               title: "Petrol Mileage Calculator",
               description: "Track your vehicle's petrol mileage and efficiency. Monitor km/L, consumption rates, and optimize fuel economy.",
               icon: "bar-chart",
               href: "/tools/petrol-mileage-calculator",
-              color: "success"
+              bgColor: "bg-emerald-600"
             },
             {
               title: "MPG Calculator",
               description: "Calculate miles per gallon (MPG) for your vehicle. Convert between units and track fuel efficiency metrics.",
               icon: "car",
               href: "/tools/mpg-calculator",
-              color: "accent"
+              bgColor: "bg-teal-600"
             },
             {
               title: "Gas Price Calculator",
               description: "Estimate gas costs based on current prices. Find the cheapest gas and budget your fuel expenses accurately.",
               icon: "dollar-sign",
               href: "/tools/gas-price-calculator",
-              color: "warning"
+              bgColor: "bg-amber-600"
             },
             {
               title: "Fuel Expense Calculator",
               description: "Track and manage monthly fuel expenses. Budget fuel costs and monitor spending patterns over time.",
               icon: "coins",
               href: "/tools/fuel-expense-calculator",
-              color: "info"
+              bgColor: "bg-blue-600"
             },
             {
               title: "Road Trip Fuel Calculator",
               description: "Plan fuel costs for road trips. Estimate total gas expenses, plan fuel stops, and budget your journey.",
               icon: "map",
               href: "/tools/road-trip-fuel-calculator",
-              color: "accent"
+              bgColor: "bg-cyan-600"
             }
           ].map((tool, index) => (
             <Link
@@ -179,7 +179,7 @@ export default async function HomePage() {
               className="group relative overflow-hidden bg-surface dark:bg-background border-2 border-border hover:border-primary rounded-2xl p-8 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-3 hover:scale-105"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full -mr-16 -mt-16"></div>
-              <div className={`w-16 h-16 rounded-2xl bg-${tool.color} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300`}>
+              <div className={`w-16 h-16 rounded-2xl ${tool.bgColor} flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300`}>
                 <Icon name={tool.icon} className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-primary transition-all duration-300">

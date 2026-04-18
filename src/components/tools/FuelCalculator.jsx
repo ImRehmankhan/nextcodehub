@@ -102,8 +102,7 @@ export default function FuelCalculator({ variant = 'general' }) {
     }));
   };
 
-  // Auto-calculate on input change for better interactivity
-  useEffect(() => {
+  const handleCalculate = () => {
     const distance = parseFloat(inputs.distance);
     const efficiency = parseFloat(inputs.efficiency);
     const fuelPrice = parseFloat(inputs.fuelPrice);
@@ -124,9 +123,10 @@ export default function FuelCalculator({ variant = 'general' }) {
         tripType: inputs.tripType
       });
     } else {
+      alert('Please fill in all required fields with valid values');
       setResults(null);
     }
-  }, [inputs]);
+  };
 
   const resetCalculator = () => {
     setInputs({
@@ -149,11 +149,11 @@ export default function FuelCalculator({ variant = 'general' }) {
           <div className="p-8 lg:p-10 overflow-y-auto bg-primary dark:bg-background">
             <div className="flex items-center gap-4 mb-8">
               <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
-                <Icon name="fuel" className="w-10 h-10 text-white" />
+                <Icon name="fuel" className="w-10 h-10 text-white dark:text-white" />
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-white">Fuel Calculator</h2>
-                <p className="text-accent text-sm">Calculate your trip costs</p>
+                <h2 className="text-3xl font-bold text-white">Fuel Calculator <span className="text-sm text-accent">ایندھن کیلکولیٹر</span></h2>
+                <p className="text-accent text-sm">Calculate your trip costs | سفر کی لاگت کا حساب لگائیں</p>
               </div>
             </div>
 
@@ -161,9 +161,9 @@ export default function FuelCalculator({ variant = 'general' }) {
               {/* Unit & Currency Selection Row */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                    <Icon name="gauge" className="w-4 h-4" />
-                    Unit System
+                  <label className="block text-sm font-bold mb-3 text-white dark:text-white flex items-center gap-2">
+                    <Icon name="gauge" className="w-4 h-4 text-white" />
+                    Unit System | یونٹ سسٹم
                   </label>
                   <div className="flex gap-2">
                     <button
@@ -190,16 +190,16 @@ export default function FuelCalculator({ variant = 'general' }) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                    <Icon name="dollar-sign" className="w-4 h-4" />
-                    Currency {loadingRates && <Icon name="clock" className="w-4 h-4 animate-spin" />}
+                  <label className="block text-sm font-bold mb-3 text-white dark:text-white flex items-center gap-2">
+                    <Icon name="dollar-sign" className="w-4 h-4 text-white" />
+                    Currency {loadingRates && <Icon name="clock" className="w-4 h-4 animate-spin text-white" />} | کرینسی
                   </label>
                   <select
                     name="currency"
                     value={inputs.currency}
                     onChange={handleInputChange}
                     disabled={loadingRates}
-                    className="w-full px-4 py-3 rounded-xl text-sm font-medium bg-white dark:bg-surface text-foreground focus:ring-4 focus:ring-white/50 transition-all disabled:opacity-50 shadow-lg"
+                    className="w-full px-4 py-3 rounded-xl text-sm font-medium bg-white dark:bg-surface text-gray-900 dark:text-foreground focus:ring-4 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background transition-all disabled:opacity-50 shadow-lg"
                   >
                     {Object.entries(CURRENCIES).map(([code, { symbol, name }]) => (
                       <option key={code} value={code}>
@@ -217,9 +217,9 @@ export default function FuelCalculator({ variant = 'general' }) {
 
               {/* Trip Type */}
               <div>
-                <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                  <Icon name="route" className="w-4 h-4" />
-                  Trip Type
+                <label className="block text-sm font-bold mb-3 text-white dark:text-white flex items-center gap-2">
+                  <Icon name="route" className="w-4 h-4 text-white" />
+                  Trip Type | سفر کی قسم
                 </label>
                 <div className="flex gap-2">
                   <button
@@ -247,9 +247,9 @@ export default function FuelCalculator({ variant = 'general' }) {
 
               {/* Distance Input */}
               <div>
-                <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                  <Icon name="route" className="w-4 h-4" />
-                  Distance ({inputs.unit === 'metric' ? 'km' : 'miles'})
+                <label className="block text-sm font-bold mb-3 text-white dark:text-white flex items-center gap-2">
+                  <Icon name="route" className="w-4 h-4 text-white" />
+                  Distance ({inputs.unit === 'metric' ? 'km' : 'miles'}) | فاصلہ
                 </label>
                 <input
                   type="number"
@@ -257,15 +257,15 @@ export default function FuelCalculator({ variant = 'general' }) {
                   value={inputs.distance}
                   onChange={handleInputChange}
                   placeholder="Enter distance"
-                  className="w-full px-5 py-4 rounded-xl bg-white/95 dark:bg-surface text-foreground text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg placeholder:text-secondary-foreground"
+                  className="w-full px-5 py-4 rounded-xl bg-white dark:bg-surface text-gray-900 dark:text-foreground text-lg font-semibold focus:ring-4 focus:ring-primary dark:focus:ring-primary transition-all shadow-lg placeholder:text-gray-500 dark:placeholder:text-secondary-foreground"
                 />
               </div>
 
               {/* Fuel Efficiency */}
               <div>
-                <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                  <Icon name="gauge" className="w-4 h-4" />
-                  Fuel Efficiency ({inputs.unit === 'metric' ? 'km/L' : 'MPG'})
+                <label className="block text-sm font-bold mb-3 text-white dark:text-white flex items-center gap-2">
+                  <Icon name="gauge" className="w-4 h-4 text-white" />
+                  Fuel Efficiency ({inputs.unit === 'metric' ? 'km/L' : 'MPG'}) | ایندھن کی کارکردگی
                 </label>
                 <input
                   type="number"
@@ -273,18 +273,18 @@ export default function FuelCalculator({ variant = 'general' }) {
                   value={inputs.efficiency}
                   onChange={handleInputChange}
                   placeholder={inputs.unit === 'metric' ? 'e.g., 15' : 'e.g., 25'}
-                  className="w-full px-5 py-4 rounded-xl bg-white/95 dark:bg-surface text-foreground text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg placeholder:text-secondary-foreground"
+                  className="w-full px-5 py-4 rounded-xl bg-white dark:bg-surface text-gray-900 dark:text-foreground text-lg font-semibold focus:ring-4 focus:ring-primary dark:focus:ring-primary transition-all shadow-lg placeholder:text-gray-500 dark:placeholder:text-secondary-foreground"
                 />
               </div>
 
               {/* Fuel Price */}
               <div>
-                <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                  <Icon name="dollar-sign" className="w-4 h-4" />
-                  Fuel Price ({CURRENCIES[inputs.currency]?.symbol || '$'} per {inputs.unit === 'metric' ? 'Liter' : 'Gallon'})
+                <label className="block text-sm font-bold mb-3 text-white dark:text-white flex items-center gap-2">
+                  <Icon name="dollar-sign" className="w-4 h-4 text-white" />
+                  Fuel Price ({CURRENCIES[inputs.currency]?.symbol || '$'} per {inputs.unit === 'metric' ? 'Liter' : 'Gallon'}) | ایندھن کی قیمت
                 </label>
                 <div className="relative">
-                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-secondary-foreground font-bold text-lg">
+                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-700 dark:text-secondary-foreground font-bold text-lg">
                     {CURRENCIES[inputs.currency]?.symbol || '$'}
                   </span>
                   <input
@@ -294,7 +294,7 @@ export default function FuelCalculator({ variant = 'general' }) {
                     onChange={handleInputChange}
                     placeholder={inputs.unit === 'metric' ? '1.50' : '3.50'}
                     step="0.01"
-                    className="w-full pl-12 pr-5 py-4 rounded-xl bg-white/95 dark:bg-surface text-foreground text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg placeholder:text-secondary-foreground"
+                    className="w-full pl-12 pr-5 py-4 rounded-xl bg-white dark:bg-surface text-gray-900 dark:text-foreground text-lg font-semibold focus:ring-4 focus:ring-primary dark:focus:ring-primary transition-all shadow-lg placeholder:text-gray-500 dark:placeholder:text-secondary-foreground"
                   />
                 </div>
                 {exchangeRates && inputs.currency !== 'USD' && inputs.fuelPrice && (
@@ -305,33 +305,24 @@ export default function FuelCalculator({ variant = 'general' }) {
                 )}
               </div>
 
-              {/* Vehicle Type */}
-              <div>
-                <label className="block text-sm font-bold mb-3 text-white flex items-center gap-2">
-                  <Icon name="car" className="w-4 h-4" />
-                  Vehicle Type
-                </label>
-                <select
-                  name="vehicleType"
-                  value={inputs.vehicleType}
-                  onChange={handleInputChange}
-                  className="w-full px-5 py-4 rounded-xl bg-white/95 dark:bg-surface text-foreground text-lg font-semibold focus:ring-4 focus:ring-white/50 transition-all shadow-lg"
+             
+              {/* Calculate and Reset Buttons */}
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={handleCalculate}
+                  className="w-full bg-white hover:bg-gray-100 text-primary font-bold py-4 rounded-xl transition-all duration-300 shadow-xl flex items-center justify-center gap-2 hover:shadow-2xl"
                 >
-                  <option value="car">Car</option>
-                  <option value="bike">Motorcycle</option>
-                  <option value="truck">Truck</option>
-                  <option value="suv">SUV</option>
-                </select>
+                  <Icon name="calculator" className="w-5 h-5" />
+                  <span>Calculate</span>
+                </button>
+                <button
+                  onClick={resetCalculator}
+                  className="w-full bg-white/20 hover:bg-white/40 text-white font-bold py-4 rounded-xl transition-all duration-300 backdrop-blur-sm border-2 border-white/30 hover:border-white/50 hover:shadow-xl flex items-center justify-center gap-2"
+                >
+                  <Icon name="x" className="w-5 h-5" />
+                  <span>Reset</span>
+                </button>
               </div>
-
-              {/* Reset Button */}
-              <button
-                onClick={resetCalculator}
-                className="w-full bg-white/20 hover:bg-white/40 text-white font-bold py-4 rounded-xl transition-all duration-300 backdrop-blur-sm border-2 border-white/30 hover:border-white/50 hover:shadow-xl flex items-center justify-center gap-2"
-              >
-                <Icon name="x" className="w-5 h-5" />
-                <span>Reset Calculator</span>
-              </button>
             </div>
           </div>
 
@@ -340,70 +331,88 @@ export default function FuelCalculator({ variant = 'general' }) {
             {results ? (
               <div className="h-full flex flex-col">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-16 h-16 rounded-2xl bg-success flex items-center justify-center shadow-xl">
-                    <Icon name="bar-chart" className="w-10 h-10 text-white" />
+                  <div className="w-16 h-16 rounded-2xl bg-green-500 flex items-center justify-center shadow-xl">
+                    <Icon name="bar-chart" className="w-10 h-10 text-white dark:text-white" />
                   </div>
                   <div>
-                    <h3 className="text-3xl font-bold text-foreground">Your Results</h3>
-                    <p className="text-secondary-foreground text-sm">Trip cost breakdown</p>
+                    <h3 className="text-3xl font-bold text-foreground">Your Results <span className="text-sm text-secondary-foreground">آپ کے نتائج</span></h3>
+                    <p className="text-secondary-foreground text-sm">Trip cost breakdown | سفر کی قیمت میں تفصیل</p>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="bg-primary p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-sm font-bold opacity-90">Fuel Required</p>
-                      <Icon name="fuel" className="w-7 h-7" />
+                      <div>
+                        <p className="text-sm font-bold opacity-90">Fuel Required</p>
+                        <p className="text-xs opacity-75">وقود درکار ہے</p>
+                      </div>
+                      <Icon name="fuel" className="w-7 h-7 text-white" />
                     </div>
                     <p className="text-3xl font-extrabold">
                       {results.fuelRequired} {results.unit}
                     </p>
                   </div>
 
-                  <div className="bg-success p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
+                  <div className="bg-green-500 p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-sm font-bold opacity-90">Total Cost</p>
-                      <Icon name="dollar-sign" className="w-7 h-7" />
+                      <div>
+                        <p className="text-sm font-bold opacity-90">Total Cost</p>
+                        <p className="text-xs opacity-75">کل قیمت</p>
+                      </div>
+                      <Icon name="dollar-sign" className="w-7 h-7 text-white" />
                     </div>
                     <p className="text-3xl font-extrabold">
                       {results.currencySymbol}{results.totalCost}
                     </p>
                   </div>
 
-                  <div className="bg-accent p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
+                  <div className="bg-cyan-500 p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-sm font-bold opacity-90">Cost per {results.distanceUnit}</p>
-                      <Icon name="map-pin" className="w-7 h-7" />
+                      <div>
+                        <p className="text-sm font-bold opacity-90">Cost per {results.distanceUnit}</p>
+                        <p className="text-xs opacity-75">فی {results.distanceUnit} قیمت</p>
+                      </div>
+                      <Icon name="map-pin" className="w-7 h-7 text-white" />
                     </div>
                     <p className="text-3xl font-extrabold">
                       {results.currencySymbol}{results.costPerUnit}
                     </p>
                   </div>
 
-                  <div className="bg-warning p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
+                  <div className="bg-amber-500 p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-sm font-bold opacity-90">Total Distance</p>
-                      <Icon name="route" className="w-7 h-7" />
+                      <div>
+                        <p className="text-sm font-bold opacity-90">Total Distance</p>
+                        <p className="text-xs opacity-75">کل فاصلہ</p>
+                      </div>
+                      <Icon name="route" className="w-7 h-7 text-white" />
                     </div>
                     <p className="text-3xl font-extrabold">
                       {results.totalDistance} {results.distanceUnit}
                     </p>
                   </div>
 
-                  <div className="bg-error p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
+                  <div className="bg-red-500 p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-sm font-bold opacity-90">Consumption Rate</p>
-                      <Icon name="zap" className="w-7 h-7" />
+                      <div>
+                        <p className="text-sm font-bold opacity-90">Consumption Rate</p>
+                        <p className="text-xs opacity-75">استعمال کی شرح</p>
+                      </div>
+                      <Icon name="zap" className="w-7 h-7 text-white" />
                     </div>
                     <p className="text-2xl font-extrabold">
                       {results.fuelConsumptionRate} {results.unit}/100{results.distanceUnit}
                     </p>
                   </div>
 
-                  <div className="bg-info p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
+                  <div className="bg-indigo-500 p-6 rounded-2xl shadow-xl text-white transform hover:scale-105 transition-all duration-300">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-sm font-bold opacity-90">Efficiency</p>
-                      <Icon name="gauge" className="w-7 h-7" />
+                      <div>
+                        <p className="text-sm font-bold opacity-90">Efficiency</p>
+                        <p className="text-xs opacity-75">کارکردگی</p>
+                      </div>
+                      <Icon name="gauge" className="w-7 h-7 text-white" />
                     </div>
                     <p className="text-2xl font-extrabold">
                       {inputs.efficiency} {results.efficiencyUnit}
@@ -414,11 +423,13 @@ export default function FuelCalculator({ variant = 'general' }) {
                 {/* Summary */}
                 <div className="mt-4 p-4 bg-muted rounded-xl border-l-4 border-primary">
                   <p className="text-sm text-foreground leading-relaxed">
-                    <strong className="text-primary">Summary:</strong> For a {results.tripType === 'roundtrip' ? 'round trip' : 'one-way trip'} 
+                   
+                    <strong className="text-primary">Summary | خلاصہ: </strong> <br/>For a {results.tripType === 'roundtrip' ? 'round trip ' : 'one-way trip '} 
                     of <strong>{results.totalDistance} {results.distanceUnit}</strong> in your <strong>{results.vehicleType}</strong>, 
                     you'll need <strong>{results.fuelRequired} {results.unit}</strong> of fuel, 
                     costing <strong>{results.currencySymbol}{results.totalCost}</strong> at {results.currencySymbol}{inputs.fuelPrice} per {results.unit}.
                   </p>
+                
                   {exchangeRates && inputs.currency !== 'USD' && (
                     <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 flex items-center gap-1">
                       <Icon name="dollar-sign" className="w-3 h-3" /> Equivalent to <strong>${(results.totalCost / exchangeRates[inputs.currency]).toFixed(2)} USD</strong>
@@ -433,10 +444,10 @@ export default function FuelCalculator({ variant = 'general' }) {
                     <Icon name="pencil" className="w-24 h-24 text-gray-300 dark:text-gray-600" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-400 dark:text-gray-500 mb-2">
-                    Enter Your Details
+                    Enter Your Details | اپنی تفصیلات درج کریں
                   </h3>
                   <p className="text-gray-400 dark:text-gray-500">
-                    Fill in the form to calculate fuel costs
+                    Fill in the form to calculate fuel costs | ایندھن کی لاگت کا حساب لگانے کے لیے فارم بھریں
                   </p>
                 </div>
               </div>

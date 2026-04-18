@@ -4,25 +4,19 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("🚀 Starting fuel blog posts seeding...");
 
-  // Get or create admin user
-  let admin = await prisma.user.findUnique({
-    where: { email: 'admin@nextcodehub.com' }
+  // Create or fetch admin user
+  const admin = await prisma.user.upsert({
+    where: { email: 'admin' },
+    update: {},
+    create: {
+      email: 'admin',
+      password: 'admin',
+      name: 'Administrator',
+      role: 'ADMIN',
+      bio: 'Fuel and Calculator Content Creator'
+    }
   });
-
-  if (!admin) {
-    admin = await prisma.user.create({
-      data: {
-        email: 'admin@nextcodehub.com',
-        password: 'admin123', // In production, hash this
-        name: 'Fuel Expert Team',
-        role: 'ADMIN',
-        bio: 'Expert team dedicated to helping you save money on fuel and optimize vehicle efficiency.',
-        avatar: '/avatars/admin.png'
-      }
-    });
-  }
-
-  console.log("✅ Admin user ready:", admin.name);
+  console.log("✅ Admin user ready");
 
   // Create fuel-related categories
   const fuelCategory = await prisma.category.upsert({
@@ -30,8 +24,7 @@ async function main() {
     update: { name: 'Fuel Savings' },
     create: {
       name: 'Fuel Savings',
-      slug: 'fuel-savings',
-      description: 'Tips and guides to save money on fuel'
+      slug: 'fuel-savings'
     }
   });
 
@@ -40,8 +33,7 @@ async function main() {
     update: { name: 'Mileage Tips' },
     create: {
       name: 'Mileage Tips',
-      slug: 'mileage-tips',
-      description: 'Improve your vehicle mileage and efficiency'
+      slug: 'mileage-tips'
     }
   });
 
@@ -50,8 +42,7 @@ async function main() {
     update: { name: 'Vehicle Maintenance' },
     create: {
       name: 'Vehicle Maintenance',
-      slug: 'vehicle-maintenance',
-      description: 'Keep your vehicle running efficiently'
+      slug: 'vehicle-maintenance'
     }
   });
 
@@ -60,8 +51,7 @@ async function main() {
     update: { name: 'Travel Planning' },
     create: {
       name: 'Travel Planning',
-      slug: 'travel-planning',
-      description: 'Plan cost-effective trips and road adventures'
+      slug: 'travel-planning'
     }
   });
 
@@ -72,7 +62,6 @@ async function main() {
     {
       title: "10 Proven Ways to Improve Your Car's Fuel Efficiency in 2026",
       slug: "improve-car-fuel-efficiency-2026",
-      excerpt: "Discover 10 scientifically-proven methods to boost your vehicle's fuel efficiency and save hundreds of dollars annually on gas costs.",
       content: `
         <h2>Master Your Vehicle's Fuel Efficiency</h2>
         <p>With fuel prices constantly fluctuating, maximizing your vehicle's fuel efficiency has never been more important. Here are 10 proven strategies that can help you save significantly on fuel costs.</p>
@@ -124,7 +113,6 @@ async function main() {
     {
       title: "Understanding Fuel Calculator Results: A Complete Guide",
       slug: "understanding-fuel-calculator-results-guide",
-      excerpt: "Learn how to interpret fuel calculator results and use them to make informed decisions about your vehicle's fuel consumption and trip planning.",
       content: `
         <h2>Making Sense of Your Fuel Calculator Results</h2>
         <p>Fuel calculators are powerful tools, but understanding what the numbers mean is crucial for making smart decisions. This guide will help you interpret every metric.</p>
@@ -199,7 +187,6 @@ async function main() {
     {
       title: "The Ultimate Guide to Calculating Road Trip Fuel Costs",
       slug: "calculate-road-trip-fuel-costs-guide",
-      excerpt: "Plan your road trip budget perfectly with our comprehensive guide to calculating and minimizing fuel costs for long-distance travel.",
       content: `
         <h2>Master Road Trip Fuel Budgeting</h2>
         <p>Planning a road trip? Fuel costs can make or break your budget. This comprehensive guide will help you calculate and optimize your fuel expenses.</p>
@@ -315,7 +302,6 @@ async function main() {
     {
       title: "Diesel vs Petrol: Which Fuel is More Economical in 2026?",
       slug: "diesel-vs-petrol-economical-comparison-2026",
-      excerpt: "Comprehensive comparison of diesel and petrol costs, efficiency, and long-term economics to help you choose the right fuel type for your needs.",
       content: `
         <h2>The Great Fuel Debate: Diesel vs Petrol in 2026</h2>
         <p>Choosing between diesel and petrol affects your wallet for years. This comprehensive analysis will help you make an informed decision based on your specific needs.</p>
@@ -504,7 +490,6 @@ async function main() {
     {
       title: "How to Track and Reduce Your Monthly Fuel Expenses",
       slug: "track-reduce-monthly-fuel-expenses",
-      excerpt: "Learn effective strategies to monitor your fuel spending and implement practical changes that can reduce your monthly fuel bill by 20-30%.",
       content: `
         <h2>Master Your Fuel Budget</h2>
         <p>Americans spend an average of $200-$400 monthly on fuel. With strategic tracking and optimization, you can reduce this by 20-30%. Here's how.</p>
@@ -742,7 +727,6 @@ async function main() {
     {
       title: "Best Fuel-Efficient Cars of 2026: Complete Buying Guide",
       slug: "best-fuel-efficient-cars-2026-buying-guide",
-      excerpt: "Comprehensive guide to the most fuel-efficient vehicles in 2026, including hybrids, EVs, and traditional engines. Find your perfect economical car.",
       content: `
         <h2>2026's Most Fuel-Efficient Vehicles</h2>
         <p>With fuel prices and environmental concerns at the forefront, choosing a fuel-efficient vehicle is smarter than ever. Here's your complete 2026 buying guide.</p>
