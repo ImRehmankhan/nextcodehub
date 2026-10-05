@@ -1,159 +1,37 @@
-export default async function sitemap() {
-  const baseUrl = 'https://nextcodehub.com'
+import { blogData } from './blog/blogData';
 
-  // Static pages
-  const staticPages = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/tools`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/tools/fuel-cost-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/fuel-mileage-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/petrol-mileage-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/mpg-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/gas-price-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/tools/fuel-expense-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/privacy-policy`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms-of-service`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/disclaimer`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-  ]
+export default function sitemap() {
+  const baseUrl = 'https://www.nextcodehub.com';
 
-  try {
-    // Use a dynamic import so the build won't fail if Prisma client
-    // hasn't been generated at module-evaluation time.
-    const { PrismaClient } = await import('@prisma/client')
-    const prisma = new PrismaClient()
+  // Static routes
+  const staticRoutes = [
+    '',
+    '/fuel-cost-calculator',
+    '/fuel-mileage-calculator',
+    '/mpg-calculator',
+    '/petrol-calculator',
+    '/fuel-consumption-calculator',
+    '/fuel-economy-calculator',
+    '/blog',
+    '/about',
+    '/contact',
+    '/privacy-policy',
+    '/terms',
+    '/disclaimer',
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: route === '' ? 1 : 0.8,
+  }));
 
-    // Get all published blog posts
-    const posts = await prisma.post.findMany({
-      where: {
-        published: true,
-      },
-      select: {
-        slug: true,
-        updatedAt: true,
-      },
-    })
+  // Dynamic blog routes
+  const blogRoutes = blogData.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
 
-    // Get all categories
-    const categories = await prisma.category.findMany({
-      select: {
-        slug: true,
-      },
-    })
-
-    // Get all tags
-    const tags = await prisma.tag.findMany({
-      select: {
-        slug: true,
-      },
-    })
-
-    await prisma.$disconnect()
-
-    // Blog post pages
-    const blogPages = posts.map((post) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: post.updatedAt,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    }))
-
-    // Category pages
-    const categoryPages = categories.map((category) => ({
-      url: `${baseUrl}/category/${category.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.6,
-    }))
-
-    // Tag pages
-    const tagPages = tags.map((tag) => ({
-      url: `${baseUrl}/tag/${tag.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.5,
-    }))
-
-    return [...staticPages, ...blogPages, ...categoryPages, ...tagPages]
-  } catch (error) {
-    // Don't print the full stack during build — return static pages silently.
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn('Warning: sitemap generation fell back to static pages. Error:', error.message || error)
-    } else {
-      console.warn('Sitemap: database unavailable during generation — returning static pages.')
-    }
-    return staticPages
-  }
+  return [...staticRoutes, ...blogRoutes];
 }

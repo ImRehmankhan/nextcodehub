@@ -1,44 +1,27 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
-import Providers from "./providers";
-import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export const metadata = {
+  metadataBase: new URL('https://www.nextcodehub.com'),
   title: {
-    default: "Fuel Calculator Tools – Calculate Petrol, Gas & Mileage Costs | NextCodeHub",
+    default: "NextCodeHub - Fuel Cost & Mileage Calculators",
     template: "%s | NextCodeHub"
   },
-  description: "Free fuel calculator tools to calculate petrol mileage, gas costs, MPG, and fuel expenses. Optimize your vehicle fuel efficiency and save money on every trip.",
-  keywords: ["fuel calculator", "petrol mileage calculator", "gas price calculator", "mpg calculator", "fuel cost calculator", "fuel efficiency", "mileage calculator", "gas mileage"],
-  authors: [{ name: "NextCodeHub" }],
-  creator: "NextCodeHub",
-  publisher: "NextCodeHub",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://nextcodehub.com'),
-  alternates: {
-    canonical: "/"
-  },
+  description: "Calculate your fuel costs, mpg, and vehicle efficiency effortlessly with our free suite of calculators.",
+  keywords: ["fuel calculator", "mpg calculator", "gas mileage calculator", "fuel cost estimator", "fuel economy"],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "/",
-    title: "Fuel Calculator Tools – Calculate Petrol, Gas & Mileage Costs",
-    description: "Free fuel calculator tools to calculate petrol mileage, gas costs, MPG, and fuel expenses. Save money on fuel.",
-    siteName: "NextCodeHub",
+    title: "NextCodeHub - Fuel Calculators",
+    description: "Free tools to calculate your fuel expenses, mpg, and vehicle efficiency.",
+    url: 'https://www.nextcodehub.com',
+    siteName: 'NextCodeHub',
+    locale: 'en_US',
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Fuel Calculator Tools – Calculate Petrol, Gas & Mileage Costs",
-    description: "Free fuel calculator tools to calculate petrol mileage, gas costs, MPG, and fuel expenses.",
+    card: 'summary_large_image',
+    title: "NextCodeHub - Fuel Calculators",
+    description: "Free tools to calculate your fuel expenses, mpg, and vehicle efficiency.",
   },
   robots: {
     index: true,
@@ -51,73 +34,26 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
-  // verification: {
-  //   google: 'your-google-verification-code', // Add after Google Search Console setup
-  // },
+  verification: {
+    google: 'jBt3gt1Q4eH4buPymGOpuSIGmMRb2u2SiA1dPdyI3LU',
+  },
 };
 
 export default function RootLayout({ children }) {
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'NextCodeHub',
-    url: 'https://nextcodehub.com',
-    description: 'Learn web development with in-depth tutorials on JavaScript, React, Next.js, and more.',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: 'https://nextcodehub.com/search?q={search_term_string}',
-      'query-input': 'required name=search_term_string',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'NextCodeHub',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nextcodehub.com/logo.png',
-      },
-    },
-  }
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Theme initialization script - Run before React hydrates to prevent flash */}
-        <script 
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const storageKey = 'nextcodehub-theme';
-                const storedTheme = localStorage.getItem(storageKey);
-                const defaultTheme = 'system';
-                const theme = storedTheme || defaultTheme;
-                
-                const root = document.documentElement;
-                let resolvedTheme = theme;
-                
-                if (theme === 'system') {
-                  resolvedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-                }
-                
-                root.classList.remove('light', 'dark');
-                root.classList.add(resolvedTheme);
-                root.setAttribute('data-theme', resolvedTheme);
-              })();
-            `
-          }}
-        />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}/>
-        <meta name="google-site-verification" content="jBt3gt1Q4eH4buPymGOpuSIGmMRb2u2SiA1dPdyI3LU" />
-        {/* Add Google AdSense script here after approval */}
-        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossOrigin="anonymous"></script> */}
+
+
+
+
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        suppressHydrationWarning={true}
-      >
-        <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
-        <Providers>
+      <body className="flex flex-col min-h-screen bg-gray-50 text-gray-900" suppressHydrationWarning>
+        <Header />
+        <main className="flex-grow">
           {children}
-        </Providers>
+        </main>
+        <Footer />
       </body>
     </html>
   );

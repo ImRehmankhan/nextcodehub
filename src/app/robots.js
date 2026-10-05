@@ -1,12 +1,9 @@
 export default function robots() {
   return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/admin/', '/api/'],
-      },
-    ],
-    sitemap: 'https://nextcodehub.com/sitemap.xml',
+    rules: {
+      userAgent: '*',
+      allow: '/',
+    },
+    sitemap: 'https://www.nextcodehub.com/sitemap.xml',
   }
 }

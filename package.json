@@ -4,31 +4,22 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "prisma generate && next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "postinstall": "prisma generate"
+    "lint": "eslint"
   },
   "dependencies": {
-    "@prisma/client": "^6.17.1",
-    "@tanstack/react-query": "^4.35.0",
-    "@tanstack/react-query-devtools": "^4.35.0",
-    "bcryptjs": "^3.0.3",
-    "lucide-react": "^0.552.0",
+    "currency-codes": "^2.2.0",
     "next": "^15.1.8",
-    "next-auth": "^4.24.11",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "resend": "^6.32.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "^15.1.8",
-    "prisma": "^6.17.1",
     "tailwindcss": "^4"
-  },
-  "prisma": {
-    "seed": "node prisma/seed-fuel-blogs.js"
   }
 }

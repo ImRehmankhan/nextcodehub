@@ -1,325 +1,90 @@
-import { notFound } from "next/navigation"
-import Link from "next/link"
-import Image from "next/image"
-import ViewerLayout from "@/components/viewer/viewer-layout"
-import Icon from "@/components/icon"
-import prisma from "@/lib/prisma"
-import BlogPostInteractions from "@/components/viewer/blog-post-interactions"
+import { blogData } from "../blogData";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+
+export async function generateStaticParams() {
+  return blogData.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export async function generateMetadata({ params }) {
-  const post = await prisma.post.findUnique({
-    where: { slug: params.slug },
-    include: {
-      author: true,
-      categories: true,
-      tags: true,
-    },
-  })
-
+  const resolvedParams = await params;
+  const post = blogData.find((p) => p.slug === resolvedParams.slug);
+  
   if (!post) {
     return {
       title: "Post Not Found",
-    }
+    };
   }
-
-  const description = post.content.substring(0, 160).replace(/<[^>]*>/g, '')
 
   return {
-    title: `${post.title}`,
-    description: description,
-    keywords: [...post.categories.map(c => c.name), ...post.tags.map(t => t.name)],
-    authors: [{ name: post.author.name }],
-    openGraph: {
-      title: post.title,
-      description: description,
-      type: "article",
-      publishedTime: post.createdAt.toISOString(),
-      modifiedTime: post.updatedAt.toISOString(),
-      authors: [post.author.name],
-      url: `https://nextcodehub.com/blog/${post.slug}`,
-      siteName: "NextCodeHub",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: description,
-    },
-    alternates: {
-      canonical: `https://nextcodehub.com/blog/${post.slug}`,
-    },
-  }
+    title: `${post.title} - Fuel Calculator Blog`,
+    description: post.excerpt,
+  };
 }
 
 export default async function BlogPostPage({ params }) {
-  // Increment view count
-  await prisma.post.update({
-    where: { slug: params.slug },
-    data: { views: { increment: 1 } },
-  }).catch(() => {}) // Ignore errors for view increment
+  const resolvedParams = await params;
+  const post = blogData.find((p) => p.slug === resolvedParams.slug);
 
-  const post = await prisma.post.findUnique({
-    where: { slug: params.slug },
-    include: {
-      author: true,
-      categories: true,
-      tags: true,
-    },
-  })
-
-  if (!post || !post.published) {
-    notFound()
-  }
-
-  // Get related posts
-  const relatedPosts = await prisma.post.findMany({
-    where: {
-      AND: [
-        { published: true },
-        { id: { not: post.id } },
-        {
-          OR: [
-            { categories: { some: { id: { in: post.categories.map(c => c.id) } } } },
-            { tags: { some: { id: { in: post.tags.map(t => t.id) } } } }
-          ]
-        }
-      ]
-    },
-    take: 3,
-    orderBy: { createdAt: 'desc' },
-    include: {
-      author: true,
-      categories: true,
-    },
-  })
-
-  // Get comments
-  const comments = await prisma.comment.findMany({
-    where: {
-      postId: post.id,
-      published: true,
-    },
-    include: {
-      author: {
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          avatar: true,
-        },
-      },
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  })
-
-  // Add JSON-LD structured data
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.content.substring(0, 160).replace(/<[^>]*>/g, ''),
-    image: post.featuredImage || 'https://nextcodehub.com/default-blog-image.jpg',
-    datePublished: post.createdAt.toISOString(),
-    dateModified: post.updatedAt.toISOString(),
-    author: {
-      '@type': 'Person',
-      name: post.author.name,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'NextCodeHub',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nextcodehub.com/logo.png',
-      },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://nextcodehub.com/blog/${post.slug}`,
-    },
-    keywords: [...post.categories.map(c => c.name), ...post.tags.map(t => t.name)].join(', '),
+  if (!post) {
+    notFound();
   }
 
   return (
-    <ViewerLayout>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-sm text-content-secondary mb-8">
-          <Link href="/" className="hover:text-blog-primary transition-colors">Home</Link>
-          <Icon name="chevron-right" className="w-4 h-4" />
-          <Link href="/blog" className="hover:text-blog-primary transition-colors">Blog</Link>
-          <Icon name="chevron-right" className="w-4 h-4" />
-          {post.categories.length > 0 && (
-            <>
-              <a href={`/blog?category=${post.categories[0].slug}`} className="hover:text-blog-primary transition-colors">
-                {post.categories[0].name}
-              </a>
-              <Icon name="chevron-right" className="w-4 h-4" />
-            </>
-          )}
-          <span className="text-content-primary">{post.title}</span>
-        </nav>
-
-        {/* Header */}
-        <header className="mb-8">
-          <div className="flex items-center space-x-3 mb-4">
-            {post.categories.length > 0 && (
-              <a
-                href={`/blog?category=${post.categories[0].slug}`}
-                className="px-4 py-1.5 bg-gradient-to-r from-blog-primary to-blog-secondary text-white rounded-full text-sm font-medium hover:shadow-lg transition-all"
-              >
-                {post.categories[0].name}
-              </a>
-            )}
-            <div className="flex items-center space-x-4 text-sm text-content-secondary">
-              <span className="flex items-center space-x-1">
-                <Icon name="eye" className="w-4 h-4" />
-                <span>{post.views.toLocaleString()}</span>
-              </span>
-              <span className="flex items-center space-x-1">
-                <Icon name="thumbs-up" className="w-4 h-4" />
-                <span>{post.likes}</span>
-              </span>
-              <span className="flex items-center space-x-1">
-                <Icon name="share-2" className="w-4 h-4" />
-                <span>{post.shares}</span>
-              </span>
-            </div>
-          </div>
-
-          <h1 className="text-4xl md:text-5xl font-extrabold text-heading mb-6 leading-tight">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <Link href="/blog" className="inline-flex items-center text-primary-500 hover:text-primary-600 mb-8 transition-colors">
+        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Blog
+      </Link>
+      
+      <article className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 sm:p-12">
+        <header className="mb-10">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
             {post.title}
           </h1>
-
-          <div className="flex items-center space-x-4 text-content-secondary">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blog-primary to-blog-secondary flex items-center justify-center">
-                <span className="text-white font-semibold">
-                  {post.author.name.charAt(0).toUpperCase()}
-                </span>
+          <div className="flex items-center text-gray-500">
+            <div className="flex items-center">
+              <div className="h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold mr-3">
+                NC
               </div>
               <div>
-                <p className="text-sm font-medium text-content-primary">{post.author.name}</p>
-                <p className="text-xs text-content-secondary">
-                  {new Date(post.createdAt).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
-                </p>
+                <p className="text-sm font-medium text-gray-900">{post.author}</p>
+                <time className="text-sm" dateTime={post.date}>
+                  {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                </time>
               </div>
             </div>
-            <span className="text-content-secondary">•</span>
-            <span className="text-sm">{Math.ceil(post.content.length / 1000)} min read</span>
           </div>
         </header>
 
-        {/* Featured Image Placeholder */}
-        {post.featuredImage && (
-          <div className="mb-12 rounded-2xl overflow-hidden relative h-96">
-            <Image
-              src={post.featuredImage}
-              alt={post.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        )}
-
-        {/* Content */}
-        <div
-          className="prose prose-lg max-w-none mb-12"
+        <div 
+          className="prose prose-lg prose-primary max-w-none text-gray-700 
+            prose-headings:font-bold prose-headings:text-gray-900 
+            prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4
+            prose-p:mb-6 prose-p:leading-relaxed
+            prose-a:text-primary-500 hover:prose-a:text-primary-600
+            prose-strong:text-gray-900 prose-strong:font-semibold
+            prose-ul:list-disc prose-ul:pl-5 prose-ul:mb-6
+            prose-li:mb-2"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
-
-        {/* Tags */}
-        {post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-12 pb-12 border-b border-border">
-            <span className="text-sm font-semibold text-content-secondary">Tags:</span>
-            {post.tags.map((tag) => (
-              <a
-                key={tag.id}
-                href={`/blog?tag=${tag.slug}`}
-                className="px-3 py-1 bg-muted text-content-primary rounded-lg text-sm hover:bg-blog-primary hover:text-white transition-all"
-              >
-                #{tag.name}
-              </a>
-            ))}
-          </div>
-        )}
-
-        {/* Interactive Section - Likes and Comments */}
-        <BlogPostInteractions
-          postId={post.id}
-          initialLikes={post.likes}
-          initialComments={comments}
-        />
-
-        {/* Author Bio */}
-        <div className="bg-gradient-to-br from-blog-primary/10 to-blog-secondary/10 rounded-2xl p-8 mb-12">
-          <div className="flex items-start space-x-4">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blog-primary to-blog-secondary flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-2xl">
-                {post.author.name.charAt(0).toUpperCase()}
-              </span>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-heading mb-2">About {post.author.name}</h3>
-              <p className="text-content-secondary mb-4">
-                {post.author.bio || "Passionate developer and technical writer sharing knowledge with the community."}
-              </p>
-            </div>
+        
+        <div className="mt-12 pt-8 border-t border-gray-100">
+          <h3 className="text-xl font-bold text-gray-900 mb-4">Calculate Your Costs Now</h3>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/fuel-cost-calculator" className="inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-base font-medium rounded-md text-white bg-primary-500 hover:bg-primary-600 transition-colors">
+              Fuel Cost Calculator
+            </Link>
+            <Link href="/fuel-mileage-calculator" className="inline-flex items-center justify-center px-5 py-2.5 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors">
+              Mileage Calculator
+            </Link>
           </div>
         </div>
-
-        {/* Related Posts */}
-        {relatedPosts.length > 0 && (
-          <div>
-            <h2 className="text-3xl font-bold text-heading mb-8">Related Articles</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedPosts.map((relatedPost) => (
-                <a
-                  key={relatedPost.id}
-                  href={`/blog/${relatedPost.slug}`}
-                  className="bg-card border border-border rounded-xl overflow-hidden hover:shadow-xl hover:scale-105 transition-all duration-200"
-                >
-                  <div className="p-6">
-                    {relatedPost.categories.length > 0 && (
-                      <span className="inline-block px-3 py-1 bg-blog-primary/10 text-blog-primary rounded-full text-xs font-medium mb-3">
-                        {relatedPost.categories[0].name}
-                      </span>
-                    )}
-                    <h3 className="text-lg font-bold text-heading mb-2 line-clamp-2">
-                      {relatedPost.title}
-                    </h3>
-                    <div className="flex items-center space-x-4 text-xs text-content-secondary">
-                      <span className="flex items-center space-x-1">
-                        <Icon name="eye" className="w-3 h-3" />
-                        <span>{relatedPost.views}</span>
-                      </span>
-                      <span className="flex items-center space-x-1">
-                        <Icon name="calendar" className="w-3 h-3" />
-                        <span>
-                          {new Date(relatedPost.createdAt).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric'
-                          })}
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
       </article>
-    </ViewerLayout>
-  )
+    </div>
+  );
 }
