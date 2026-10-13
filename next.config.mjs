@@ -1,3 +1,9 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -26,6 +32,16 @@ const nextConfig = {
   reactStrictMode: true,
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        [path.resolve(__dirname, 'node_modules/next/dist/build/polyfills/polyfill-module.js')]: path.resolve(__dirname, 'src/utils/empty-polyfill.js'),
+        '../build/polyfills/polyfill-module': path.resolve(__dirname, 'src/utils/empty-polyfill.js'),
+      };
+    }
+    return config;
   },
 };
 

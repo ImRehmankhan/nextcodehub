@@ -2,13 +2,89 @@ import FuelCalculator from '../../components/FuelCalculator';
 import Link from 'next/link';
 import RelatedLinks from '../../components/RelatedLinks';
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      '@id': 'https://www.nextcodehub.com/fuel-cost-calculator',
+      name: 'Fuel Cost Calculator',
+      url: 'https://www.nextcodehub.com/fuel-cost-calculator',
+      description: 'Free online fuel cost calculator to estimate trip expenses based on distance, fuel efficiency, and gas price.',
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Web Browser',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      provider: { '@type': 'Organization', name: 'NextCodeHub', url: 'https://www.nextcodehub.com' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'How do I calculate fuel cost for a trip?',
+          acceptedAnswer: { '@type': 'Answer', text: 'To calculate fuel cost, divide your trip distance by your vehicle\'s fuel efficiency to get fuel required, then multiply by the current fuel price. Our calculator does this automatically.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is a good fuel mileage?',
+          acceptedAnswer: { '@type': 'Answer', text: 'For cars, 12-15 km/L (28-35 MPG) is considered average. Hybrid vehicles can achieve 20+ km/L (47+ MPG), while SUVs typically get 8-12 km/L (19-28 MPG).' },
+        },
+        {
+          '@type': 'Question',
+          name: 'How can I reduce my fuel costs?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Maintain proper tire pressure, avoid aggressive driving, reduce excess weight, use cruise control on highways, and keep your engine well-maintained. These can improve fuel efficiency by 10-25%.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'What factors affect fuel consumption?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Driving habits, vehicle condition, tire pressure, air conditioning usage, traffic conditions, terrain, and vehicle load all significantly impact fuel consumption.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'Is this calculator accurate for all vehicles?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Yes, the calculator works for cars, motorcycles, trucks, and SUVs. Just enter your specific vehicle\'s fuel efficiency for accurate results.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'Can I calculate costs for international trips?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Absolutely! Switch between Metric (km/L) and Imperial (MPG) units to calculate fuel costs regardless of your location.' },
+        },
+      ],
+    },
+  ],
+};
+
 export const metadata = {
-  title: "Fuel Cost Calculator - Estimate Trip Expenses",
-  description: "Free fuel cost calculator to estimate trip expenses based on distance, fuel efficiency, and gas price. Plan your journey and save money.",
+  title: "Fuel Cost Calculator - Estimate Trip Fuel Expenses",
+  description: "Free fuel cost calculator to estimate trip expenses based on distance, fuel efficiency, and gas price. Calculate petrol cost, gas bill, and fuel expense for any journey.",
+  keywords: [
+    "fuel cost calculator",
+    "fuel cost estimator",
+    "gas bill calculator",
+    "fuel expense calculator",
+    "petrol expense calculator",
+    "fuel price calculator",
+    "trip fuel cost",
+    "road trip fuel calculator",
+  ],
+  alternates: {
+    canonical: 'https://www.nextcodehub.com/fuel-cost-calculator',
+  },
+  openGraph: {
+    title: "Fuel Cost Calculator - Estimate Trip Fuel Expenses",
+    description: "Free fuel cost calculator to estimate trip expenses based on distance, fuel efficiency, and gas price.",
+    url: 'https://www.nextcodehub.com/fuel-cost-calculator',
+  },
 };
 
 export default function Page() {
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
       <div className="bg-white border-b border-gray-200 pt-16 pb-12">
@@ -242,5 +318,6 @@ export default function Page() {
 
       </div>
     </div>
+    </>
   );
 }

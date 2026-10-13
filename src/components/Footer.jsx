@@ -6,77 +6,119 @@ export default function Footer() {
     <footer className="bg-white border-t border-gray-100 mt-auto pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 mb-12">
-          <div className="md:col-span-12 lg:col-span-4">
+          <div className="md:col-span-12 lg:col-span-3">
             <Link href="/" className="flex items-center gap-3 mb-4">
-              <div className="relative h-20 w-40 ">
-                <Image src="/logo.png" alt="Fuel Calculator Logo" fill className="object-contain" />
+              <div className="relative h-10 w-32 flex items-center">
+                <Image src="/logo.png" alt="Fuel Calculator Logo" width={140} height={70} className="h-10 w-auto object-contain" />
               </div>
             </Link>
-            <p className="text-gray-500 text-sm leading-relaxed mb-6 -mt-4 max-w-sm">Free fuel calculators to help you save money on gas, track mileage, and optimize vehicle efficiency. Calculate fuel costs, MPG, and expenses with precision.</p>
+            <p className="text-gray-600 text-sm leading-relaxed mb-6 -mt-4 max-w-sm">Free fuel calculators to help you save money on gas, track mileage, and optimize vehicle efficiency. Calculate fuel costs, MPG, and expenses with precision.</p>
           </div>
 
-          <div className="md:col-span-4 lg:col-span-2">
+          <div className="md:col-span-12   lg:col-span-3">
             <h3 className="text-gray-900 font-semibold mb-4">Calculators</h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2">
               <li>
-                <Link href="/fuel-cost-calculator" className="text-gray-500 hover:text-primary-500 text-sm transition-colors">
-                  Fuel Cost
+                <Link href="/fuel-cost-calculator" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
+                  Fuel Cost Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/fuel-mileage-calculator" className="text-gray-500 hover:text-primary-500 text-sm transition-colors">
-                  Mileage
+                <Link href="/fuel-mileage-calculator" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
+                  Fuel Mileage Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/mpg-calculator" className="text-gray-500 hover:text-primary-500 text-sm transition-colors">
-                  MPG
+                <Link href="/mpg-calculator" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
+                  MPG Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/petrol-calculator" className="text-gray-500 hover:text-primary-500 text-sm transition-colors">
-                  Petrol
+                <Link href="/petrol-calculator" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
+                  Petrol Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/fuel-consumption-calculator" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
+                  Fuel Consumption Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/fuel-economy-calculator" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
+                  Fuel Economy Calculator
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div className="md:col-span-4 lg:col-span-3">
+          <div className="md:col-span-12 lg:col-span-2  w-[200px]">
+            <h3 className="text-gray-900 font-semibold mb-4">More Tools</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/gas-mileage-calculator" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
+                  Gas Mileage Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/gas-price-calculator" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
+                  Gas Price Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/fuel-efficiency-calculator" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
+                  Fuel Efficiency Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/fuel-average-calculator" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
+                  Fuel Average Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/fuel-expense-calculator" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
+                  Fuel Expense Calculator
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+
+          <div className="md:col-span-12 lg:col-span-2">
             <h3 className="text-gray-900 font-semibold mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/about" className="text-gray-500 hover:text-primary-500 text-sm transition-colors">
+                <Link href="/about" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-500 hover:text-primary-500 text-sm transition-colors">
+                <Link href="/contact" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-500 hover:text-primary-500 text-sm transition-colors">
+                <Link href="/blog" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
                   Blog
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div className="md:col-span-4 lg:col-span-3">
+          <div className="md:col-span-4 lg:col-span-2">
             <h3 className="text-gray-900 font-semibold mb-4">Legal</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/privacy-policy" className="text-gray-500 hover:text-primary-500 text-sm transition-colors">
+                <Link href="/privacy-policy" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-gray-500 hover:text-primary-500 text-sm transition-colors">
+                <Link href="/terms" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="/disclaimer" className="text-gray-500 hover:text-primary-500 text-sm transition-colors">
+                <Link href="/disclaimer" className="text-gray-600 hover:text-white hover:bg-primary-600 rounded-full hover:px-2 hover:py-1 text-sm transition-colors">
                   Disclaimer
                 </Link>
               </li>

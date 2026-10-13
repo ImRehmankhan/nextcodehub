@@ -1,53 +1,58 @@
+'use client';
+
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100 shadow-sm transition-all">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100 shadow-sm transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20 relative">
           {/* Left: Logo Section */}
           <div className="flex-shrink-0 flex items-center group">
             <Link href="/" className="flex items-center gap-3">
-              <div className="relative h-40 w-40 ">
+              <div className="relative h-12 w-32 sm:w-36 flex items-center">
                 <Image 
                   src="/logo.png" 
                   alt="Fuel Calculator Logo" 
-                  fill 
-                  className="object-contain"
-                  
+                  width={160}
+                  height={80}
+                  priority
+                  className="h-12 w-auto object-contain"
                 />
               </div>
-             
             </Link>
           </div>
 
           {/* Center: Navigation Links */}
-          <nav className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-6 w-max">
-            <Link href="/" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
+          <nav className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-6 w-max" aria-label="Main navigation">
+            <Link href="/" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Home
             </Link>
-            <Link href="/fuel-cost-calculator" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
+            <Link href="/fuel-cost-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Cost Calculator
             </Link>
-            <Link href="/fuel-mileage-calculator" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
+            <Link href="/fuel-mileage-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Mileage
             </Link>
-            <Link href="/mpg-calculator" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
+            <Link href="/mpg-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               MPG
             </Link>
-            <Link href="/fuel-consumption-calculator" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
+            <Link href="/fuel-consumption-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Consumption
             </Link>
-            <Link href="/blog" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
+            <Link href="/blog" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
               Blog
             </Link>
           </nav>
 
           {/* Right: Call to Action Button */}
           <div className="flex items-center gap-4">
-            <Link href="/fuel-cost-calculator" className="hidden md:flex px-6 py-2.5 rounded-full bg-primary-500 text-white font-bold hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-500/20 transition-all duration-300 transform hover:-translate-y-0.5 items-center gap-2">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <Link href="/fuel-cost-calculator" className="hidden md:flex px-6 py-2.5 rounded-full bg-primary-600 text-white font-bold hover:bg-primary-700 hover:shadow-lg hover:shadow-primary-600/20 transition-all duration-300 transform hover:-translate-y-0.5 items-center gap-2">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
                 <line x1="8" y1="6" x2="16" y2="6"></line>
                 <line x1="16" y1="14" x2="16" y2="14"></line>
@@ -60,14 +65,84 @@ export default function Header() {
               Open Calculator
             </Link>
 
-            {/* Mobile Menu Button */}
-            <button className="lg:hidden text-gray-600 hover:text-primary-500 focus:outline-none transition-colors">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+            {/* Mobile Menu Button with accessible name and state */}
+            <button 
+              type="button"
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden text-gray-700 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 p-2 rounded-lg transition-colors"
+            >
+              {isMenuOpen ? (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        {isMenuOpen && (
+          <nav id="mobile-navigation" className="lg:hidden py-4 border-t border-gray-100 space-y-2 bg-white" aria-label="Mobile navigation">
+            <Link 
+              href="/" 
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+            >
+              Home
+            </Link>
+            <Link 
+              href="/fuel-cost-calculator" 
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+            >
+              Cost Calculator
+            </Link>
+            <Link 
+              href="/fuel-mileage-calculator" 
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+            >
+              Mileage
+            </Link>
+            <Link 
+              href="/mpg-calculator" 
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+            >
+              MPG
+            </Link>
+            <Link 
+              href="/fuel-consumption-calculator" 
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+            >
+              Consumption
+            </Link>
+            <Link 
+              href="/blog" 
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+            >
+              Blog
+            </Link>
+            <div className="pt-2">
+              <Link 
+                href="/fuel-cost-calculator" 
+                onClick={() => setIsMenuOpen(false)}
+                className="w-full flex items-center justify-center px-4 py-3 rounded-xl bg-primary-600 text-white font-bold hover:bg-primary-700 transition-colors"
+              >
+                Open Calculator
+              </Link>
+            </div>
+          </nav>
+        )}
       </div>
     </header>
   );

@@ -1,0 +1,17 @@
+{
+  "name": "NextCodeHub - Free Fuel Calculators",
+  "short_name": "FuelCalc",
+  "description": "Free fuel cost calculator, gas mileage calculator, MPG calculator, and petrol calculator tools.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
