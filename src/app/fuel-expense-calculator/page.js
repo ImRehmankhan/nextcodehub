@@ -39,8 +39,8 @@ const jsonLd = {
 };
 
 export const metadata = {
-  title: "Fuel Expense Calculator - Petrol Expense & Monthly Fuel Budget",
-  description: "Free fuel expense calculator and petrol expense calculator. Calculate your daily, monthly, and annual fuel expenses. Track your petrol expense and manage your transport budget effectively.",
+  title: "Fuel Expense Calculator: Monthly Fuel Budget & Costs",
+  description: "Calculate daily, monthly, and annual fuel expenses easily. Budget petrol costs, track commute expenses, and find out where you can save on gas.",
   keywords: [
     "fuel expense calculator",
     "petrol expense calculator",
@@ -171,6 +171,126 @@ export default function Page() {
                 <h3 className="font-bold text-gray-900 mb-2">What is the difference between fuel expense and fuel cost?</h3>
                 <p className="text-gray-600">Fuel expense = total spending over a time period (monthly, annually). Fuel cost = the cost for a specific trip. Both are calculated the same way — distance ÷ mileage × price.</p>
               </div>
+            </div>
+          </section>
+
+          {/* Annual fuel expense vs total ownership cost */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Fuel Expense vs Total Vehicle Ownership Cost</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Your annual <strong>petrol expense</strong> is just one component of the total cost of owning a vehicle. Understanding how fuel expense fits into the bigger picture helps you make smarter vehicle purchasing decisions:
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 text-gray-700 font-semibold">
+                    <th className="text-left p-3 rounded-tl-lg">Cost Category</th>
+                    <th className="text-left p-3">Economy Car</th>
+                    <th className="text-left p-3">Midsize Sedan</th>
+                    <th className="text-left p-3 rounded-tr-lg">Large SUV</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[
+                    ['Annual Fuel Expense', '$1,200/yr', '$1,600/yr', '$2,800/yr'],
+                    ['Insurance', '$800/yr', '$1,200/yr', '$1,800/yr'],
+                    ['Maintenance & Repairs', '$600/yr', '$900/yr', '$1,400/yr'],
+                    ['Depreciation', '$2,000/yr', '$3,500/yr', '$6,000/yr'],
+                    ['Registration & Taxes', '$200/yr', '$350/yr', '$500/yr'],
+                    ['Total Annual Cost', '$4,800/yr', '$7,550/yr', '$12,500/yr'],
+                    ['Cost Per Mile (12k mi/yr)', '$0.40/mi', '$0.63/mi', '$1.04/mi'],
+                  ].map(([cat, eco, mid, suv], idx) => (
+                    <tr key={cat} className={`hover:bg-gray-50 ${idx === 5 ? 'font-bold border-t-2 border-gray-300' : ''}`}>
+                      <td className={`p-3 ${idx === 0 ? 'text-primary-700 font-bold' : 'font-medium text-gray-900'}`}>{cat}</td>
+                      <td className={`p-3 text-gray-600 ${idx === 0 ? 'text-primary-700 font-bold' : ''}`}>{eco}</td>
+                      <td className={`p-3 text-gray-600 ${idx === 0 ? 'text-primary-700 font-bold' : ''}`}>{mid}</td>
+                      <td className={`p-3 text-gray-600 ${idx === 0 ? 'text-primary-700 font-bold' : ''}`}>{suv}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-400 mt-2">*Estimated for US market. Fuel expense calculated at $3.50/gallon, 12,000 miles/year. Economy car = 38 MPG, Midsize = 28 MPG, SUV = 20 MPG.</p>
+          </section>
+
+          {/* Tax deductions for fuel expense */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Can You Deduct Your Fuel Expense on Taxes?</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              If you use your vehicle for business, you may be able to deduct your <strong>fuel expense</strong> from your taxable income. Here&apos;s how the two main methods work in the US:
+            </p>
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-5">
+                <h3 className="font-bold text-blue-900 mb-3">📋 Method 1: Standard Mileage Rate</h3>
+                <p className="text-blue-800 text-sm mb-3">Multiply your business miles by the IRS standard rate.</p>
+                <div className="bg-blue-100 rounded-lg p-3 font-mono text-xs">
+                  <p>2024 Rate: 67 cents per mile</p>
+                  <p>Example: 10,000 business miles</p>
+                  <p className="font-bold text-blue-900 mt-1">Deduction: $6,700</p>
+                </div>
+                <p className="text-blue-700 text-xs mt-3">✅ Simpler. No need to track actual fuel expense receipts.</p>
+              </div>
+              <div className="bg-green-50 border border-green-200 rounded-xl p-5">
+                <h3 className="font-bold text-green-900 mb-3">📊 Method 2: Actual Expense Method</h3>
+                <p className="text-green-800 text-sm mb-3">Deduct actual fuel expense and other vehicle costs proportional to business use.</p>
+                <div className="bg-green-100 rounded-lg p-3 font-mono text-xs">
+                  <p>Annual fuel expense: $2,000</p>
+                  <p>Business use: 70%</p>
+                  <p className="font-bold text-green-900 mt-1">Deduction: $1,400 (fuel only)</p>
+                </div>
+                <p className="text-green-700 text-xs mt-3">✅ Better when actual fuel expense exceeds standard rate value.</p>
+              </div>
+            </div>
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
+              <p className="text-amber-900 text-sm font-semibold">⚠️ Important Note</p>
+              <p className="text-amber-800 text-sm mt-1">Fuel expense deductions require you to keep a mileage log documenting date, destination, and business purpose for every trip. The IRS requires contemporaneous records — retroactive estimates are not accepted. Use our fuel expense calculator to maintain accurate monthly records.</p>
+            </div>
+          </section>
+
+          {/* Fuel expense strategies */}
+          <section className="bg-gradient-to-br from-violet-50 to-purple-50 p-8 rounded-2xl border border-violet-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Advanced Strategies to Minimize Your Monthly Fuel Expense</h2>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              Beyond basic tips, these strategic approaches can dramatically reduce your annual <strong>petrol expense</strong>:
+            </p>
+            <div className="space-y-4">
+              {[
+                {
+                  strategy: '🏠 Remote Work Negotiation',
+                  impact: 'Save $200–$500/month on fuel expense',
+                  detail: 'Negotiating 2 work-from-home days per week eliminates 40% of your commute. For a $300/month commuter, that\'s $1,440 saved annually — more than many car payments.'
+                },
+                {
+                  strategy: '🚌 Transit + Park & Ride',
+                  impact: 'Save $100–$300/month on fuel expense',
+                  detail: 'Drive to the nearest park-and-ride lot and take transit into the city center. You pay for parking and transit but eliminate high-traffic fuel consumption on the most expensive part of your commute.'
+                },
+                {
+                  strategy: '⚡ Electric Vehicle Conversion',
+                  impact: 'Save 60–80% on fuel expense',
+                  detail: 'The average EV owner pays ~$500–700/year in electricity vs $2,000–3,500/year in gasoline. At current electricity rates, driving an EV costs the equivalent of ~$1.20/gallon gasoline.'
+                },
+                {
+                  strategy: '🛢️ Fleet Fuel Card Programs',
+                  impact: 'Save 3–8% on all fuel purchases',
+                  detail: 'For businesses with multiple vehicles, fleet fuel card programs from Shell, ExxonMobil, or WEX offer volume discounts and centralized billing for all petrol expense management.'
+                },
+                {
+                  strategy: '📊 Fuel Expense Tracking App',
+                  impact: 'Identify 10–15% waste reduction opportunities',
+                  detail: 'Systematically tracking your petrol expense using our calculator alongside an app like Fuelio reveals patterns: time of day, route, or driver that increases fuel expense disproportionately.'
+                },
+              ].map(({ strategy, impact, detail }) => (
+                <div key={strategy} className="bg-white p-4 rounded-xl border border-violet-100 flex gap-4 items-start">
+                  <div className="flex-1">
+                    <div className="flex flex-wrap justify-between items-start gap-2 mb-2">
+                      <p className="font-bold text-gray-900 text-sm">{strategy}</p>
+                      <span className="text-violet-700 text-xs font-bold bg-violet-100 px-2 py-0.5 rounded-full">{impact}</span>
+                    </div>
+                    <p className="text-gray-600 text-xs">{detail}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
 

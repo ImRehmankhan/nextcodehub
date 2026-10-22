@@ -9,6 +9,7 @@ const jsonLd = {
       '@type': 'WebSite',
       '@id': 'https://www.nextcodehub.com/#website',
       name: 'NextCodeHub',
+      alternateName: ['NextCodeHub Tools', 'NextCodeHub Fuel Calculators'],
       url: 'https://www.nextcodehub.com',
       description: 'Free fuel cost calculator, gas mileage calculator, MPG calculator, and petrol calculator tools.',
       potentialAction: {
@@ -33,15 +34,15 @@ const jsonLd = {
       '@id': 'https://www.nextcodehub.com/#organization',
       name: 'NextCodeHub',
       url: 'https://www.nextcodehub.com',
-      logo: { '@type': 'ImageObject', url: 'https://www.nextcodehub.com/logo.png' },
+      logo: { '@type': 'ImageObject', url: 'https://www.nextcodehub.com/icon.svg' },
     },
   ],
 };
 
 
 export const metadata = {
-  title: "Free Fuel Cost Calculator & Gas Mileage Calculator Online",
-  description: "Use our free fuel cost calculator, gas mileage calculator, MPG calculator, and petrol calculator. Calculate fuel expenses, estimate trip costs, and track fuel economy online.",
+  title: "NextCodeHub: Free Fuel Cost & Gas Mileage Calculators",
+  description: "Calculate trip fuel costs, gas mileage, and MPG instantly. Free, accurate automotive calculators to save money on gas, track mileage, and budget journeys.",
   keywords: [
     "fuel cost calculator",
     "gas mileage calculator",

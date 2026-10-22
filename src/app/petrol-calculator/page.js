@@ -39,8 +39,8 @@ const jsonLd = {
 };
 
 export const metadata = {
-  title: "Petrol Calculator - Petrol Cost, Mileage & Expense Calculator",
-  description: "Free petrol calculator to calculate petrol cost, petrol mileage, petrol average, and petrol expense for any trip. Budget your petrol expenses accurately.",
+  title: "Petrol Calculator: Estimate Petrol Cost & Trip Expense",
+  description: "Calculate petrol cost, petrol mileage, and journey expenses instantly. Find out how much petrol you need and budget daily or trip fuel costs easily.",
   keywords: [
     "petrol calculator",
     "petrol cost calculator",
@@ -163,6 +163,102 @@ export default function Page() {
                 <h3 className="font-bold text-gray-900 mb-2">How much petrol do I need for a trip?</h3>
                 <p className="text-gray-600">Divide trip distance by your petrol average (km/L). For 300km at 15 km/L = 20 liters needed. Enter your values above for an instant calculation.</p>
               </div>
+            </div>
+          </section>
+
+          {/* Petrol price sensitivity */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Petrol Price Sensitivity: How Price Changes Affect Your Budget</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Understanding how <strong>petrol price</strong> changes impact your monthly budget helps you prepare for price fluctuations. This table shows how a price change affects a driver covering 1,500 km/month at different petrol averages:
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 text-gray-700 font-semibold">
+                    <th className="text-left p-3 rounded-tl-lg">Petrol Average</th>
+                    <th className="text-center p-3">At $1.00/L</th>
+                    <th className="text-center p-3">At $1.50/L</th>
+                    <th className="text-center p-3">At $2.00/L</th>
+                    <th className="text-center p-3 rounded-tr-lg">At $2.50/L</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[
+                    ['8 km/L (SUV)', '$187.5', '$281.3', '$375.0', '$468.8'],
+                    ['10 km/L (sedan)', '$150.0', '$225.0', '$300.0', '$375.0'],
+                    ['12 km/L (compact)', '$125.0', '$187.5', '$250.0', '$312.5'],
+                    ['15 km/L (efficient)', '$100.0', '$150.0', '$200.0', '$250.0'],
+                    ['20 km/L (hybrid)', '$75.0', '$112.5', '$150.0', '$187.5'],
+                    ['25 km/L (motorcycle)', '$60.0', '$90.0', '$120.0', '$150.0'],
+                  ].map(([avg, p1, p15, p2, p25]) => (
+                    <tr key={avg} className="hover:bg-gray-50">
+                      <td className="p-3 font-medium text-gray-900">{avg}</td>
+                      <td className="p-3 text-center text-green-600 font-medium">{p1}</td>
+                      <td className="p-3 text-center text-yellow-600">{p15}</td>
+                      <td className="p-3 text-center text-orange-600">{p2}</td>
+                      <td className="p-3 text-center text-red-600 font-bold">{p25}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-400 mt-2">*Monthly petrol expense for 1,500 km/month. Use our petrol calculator to compute your specific numbers.</p>
+          </section>
+
+          {/* Petrol vs diesel analysis */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Petrol vs Diesel: Which Fuel Type Costs Less Long-Term?</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Choosing between a petrol and diesel vehicle is one of the biggest fuel cost decisions you&apos;ll make. While diesel vehicles have better <strong>petrol average</strong> (more km per liter), they cost more to purchase and service. Here&apos;s a complete comparison:
+            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
+                <h3 className="font-bold text-blue-900 text-lg mb-4">⛽ Petrol (Gasoline) Vehicle</h3>
+                <div className="space-y-2 mb-4">
+                  <p className="text-sm text-blue-800"><strong>Fuel Average:</strong> 10–16 km/L typical</p>
+                  <p className="text-sm text-blue-800"><strong>Purchase Cost:</strong> Lower initial price</p>
+                  <p className="text-sm text-blue-800"><strong>Service Cost:</strong> Lower maintenance costs</p>
+                  <p className="text-sm text-blue-800"><strong>Best For:</strong> City driving, shorter distances</p>
+                </div>
+                <div className="bg-blue-100 rounded-lg p-3">
+                  <p className="text-blue-900 text-xs font-medium">Best choice if you drive under 20,000 km/year in the city.</p>
+                </div>
+              </div>
+              <div className="bg-gray-800 border border-gray-700 rounded-xl p-6">
+                <h3 className="font-bold text-white text-lg mb-4">🛢️ Diesel Vehicle</h3>
+                <div className="space-y-2 mb-4">
+                  <p className="text-sm text-gray-300"><strong className="text-white">Fuel Average:</strong> 14–22 km/L typical</p>
+                  <p className="text-sm text-gray-300"><strong className="text-white">Purchase Cost:</strong> 15–25% higher than petrol</p>
+                  <p className="text-sm text-gray-300"><strong className="text-white">Service Cost:</strong> Higher but less frequent</p>
+                  <p className="text-sm text-gray-300"><strong className="text-white">Best For:</strong> Highway driving, high annual km</p>
+                </div>
+                <div className="bg-gray-700 rounded-lg p-3">
+                  <p className="text-gray-200 text-xs font-medium">Best choice if you drive over 30,000 km/year on highways.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Petrol calculator use cases */}
+          <section className="bg-gradient-to-br from-orange-50 to-red-50 p-8 rounded-2xl border border-orange-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">5 Practical Ways to Use a Petrol Calculator Daily</h2>
+            <div className="space-y-4">
+              {[
+                { useCase: 'Plan your daily commute budget', detail: 'Enter your one-way commute distance, vehicle petrol average, and current petrol price. Multiply by 2 for daily cost, then by working days for monthly petrol expense.' },
+                { useCase: 'Calculate petrol cost before a road trip', detail: 'Enter total journey distance, your car\'s petrol average (km/L), and the current petrol price. Our calculator shows you total liters needed and total petrol cost — including optional return journey.' },
+                { useCase: 'Compare petrol cost between two routes', detail: 'Some routes are longer but have better traffic flow, meaning less stop-and-go and better petrol average. Calculate the cost for each route to find the truly cheaper option.' },
+                { useCase: 'Track your fleet petrol expenses', detail: 'Business owners and fleet managers can use our petrol calculator for each vehicle, then combine results to get a total fleet petrol expense for the week, month, or quarter.' },
+                { useCase: 'Test the impact of a new driving style', detail: 'After changing driving habits (e.g., gentle acceleration, less AC), measure your new petrol average and re-run the calculator to see exactly how much money you\'ve saved per month.' },
+              ].map(({ useCase, detail }) => (
+                <div key={useCase} className="bg-white p-4 rounded-xl border border-orange-100 flex gap-3 items-start">
+                  <span className="text-orange-500 font-bold text-lg flex-shrink-0">⛽</span>
+                  <div>
+                    <p className="font-bold text-gray-900 text-sm">{useCase}</p>
+                    <p className="text-gray-600 text-xs mt-1">{detail}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
 

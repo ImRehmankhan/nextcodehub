@@ -55,8 +55,8 @@ const jsonLd = {
 };
 
 export const metadata = {
-  title: "Fuel Cost Calculator - Estimate Trip Fuel Expenses",
-  description: "Free fuel cost calculator to estimate trip expenses based on distance, fuel efficiency, and gas price. Calculate petrol cost, gas bill, and fuel expense for any journey.",
+  title: "Fuel Cost Calculator: Estimate Exact Trip Gas Cost [Free]",
+  description: "Calculate exact fuel costs for any trip instantly. Enter distance, fuel price, and MPG to estimate total gas expense and cost per passenger. 100% Free.",
   keywords: [
     "fuel cost calculator",
     "fuel cost estimator",

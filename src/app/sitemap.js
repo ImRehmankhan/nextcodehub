@@ -23,19 +23,27 @@ export default function sitemap() {
     priority: 0.9,
   }));
 
-  // Static support routes
+  // Blog index route (high priority content hub)
+  const blogIndexRoute = {
+    url: `${baseUrl}/blog`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  };
+
+  // Static trust & legal routes
   const supportRoutes = [
-    '/blog',
     '/about',
     '/contact',
     '/privacy-policy',
+    '/cookie-policy',
     '/terms',
     '/disclaimer',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
-    priority: 0.5,
+    priority: 0.7,
   }));
 
   // Homepage
@@ -54,5 +62,5 @@ export default function sitemap() {
     priority: 0.6,
   }));
 
-  return [homepageRoute, ...calculatorRoutes, ...blogRoutes, ...supportRoutes];
+  return [homepageRoute, blogIndexRoute, ...calculatorRoutes, ...blogRoutes, ...supportRoutes];
 }

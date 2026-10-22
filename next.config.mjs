@@ -33,6 +33,20 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  async redirects() {
+    return [
+      {
+        source: '/tools/fuel-cost-calculator',
+        destination: '/fuel-cost-calculator',
+        permanent: true,
+      },
+      {
+        source: '/cookies-policy',
+        destination: '/cookie-policy',
+        permanent: true,
+      },
+    ];
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.alias = {

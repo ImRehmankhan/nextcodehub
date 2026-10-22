@@ -39,8 +39,8 @@ const jsonLd = {
 };
 
 export const metadata = {
-  title: "Fuel Average Calculator - Petrol Average & Fuel Mileage Calculator",
-  description: "Free fuel average calculator to track your petrol average and fuel average in km/L or MPG. Calculate your vehicle's average fuel consumption and monitor efficiency over time.",
+  title: "Fuel Average Calculator: Calculate Petrol Average (km/L)",
+  description: "Calculate your vehicle's average fuel consumption in km/L or MPG easily. Enter odometer distance and fuel filled to see your exact petrol average.",
   keywords: [
     "fuel average calculator",
     "petrol average calculator",
@@ -158,6 +158,124 @@ export default function Page() {
               <div>
                 <h3 className="font-bold text-gray-900 mb-2">What is a good fuel average for a petrol car?</h3>
                 <p className="text-gray-600">12–16 km/L for sedans is average. Hybrids get 18–25 km/L. Motorcycles achieve 30–60 km/L. SUVs typically get 8–12 km/L.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* How to check fuel average for popular car models */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Popular Car Models & Their Expected Fuel Average</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              While every vehicle&apos;s real-world <strong>fuel average</strong> depends on driving conditions, here are the manufacturer-claimed fuel averages for some popular car models in Asia, the UK, and the US. Use our fuel average calculator to measure your actual figures:
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 text-gray-700 font-semibold">
+                    <th className="text-left p-3 rounded-tl-lg">Car Model</th>
+                    <th className="text-left p-3">Claimed km/L</th>
+                    <th className="text-left p-3">Real-World km/L</th>
+                    <th className="text-left p-3 rounded-tr-lg">Category</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[
+                    ['Toyota Corolla (2024)', '16 km/L', '13–15 km/L', 'Sedan'],
+                    ['Honda Civic (2024)', '17 km/L', '14–16 km/L', 'Compact Sedan'],
+                    ['Suzuki Alto (660cc)', '22 km/L', '18–20 km/L', 'Mini Hatchback'],
+                    ['Toyota Prius Hybrid', '28 km/L', '22–26 km/L', 'Hybrid Sedan'],
+                    ['Honda CR-V (Petrol)', '13 km/L', '10–12 km/L', 'Compact SUV'],
+                    ['Suzuki Wagon R', '20 km/L', '16–18 km/L', 'Micro Van'],
+                    ['Yamaha YBR 125', '45 km/L', '38–43 km/L', 'Motorcycle'],
+                    ['Honda CD 70 (Moped)', '55 km/L', '48–52 km/L', 'Moped'],
+                  ].map(([model, claimed, realWorld, cat]) => (
+                    <tr key={model} className="hover:bg-gray-50">
+                      <td className="p-3 font-medium text-gray-900">{model}</td>
+                      <td className="p-3 text-blue-600 font-semibold">{claimed}</td>
+                      <td className="p-3 text-green-700 font-semibold">{realWorld}</td>
+                      <td className="p-3 text-gray-500 text-xs">{cat}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-400 mt-2">*Real-world figures based on mixed city/highway driving. Use our fuel average calculator to measure your actual vehicle performance.</p>
+          </section>
+
+          {/* Seasonal fuel average variation */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">How Seasons & Weather Affect Your Fuel Average</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Your <strong>petrol average</strong> naturally varies throughout the year. Understanding seasonal variation helps you set realistic expectations and distinguish normal variation from actual mechanical problems:
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                {
+                  season: '🌸 Spring & Autumn', avgImpact: 'Best fuel average season', detail: 'Mild temperatures mean minimal heating/AC use, optimal tire pressure, and efficient combustion. Expect your best petrol average results.',
+                  color: 'green'
+                },
+                {
+                  season: '☀️ Summer Heat', avgImpact: '5–10% lower fuel average', detail: 'Air conditioning load increases fuel consumption significantly. In very hot climates, AC alone can reduce your fuel average by 15–20%.',
+                  color: 'yellow'
+                },
+                {
+                  season: '❄️ Winter Cold', avgImpact: '10–30% lower fuel average', detail: 'Cold engines use more fuel to warm up. Winter-blend gasoline has lower energy content. Thicker oil creates more engine friction.',
+                  color: 'blue'
+                },
+                {
+                  season: '🌧️ Rainy Season', avgImpact: '5–10% lower fuel average', detail: 'Wet roads increase rolling resistance. Headlights, wipers, and defogger all add electrical load. Speed reductions in heavy rain also affect efficiency.',
+                  color: 'gray'
+                },
+              ].map(({ season, avgImpact, detail }) => (
+                <div key={season} className="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                  <p className="font-bold text-gray-900 text-sm">{season}</p>
+                  <p className="text-primary-700 font-semibold text-xs mt-1">{avgImpact}</p>
+                  <p className="text-gray-500 text-xs mt-2">{detail}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Fuel average vs fuel cost calculator guide */}
+          <section className="bg-gradient-to-br from-indigo-50 to-blue-50 p-8 rounded-2xl border border-indigo-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Fuel Average Calculator vs Fuel Cost Calculator: Which Should You Use?</h2>
+            <p className="text-gray-600 leading-relaxed mb-6">
+              Both calculators are related but answer different questions. Here&apos;s when to use each:
+            </p>
+            <div className="grid md:grid-cols-2 gap-5">
+              <div className="bg-white p-5 rounded-xl border border-indigo-100">
+                <h3 className="font-bold text-indigo-900 mb-3">📊 Fuel Average Calculator — Use When:</h3>
+                <ul className="space-y-2">
+                  {[
+                    'You want to know HOW EFFICIENT your vehicle is',
+                    'You\'ve just refueled and want to log your km/L or MPG',
+                    'You suspect your mileage has dropped after a trip or service',
+                    'You\'re comparing your vehicle\'s performance over time',
+                    'You want to see if your driving habits are improving',
+                  ].map(use => (
+                    <li key={use} className="flex gap-2 text-xs text-gray-600 items-start">
+                      <svg className="flex-shrink-0 text-indigo-500 mt-0.5" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      {use}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-white p-5 rounded-xl border border-indigo-100">
+                <h3 className="font-bold text-blue-900 mb-3">💰 Fuel Cost Calculator — Use When:</h3>
+                <ul className="space-y-2">
+                  {[
+                    'You want to know HOW MUCH MONEY a trip will cost',
+                    'You\'re planning a road trip and need a fuel budget',
+                    'You want to compare fuel cost between two vehicles',
+                    'You need to calculate monthly or annual fuel expense',
+                    'You\'re calculating reimbursement for business travel',
+                  ].map(use => (
+                    <li key={use} className="flex gap-2 text-xs text-gray-600 items-start">
+                      <svg className="flex-shrink-0 text-blue-500 mt-0.5" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                      {use}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </section>

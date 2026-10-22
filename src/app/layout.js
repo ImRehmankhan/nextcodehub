@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import CookieBanner from "../components/CookieBanner";
 
 export const metadata = {
   metadataBase: new URL('https://www.nextcodehub.com'),
@@ -74,12 +75,24 @@ export const metadata = {
     google: 'jBt3gt1Q4eH4buPymGOpuSIGmMRb2u2SiA1dPdyI3LU',
   },
   manifest: '/site.webmanifest',
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: ['/icon.svg'],
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" sizes="any" />
+        <link rel="apple-touch-icon" href="/icon.svg" />
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#16a34a" />
       </head>
@@ -96,6 +109,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );

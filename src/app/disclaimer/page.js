@@ -1,169 +1,159 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Disclaimer - NextCodeHub",
-  description: "Important disclaimer regarding the use of NextCodeHub tools, content, and the accuracy of information.",
+  title: "Disclaimer - NextCodeHub | Fuel Cost & Mileage Calculation Notice",
+  description: "Read the official NextCodeHub disclaimer regarding automotive calculations, fuel price volatility, EPA vs real-world mileage estimates, and advertising disclosures.",
+  alternates: {
+    canonical: 'https://www.nextcodehub.com/disclaimer',
+  },
+  openGraph: {
+    title: "Disclaimer - NextCodeHub",
+    description: "Important information regarding fuel calculation estimates, mileage variances, and financial decisions on NextCodeHub.",
+    url: 'https://www.nextcodehub.com/disclaimer',
+  },
 };
 
-export default function Page() {
+const disclaimerJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': 'https://www.nextcodehub.com/disclaimer',
+  name: 'NextCodeHub Disclaimer',
+  url: 'https://www.nextcodehub.com/disclaimer',
+  description: 'Legal disclaimer and accuracy disclosure for NextCodeHub fuel calculation tools.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'NextCodeHub',
+    url: 'https://www.nextcodehub.com',
+  },
+};
+
+export default function DisclaimerPage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="text-center max-w-3xl mx-auto mb-12">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-          Disclaimer
-        </h1>
-        <p className="text-lg text-gray-600">
-          Last updated: April 18, 2026
-        </p>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(disclaimerJsonLd) }}
+      />
+      
+      <div className="bg-gray-50 min-h-screen py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary-50 text-primary-700 border border-primary-200 mb-4">
+              Legal Disclosures &amp; Terms
+            </span>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
+              Disclaimer &amp; Calculation Notice
+            </h1>
+            <p className="text-gray-500 text-sm">
+              Last Updated: October 2026 • Effective Date: January 1, 2026
+            </p>
+          </div>
+
+          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 space-y-10 text-gray-700 leading-relaxed text-base">
+            
+            <section className="space-y-4">
+              <h2 className="text-2xl font-bold text-gray-900 border-b border-gray-100 pb-3">
+                1. General Estimation Purpose
+              </h2>
+              <p>
+                The digital calculators, converters, articles, and estimates provided on <strong>NextCodeHub (nextcodehub.com)</strong> are intended solely for general informational, educational, and planning purposes.
+              </p>
+              <p>
+                While all algorithms on our platform utilize recognized automotive formulas (such as EPA conversion standards, metric fuel density coefficients, and standard mathematical ratios), calculation outputs are <strong>theoretical estimates</strong> and should never be interpreted as guaranteed actual vehicle performance or precise fiscal billing.
+              </p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-bold text-gray-900 border-b border-gray-100 pb-3">
+                2. Real-World Fuel Economy &amp; Mileage Variances
+              </h2>
+              <p>
+                Actual automotive fuel consumption varies significantly from laboratory ratings (such as US EPA ratings, European WLTP, or Japanese JC08 test cycles) due to dynamic real-world factors beyond our control, including:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 text-sm text-gray-600">
+                <li><strong>Driving Behavior:</strong> Rapid acceleration, aggressive braking, high cruising speeds (exceeding 65 mph / 105 km/h), and frequent cold engine starts.</li>
+                <li><strong>Environmental Conditions:</strong> Ambient temperatures, headwinds, precipitation, high elevation, snow, and rough terrain.</li>
+                <li><strong>Vehicle Maintenance Status:</strong> Incorrect tire inflation pressure, clogged air filters, dirty spark plugs, dragging brake calipers, and incorrect motor oil viscosity.</li>
+                <li><strong>Auxiliary Loads:</strong> Continuous air conditioning usage, roof cargo carriers, towing trailers, and excess passenger or luggage payload.</li>
+              </ul>
+              <p className="text-sm">
+                NextCodeHub assumes no liability for discrepancies between our estimated fuel consumption and your vehicle&apos;s real-world odometer or tank fill measurements.
+              </p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-bold text-gray-900 border-b border-gray-100 pb-3">
+                3. Fuel Price Volatility &amp; Currency Conversion
+              </h2>
+              <p>
+                Retail pump prices for unleaded petrol, diesel, mid-grade, premium 98-octane gasoline, and alternative fuels fluctuate continuously by region, state, local municipality, taxes, and global crude oil markets.
+              </p>
+              <p>
+                Any default price benchmarks provided in our inputs or example calculations are illustrative. Users are encouraged to input their specific local pump rates to achieve the highest possible cost estimation accuracy.
+              </p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-bold text-gray-900 border-b border-gray-100 pb-3">
+                4. No Professional Automotive or Financial Advice
+              </h2>
+              <p>
+                Nothing on NextCodeHub constitutes certified mechanical, automotive repair, financial, tax, or legal advice:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 text-sm text-gray-600">
+                <li><strong>Tax Deductions:</strong> If you use our calculators to estimate vehicle mileage deductions for rideshare (Uber/Lyft), courier deliveries, or business vehicle logs, please consult a Certified Public Accountant (CPA) or official IRS / tax authority guidelines.</li>
+                <li><strong>Mechanical Diagnoses:</strong> Sudden severe drops in fuel economy may signal mechanical malfunctions (such as failing oxygen sensors, catalytic converter restriction, or vacuum leaks). Always consult a certified automotive mechanic.</li>
+              </ul>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-bold text-gray-900 border-b border-gray-100 pb-3">
+                5. Limitation of Liability
+              </h2>
+              <p>
+                Under no circumstances shall NextCodeHub, its founder Rehman Khan, contributors, or service providers be held liable for any direct, indirect, incidental, consequential, or punitive damages arising from the use or inability to use our tools, including:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 text-sm text-gray-600">
+                <li>Budget miscalculations or unforeseen fuel expenditures during road trips.</li>
+                <li>Disputes between carpooling parties regarding travel cost splits.</li>
+                <li>Disallowed tax deductions or employer reimbursement audit differences.</li>
+                <li>Mechanical damage resulting from driving choices influenced by website content.</li>
+              </ul>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-bold text-gray-900 border-b border-gray-100 pb-3">
+                6. Advertising &amp; Third-Party Links Disclosure
+              </h2>
+              <p>
+                NextCodeHub is supported by non-intrusive display advertisements, including services provided by Google AdSense and third-party advertising partners.
+              </p>
+              <p className="text-sm">
+                Advertisements shown on our site do not represent an endorsement, sponsorship, or recommendation of any specific automotive product, oil additive, or fuel brand by NextCodeHub. We are not responsible for the content, privacy practices, or product warranties of external third-party sites.
+              </p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-bold text-gray-900 border-b border-gray-100 pb-3">
+                7. Contact Information
+              </h2>
+              <p>
+                If you have questions, feedback, or require clarification regarding this disclaimer, please reach out to us:
+              </p>
+              <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100 space-y-2 text-sm">
+                <p><strong>Entity:</strong> NextCodeHub</p>
+                <p><strong>Founder:</strong> Rehman Khan</p>
+                <p><strong>Location:</strong> Islamabad, Pakistan</p>
+                <p><strong>Email:</strong> <a href="mailto:rehmanattock30@gmail.com" className="text-primary-600 hover:underline">rehmanattock30@gmail.com</a></p>
+                <p><strong>Online Inquiry:</strong> <Link href="/contact" className="text-primary-600 hover:underline">Contact Form</Link></p>
+              </div>
+            </section>
+
+          </div>
+        </div>
       </div>
-
-      <div className="prose prose-primary prose-lg max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-gray-600">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Important Notice</h2>
-        <p>
-          Please read this disclaimer carefully before using NextCodeHub. By accessing and using this website, you accept and agree to be bound by the terms and provisions of this disclaimer.
-        </p>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">1. General Information Disclaimer</h3>
-        <p>
-          The information provided on NextCodeHub is for general educational and informational purposes only. All content, including tutorials, articles, code examples, and other materials, is provided "as is" without any representations or warranties, express or implied.
-        </p>
-        <p>
-          NextCodeHub makes no representations or warranties in relation to the accuracy, completeness, or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors, and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.
-        </p>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">2. Educational Content Disclaimer</h3>
-        <p>NextCodeHub provides educational content about web development, programming, and related technologies. While we strive to ensure the accuracy and quality of our tutorials:</p>
-        <ul>
-          <li>We make no warranty that the content is error-free, up-to-date, or complete</li>
-          <li>We do not guarantee that following our tutorials will result in any specific outcome</li>
-          <li>We are not responsible for how you use or implement the information provided</li>
-          <li>The content reflects best practices at the time of writing but technology evolves rapidly</li>
-          <li>Different environments, configurations, and versions may produce different results</li>
-        </ul>
-        <p>
-          All tutorials and code examples should be tested thoroughly in a development environment before being used in production systems.
-        </p>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">3. Code Examples and Software Disclaimer</h3>
-        <p>All code examples, scripts, and software provided on NextCodeHub are offered for educational purposes and should be used at your own risk:</p>
-        <ul>
-          <li><strong>No Warranty:</strong> Code is provided "as is" without warranty of any kind, either expressed or implied</li>
-          <li><strong>Testing Required:</strong> Always test code in a safe, controlled environment before production use</li>
-          <li><strong>Security Considerations:</strong> We are not responsible for security vulnerabilities that may arise from implementing our code</li>
-          <li><strong>Compatibility:</strong> Code may not work in all environments, versions, or configurations</li>
-          <li><strong>Dependencies:</strong> Third-party libraries and packages may have their own licenses and terms</li>
-          <li><strong>Updates:</strong> Code examples may become outdated as technologies evolve</li>
-        </ul>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">4. Professional Advice Disclaimer</h3>
-        <p>The content on NextCodeHub is not a substitute for professional advice. We do not provide:</p>
-        <ul>
-          <li>Professional IT consulting or system architecture advice</li>
-          <li>Legal advice regarding software licenses, intellectual property, or compliance</li>
-          <li>Security auditing or penetration testing services</li>
-          <li>Career counseling or employment recommendations</li>
-          <li>Financial advice regarding technology investments</li>
-        </ul>
-        <p>
-          If you require professional advice in any of these areas, please consult with qualified professionals in the respective fields.
-        </p>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">5. No Liability for Damages</h3>
-        <p>To the maximum extent permitted by applicable law, NextCodeHub and its team members, contributors, and affiliates will not be liable for any damages whatsoever arising out of or related to the use of this website, including but not limited to:</p>
-        <ul>
-          <li>Direct, indirect, incidental, punitive, or consequential damages</li>
-          <li>Loss of profits, revenue, data, or use</li>
-          <li>Business interruption or loss of business opportunities</li>
-          <li>Damages resulting from bugs, errors, or security vulnerabilities in code examples</li>
-          <li>System failures, data corruption, or hardware damage</li>
-          <li>Costs of procurement of substitute goods or services</li>
-        </ul>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">6. Third-Party Content and Links</h3>
-        <p>NextCodeHub may contain links to third-party websites, services, tools, or resources. We provide these links for convenience and informational purposes only:</p>
-        <ul>
-          <li>We have no control over the content of third-party websites</li>
-          <li>We do not endorse, verify, or guarantee third-party content</li>
-          <li>We are not responsible for the availability, accuracy, or content of external sites</li>
-          <li>Links do not imply any official endorsement or partnership</li>
-          <li>We are not liable for any harm or damages related to third-party resources</li>
-        </ul>
-        <p>
-          When you click on a third-party link, you leave our website and are subject to the terms and privacy policies of that external site.
-        </p>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">7. Technology and Version Changes</h3>
-        <p>Web development technologies evolve rapidly, and what is considered best practice today may change:</p>
-        <ul>
-          <li>Tutorials may reference specific versions of libraries, frameworks, or tools</li>
-          <li>Breaking changes in newer versions may make older tutorials incompatible</li>
-          <li>Security vulnerabilities may be discovered in technologies we've covered</li>
-          <li>Deprecated features may be used in older tutorials</li>
-          <li>We cannot guarantee that all content will be updated to reflect the latest versions</li>
-        </ul>
-        <p>
-          Always check official documentation for the most current information about any technology.
-        </p>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">8. User Responsibility</h3>
-        <p>As a user of NextCodeHub, you acknowledge and agree that:</p>
-        <ul>
-          <li>You are solely responsible for your use of the information provided</li>
-          <li>You must independently verify any information before relying on it</li>
-          <li>You are responsible for implementing proper security measures</li>
-          <li>You must ensure compliance with all applicable laws and regulations</li>
-          <li>You are responsible for maintaining backups of your data and systems</li>
-          <li>You accept all risks associated with implementing any code or techniques from this site</li>
-        </ul>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">9. Comments and User-Generated Content</h3>
-        <p>Comments and contributions from users do not reflect the views of NextCodeHub:</p>
-        <ul>
-          <li>We are not responsible for user-submitted content or comments</li>
-          <li>User comments may contain inaccuracies or errors</li>
-          <li>We do not endorse or verify information provided by users</li>
-          <li>We reserve the right to remove any user content without notice</li>
-          <li>Users are responsible for their own contributions</li>
-        </ul>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">10. Advertising and Affiliate Disclaimer</h3>
-        <p>NextCodeHub may display advertisements and participate in affiliate programs:</p>
-        <ul>
-          <li>We participate in the Google AdSense program</li>
-          <li>We may earn commissions from affiliate links to products or services</li>
-          <li>Advertisements do not constitute endorsements of products or services</li>
-          <li>We are not responsible for the quality, accuracy, or safety of advertised products</li>
-          <li>We have no control over advertiser content or practices</li>
-        </ul>
-        <p>
-          Our affiliate relationships do not influence the content or recommendations we provide in our tutorials.
-        </p>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">11. Fair Use Notice</h3>
-        <p>
-          NextCodeHub respects intellectual property rights. If you believe any content on our site infringes your copyright or other rights, please contact us immediately with details, and we will investigate and take appropriate action.
-        </p>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">12. Changes to This Disclaimer</h3>
-        <p>
-          NextCodeHub reserves the right to modify this disclaimer at any time. Changes will be effective immediately upon posting to the website. Your continued use of the site after changes are posted constitutes your acceptance of the modified disclaimer.
-        </p>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">13. Contact Information</h3>
-        <p>If you have any questions or concerns about this disclaimer, please contact us:</p>
-        <ul>
-          <li>Email: <a href="mailto:legal@nextcodehub.com" className="text-primary-500 hover:text-primary-600">legal@nextcodehub.com</a></li>
-          <li>Website: <Link href="/contact" className="text-primary-500 hover:text-primary-600">Contact Form</Link></li>
-        </ul>
-
-        <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">Final Note</h3>
-        <p>
-          This disclaimer is an integral part of our Terms of Service. By using NextCodeHub, you acknowledge that you have read, understood, and agree to be bound by this disclaimer.
-        </p>
-        <p>
-          We are committed to providing high-quality educational content, but we encourage you to always exercise caution, perform your own research, and test thoroughly before implementing any code or techniques in production environments.
-        </p>
-      </div>
-    </div>
+    </>
   );
 }

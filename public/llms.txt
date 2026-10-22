@@ -1,0 +1,39 @@
+# NextCodeHub - Free Automotive Fuel & Mileage Calculators
+> High-precision, free, client-side automotive calculators designed to help drivers, fleets, and travelers compute fuel costs, gas mileage, fuel consumption, and trip budgets.
+
+Website: https://www.nextcodehub.com
+Founder & Lead Engineer: Rehman Khan
+Location: Islamabad, Pakistan
+Contact: rehmanattock30@gmail.com
+Sitemap: https://www.nextcodehub.com/sitemap.xml
+
+## Overview
+NextCodeHub provides interactive web calculators for automotive calculations. All computations execute 100% client-side in the browser, ensuring user privacy and instant performance.
+
+## Available Calculators & Tools
+- [Fuel Cost Calculator](https://www.nextcodehub.com/fuel-cost-calculator): Compute trip fuel costs, split gas bills for carpools, and budget road trips.
+- [Fuel Mileage Calculator](https://www.nextcodehub.com/fuel-mileage-calculator): Calculate vehicle fuel mileage using brim-to-brim tank method (in km/L or MPG).
+- [MPG Calculator](https://www.nextcodehub.com/mpg-calculator): Convert and compute Miles Per Gallon with dual support for US Gallons (3.785 L) and UK Imperial Gallons (4.546 L).
+- [Petrol Calculator](https://www.nextcodehub.com/petrol-calculator): Calculate petrol expense, liters needed, and cost per kilometer.
+- [Fuel Consumption Calculator](https://www.nextcodehub.com/fuel-consumption-calculator): Measure fuel burn rate in L/100km, gallons per 100 miles, and calculate stoichiometric CO2 emissions (2.31 kg CO2/L for petrol, 2.68 kg CO2/L for diesel).
+- [Fuel Economy Calculator](https://www.nextcodehub.com/fuel-economy-calculator): Compare window-sticker EPA ratings with real-world odometer data; calculate harmonic mean combined MPG.
+- [Gas Mileage Calculator](https://www.nextcodehub.com/gas-mileage-calculator): Estimate miles driven per gallon of gas for daily commuting and highway driving.
+- [Gas Price Calculator](https://www.nextcodehub.com/gas-price-calculator): Calculate the impact of gas price spikes and estimate monthly fuel expenditure.
+- [Fuel Efficiency Calculator](https://www.nextcodehub.com/fuel-efficiency-calculator): Measure vehicle efficiency ratings across different vehicle classes.
+- [Fuel Average Calculator](https://www.nextcodehub.com/fuel-average-calculator): Compute moving average fuel economy across multiple tank refills.
+- [Fuel Expense Calculator](https://www.nextcodehub.com/fuel-expense-calculator): Track annual vehicle operating costs, tax deduction reimbursements, and fleet expenses.
+
+## Core Mathematical Formulas
+- Fuel Cost: `Total Cost = (Distance / Fuel Mileage) * Fuel Price`
+- Metric Consumption: `L/100km = (Fuel Used in Liters / Distance in km) * 100`
+- US MPG to L/100km: `L/100km = 235.215 / US MPG`
+- UK MPG to L/100km: `L/100km = 282.481 / UK MPG`
+- EPA Combined Harmonic Mean: `Combined MPG = 1 / ((0.55 / City MPG) + (0.45 / Highway MPG))`
+- Petrol CO2 Emissions: `CO2 (g/km) = (L/100km) * 23.1`
+- Diesel CO2 Emissions: `CO2 (g/km) = (L/100km) * 26.8`
+
+## Editorial Guides & Blog
+- [Best Fuel-Efficient Cars of 2026 Buying Guide](https://www.nextcodehub.com/blog/best-fuel-efficient-cars-2026-buying-guide): Comprehensive analysis of top hybrid and petrol vehicles.
+- [How to Calculate Petrol Mileage: Complete 2026 Guide](https://www.nextcodehub.com/blog/how-to-calculate-petrol-mileage-complete-guide): Step-by-step tank brim refill methodology.
+- [Ultimate Guide to Fuel Expenses & Budgeting](https://www.nextcodehub.com/blog/ultimate-guide-fuel-expenses): Strategies to minimize automotive overhead.
+- [How to Maximize Your Vehicle's Fuel Economy](https://www.nextcodehub.com/blog/maximize-fuel-economy): Proven eco-driving habits and maintenance tips.

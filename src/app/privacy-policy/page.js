@@ -1,149 +1,171 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Privacy Policy - NextCodeHub",
-  description: "Privacy policy for NextCodeHub fuel cost calculators and tools.",
+  title: "Privacy Policy - NextCodeHub | Data Protection & AdSense Compliance",
+  description: "Read the NextCodeHub privacy policy detailing how we protect your information, use Google AdSense cookies, respect GDPR & CCPA privacy rights, and keep calculations client-side.",
+  alternates: {
+    canonical: 'https://www.nextcodehub.com/privacy-policy',
+  },
+  openGraph: {
+    title: "Privacy Policy - NextCodeHub",
+    description: "Detailed privacy notice explaining our commitment to zero calculation tracking, Google AdSense compliance, and your data protection rights.",
+    url: 'https://www.nextcodehub.com/privacy-policy',
+  },
+};
+
+const privacyJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': 'https://www.nextcodehub.com/privacy-policy',
+  name: 'NextCodeHub Privacy Policy',
+  url: 'https://www.nextcodehub.com/privacy-policy',
+  description: 'Official privacy policy for NextCodeHub digital tools and services.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'NextCodeHub',
+    url: 'https://www.nextcodehub.com',
+  },
 };
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="bg-gray-50 min-h-screen py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
-          
-          <div className="border-b border-gray-100 pb-8 mb-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-              Privacy Policy
-            </h1>
-            <p className="text-gray-500">Last updated: April 18, 2026</p>
-          </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(privacyJsonLd) }}
+      />
 
-          <div className="space-y-8 text-gray-600 leading-relaxed">
+      <div className="bg-gray-50 min-h-screen py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
             
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Introduction</h2>
-              <p className="mb-4">
-                Welcome to NextCodeHub ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website nextcodehub.com.
-              </p>
-              <p>
-                Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
-              </p>
-            </section>
+            <div className="border-b border-gray-100 pb-8 mb-8 text-center">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary-50 text-primary-700 border border-primary-200 mb-4">
+                Transparency &amp; Trust
+              </span>
+              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
+                Privacy Policy
+              </h1>
+              <p className="text-gray-500 text-sm">Last updated: October 2026 • Effective Date: January 1, 2026</p>
+            </div>
 
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Information We Collect</h2>
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Personal Information</h3>
-              <p className="mb-3">We may collect personal information that you voluntarily provide to us when you:</p>
-              <ul className="list-disc pl-6 space-y-2 mb-6">
-                <li>Register on the website</li>
-                <li>Subscribe to our newsletter</li>
-                <li>Comment on blog posts</li>
-                <li>Contact us via email or contact form</li>
-              </ul>
-              <p className="mb-6">This information may include: name, email address, and any other information you choose to provide.</p>
+            <div className="space-y-8 text-gray-700 leading-relaxed">
+              
+              <section>
+                <h2 className="text-2xl font-bold text-gray-900 mb-3">1. Introduction</h2>
+                <p className="mb-4">
+                  Welcome to <strong>NextCodeHub</strong> (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;), operated by Rehman Khan at nextcodehub.com. We respect your privacy and are committed to maintaining the highest ethical standards regarding data transparency and privacy protection.
+                </p>
+                <p>
+                  This Privacy Policy outlines how we collect, handle, and safeguard data when you use our automotive calculators and informational articles.
+                </p>
+              </section>
 
-              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Automatically Collected Information</h3>
-              <p className="mb-3">When you visit our website, we automatically collect certain information about your device, including:</p>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>IP address</li>
-                <li>Browser type and version</li>
-                <li>Operating system</li>
-                <li>Referring website</li>
-                <li>Pages visited and time spent on pages</li>
-                <li>Click data</li>
-              </ul>
-            </section>
+              <section>
+                <h2 className="text-2xl font-bold text-gray-900 mb-3">2. Zero Calculation Data Storage (Privacy by Design)</h2>
+                <div className="p-5 bg-primary-50/70 border border-primary-100 rounded-2xl text-primary-950 text-sm space-y-2">
+                  <p className="font-bold flex items-center gap-2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    Your Trip &amp; Mileage Inputs Are 100% Private
+                  </p>
+                  <p>
+                    When you use our fuel cost calculator, mileage calculator, or MPG tools, all computations happen client-side within your browser. <strong>We do not transmit, log, store, or sell your trip distances, destinations, fuel costs, or vehicle mileage data to our servers or any third parties.</strong>
+                  </p>
+                </div>
+              </section>
 
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">How We Use Your Information</h2>
-              <p className="mb-3">We use the information we collect in the following ways:</p>
-              <ul className="list-disc pl-6 space-y-2">
-                <li>To provide, operate, and maintain our website</li>
-                <li>To improve, personalize, and expand our website</li>
-                <li>To understand and analyze how you use our website</li>
-                <li>To develop new products, services, features, and functionality</li>
-                <li>To communicate with you, including customer service and support</li>
-                <li>To send you newsletters and marketing communications (with your consent)</li>
-                <li>To prevent fraud and enhance security</li>
-              </ul>
-            </section>
+              <section>
+                <h2 className="text-2xl font-bold text-gray-900 mb-3">3. Information We Collect</h2>
+                <h3 className="text-lg font-semibold text-gray-900 mt-4 mb-2">A. Information You Voluntarily Provide</h3>
+                <p className="mb-3 text-sm">
+                  We collect personal information only when you voluntarily submit it to us, such as when submitting our <Link href="/contact" className="text-primary-600 hover:underline">Contact Form</Link> or emailing us directly. This includes:
+                </p>
+                <ul className="list-disc pl-6 space-y-1.5 text-sm text-gray-600 mb-4">
+                  <li>Your Name</li>
+                  <li>Your Email Address</li>
+                  <li>The subject and body of your feedback or inquiry message</li>
+                </ul>
 
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Cookies and Tracking Technologies</h2>
-              <p className="mb-4">
-                We use cookies and similar tracking technologies to track activity on our website and store certain information. Cookies are files with a small amount of data that are sent to your browser from a website and stored on your device.
-              </p>
-              <p>
-                You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our website.
-              </p>
-            </section>
+                <h3 className="text-lg font-semibold text-gray-900 mt-4 mb-2">B. Automatically Collected Technical Data</h3>
+                <p className="mb-3 text-sm">
+                  Like most modern websites, our hosting servers and analytics tools may log standard technical information, including:
+                </p>
+                <ul className="list-disc pl-6 space-y-1.5 text-sm text-gray-600">
+                  <li>Internet Protocol (IP) address (anonymized where required)</li>
+                  <li>Browser type, operating system, and screen resolution</li>
+                  <li>Referring URLs and pages viewed</li>
+                  <li>Date and timestamp of visits</li>
+                </ul>
+              </section>
 
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Google AdSense</h2>
-              <p className="mb-4">
-                We use Google AdSense to display advertisements on our website. Google AdSense uses cookies to serve ads based on your prior visits to our website or other websites. Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.
-              </p>
-              <p>
-                You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary-600)] hover:underline font-medium">Google Ads Settings</a>.
-              </p>
-            </section>
+              <section>
+                <h2 className="text-2xl font-bold text-gray-900 mb-3">4. Google AdSense &amp; Advertising Cookies</h2>
+                <p className="mb-4 text-sm">
+                  We use Google AdSense and authorized third-party ad vendors to serve advertisements when you visit our website.
+                </p>
+                <ul className="list-disc pl-6 space-y-2 text-sm text-gray-600 mb-4">
+                  <li><strong>Third-Party Vendors:</strong> Google, as a third-party vendor, uses cookies (including the DoubleClick DART cookie) to serve ads on NextCodeHub.</li>
+                  <li><strong>Personalized Ads:</strong> Google&apos;s use of advertising cookies enables it and its partners to serve ads to users based on their visits to our site and/or other sites on the Internet.</li>
+                  <li><strong>User Opt-Out:</strong> You may opt out of personalized advertising by visiting <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">Google Ads Settings</a>. Alternatively, you can opt out of third-party vendors&apos; use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline font-medium">AboutAds.info</a>.</li>
+                </ul>
+              </section>
 
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Third-Party Services</h2>
-              <p>
-                We may employ third-party companies and individuals to facilitate our website, provide services on our behalf, or assist us in analyzing how our website is used. These third parties have access to your personal information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
-              </p>
-            </section>
+              <section>
+                <h2 className="text-2xl font-bold text-gray-900 mb-3">5. Cookie Management &amp; Consent</h2>
+                <p className="text-sm mb-3">
+                  We provide an interactive Cookie Consent banner to allow visitors to control non-essential cookies. You can also modify your browser settings to decline or delete cookies at any time:
+                </p>
+                <p className="text-sm text-gray-600">
+                  For in-depth details on the specific cookies we utilize, please review our comprehensive <Link href="/cookie-policy" className="text-primary-600 hover:underline font-medium">Cookie Policy</Link>.
+                </p>
+              </section>
 
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Security</h2>
-              <p>
-                We implement appropriate technical and organizational security measures to protect your personal information. However, please note that no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
-              </p>
-            </section>
+              <section>
+                <h2 className="text-2xl font-bold text-gray-900 mb-3">6. GDPR &amp; International User Rights</h2>
+                <p className="mb-3 text-sm">
+                  Under the European Union General Data Protection Regulation (GDPR) and UK Data Protection laws, you have specific rights regarding your personal data:
+                </p>
+                <ul className="list-disc pl-6 space-y-1.5 text-sm text-gray-600 mb-4">
+                  <li><strong>Right to Access:</strong> You may request copies of personal information we hold about you.</li>
+                  <li><strong>Right to Rectification:</strong> You may request correction of inaccurate or incomplete data.</li>
+                  <li><strong>Right to Erasure (&ldquo;Right to be Forgotten&rdquo;):</strong> You may request that we delete your personal information.</li>
+                  <li><strong>Right to Restrict or Object:</strong> You may object to the processing of your data.</li>
+                </ul>
+              </section>
 
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Your Privacy Rights</h2>
-              <p className="mb-3">Depending on your location, you may have the following rights regarding your personal information:</p>
-              <ul className="list-disc pl-6 space-y-2">
-                <li><strong>The right to access</strong> – You have the right to request copies of your personal data</li>
-                <li><strong>The right to rectification</strong> – You have the right to request correction of inaccurate data</li>
-                <li><strong>The right to erasure</strong> – You have the right to request deletion of your personal data</li>
-                <li><strong>The right to restrict processing</strong> – You have the right to request restriction of processing</li>
-                <li><strong>The right to data portability</strong> – You have the right to request transfer of your data</li>
-                <li><strong>The right to object</strong> – You have the right to object to our processing of your data</li>
-              </ul>
-            </section>
+              <section>
+                <h2 className="text-2xl font-bold text-gray-900 mb-3">7. CCPA / CPRA Notice (California Residents)</h2>
+                <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                  The California Consumer Privacy Act provides California residents with specific rights regarding their personal information. NextCodeHub <strong>does not sell personal information</strong> of any consumer, including minors. You have the right to request disclosure of information practices and deletion of your data without discriminatory treatment.
+                </p>
+              </section>
 
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Children's Privacy</h2>
-              <p>
-                Our website is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.
-              </p>
-            </section>
+              <section>
+                <h2 className="text-2xl font-bold text-gray-900 mb-3">8. Children&apos;s Online Privacy (COPPA)</h2>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  NextCodeHub is not directed to children under 13 years of age. We do not knowingly collect or solicit personal information from children under 13. If you believe a minor has provided us with personal data, please contact us immediately for prompt deletion.
+                </p>
+              </section>
 
-            <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Changes to This Privacy Policy</h2>
-              <p>
-                We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date at the top of this page.
-              </p>
-            </section>
+              <section className="bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-100 space-y-4">
+                <h2 className="text-2xl font-bold text-gray-900">9. Data Controller &amp; Contact Information</h2>
+                <p className="text-sm text-gray-600">
+                  If you have questions about this Privacy Policy, your rights, or wish to make a formal data request, please contact our Data Protection Officer:
+                </p>
+                <div className="space-y-2 text-sm text-gray-700">
+                  <p><strong>Entity:</strong> NextCodeHub</p>
+                  <p><strong>Owner:</strong> Rehman Khan</p>
+                  <p><strong>Location:</strong> Islamabad, Pakistan</p>
+                  <p><strong>Email:</strong> <a href="mailto:rehmanattock30@gmail.com" className="text-primary-600 hover:underline">rehmanattock30@gmail.com</a></p>
+                  <p><strong>Phone:</strong> <a href="tel:+923425221720" className="text-primary-600 hover:underline">+92-3425221720</a> (Mon–Fri, 9am–6pm PKT)</p>
+                  <p><strong>Web:</strong> <Link href="/contact" className="text-primary-600 hover:underline">Contact Form</Link></p>
+                </div>
+              </section>
 
-            <section className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Us</h2>
-              <p className="mb-4">If you have any questions about this Privacy Policy, please contact us:</p>
-              <ul className="space-y-3">
-                
-                <li className="flex items-center gap-3">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary-500)" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                  <span><strong>Website:</strong> <Link href="/contact" className="text-[var(--color-primary-600)] hover:underline">Contact Form</Link></span>
-                </li>
-              </ul>
-            </section>
-
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
