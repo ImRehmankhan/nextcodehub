@@ -41,6 +41,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/tools/:slug*',
+        destination: '/:slug*',
+        permanent: true,
+      },
+      {
         source: '/cookies-policy',
         destination: '/cookie-policy',
         permanent: true,

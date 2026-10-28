@@ -58,8 +58,8 @@ export default function sitemap() {
   const blogRoutes = blogData.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date),
-    changeFrequency: 'monthly',
-    priority: 0.6,
+    changeFrequency: 'weekly',
+    priority: 0.8,
   }));
 
   return [homepageRoute, blogIndexRoute, ...calculatorRoutes, ...blogRoutes, ...supportRoutes];
