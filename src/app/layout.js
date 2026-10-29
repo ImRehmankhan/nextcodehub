@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CookieBanner from "../components/CookieBanner";
+import Script from "next/script";
 
 export const metadata = {
   metadataBase: new URL('https://www.nextcodehub.com'),
@@ -91,6 +92,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-CKPELM8QEE"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-CKPELM8QEE');
+          `}
+        </Script>
         <link rel="icon" href="/icon.svg" type="image/svg+xml" sizes="any" />
         <link rel="apple-touch-icon" href="/icon.svg" />
         <link rel="manifest" href="/site.webmanifest" />
