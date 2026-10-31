@@ -1,10 +1,15 @@
 export const blogData = [
   {
     slug: "understanding-fuel-consumption-efficiency",
-    title: "What Is Fuel Consumption? Meaning, Units and What’s Considered Good",
-    excerpt: "What is fuel consumption and how does it differ from fuel efficiency? Learn the exact definitions, units (L/100km, km/L, MPG), how it is measured, and what counts as good fuel consumption.",
-    date: "2026-10-24",
-    author: "NextCodeHub Automotive Team",
+    metaTitle: "Fuel Consumption & Efficiency: Formula and How to Calculate",
+    title: "Fuel Consumption and Fuel Efficiency: Meaning, Formula and How to Calculate",
+    h1: "Fuel Consumption and Fuel Efficiency: Meaning, Formula and How to Calculate",
+    metaDescription: "Learn what fuel consumption and fuel efficiency mean, the formulas for L/100km, km/L and MPG, and how to calculate yours with worked examples.",
+    excerpt: "Learn what fuel consumption and fuel efficiency mean, the formulas for L/100km, km/L and MPG, and how to calculate yours with worked examples.",
+    date: "2026-10-31",
+    lastUpdated: "2026-10-31",
+    author: "Muhammad Rehman",
+    authorBio: "Muhammad Rehman is an automotive data specialist and technical lead at NextCodeHub, focusing on fuel economy engineering, consumption formulas, and vehicle operating cost optimization.",
     faqs: [
       {
         question: "What is fuel consumption in simple words?",
@@ -25,29 +30,221 @@ export const blogData = [
       {
         question: "What is good petrol mileage?",
         answer: "Good petrol mileage for a modern compact or sedan is 14 to 18 km/L (33 to 42 MPG). For hybrid sedans, good petrol mileage is 20 to 25 km/L (47 to 59 MPG), and for motorcycles, 35 to 50 km/L."
+      },
+      {
+        question: "How do you calculate fuel consumption?",
+        answer: "Fill the tank, drive at least 250 km, refill and note the liters added. Fuel consumption in L/100km is (liters ÷ distance in km) × 100. For example, 24 liters over 360 km gives 6.67 L/100km."
+      },
+      {
+        question: "How do you calculate fuel consumption per km?",
+        answer: "Divide the liters used by the kilometers driven. If you used 24 liters over 360 km, consumption is 0.0667 liters per km, or about 67 milliliters per km."
+      },
+      {
+        question: "How do you calculate fuel consumption per hour?",
+        answer: "Divide the liters used by the hours of operation. A generator that burns 18 liters in 6 hours uses 3 liters per hour. This is the usual measure for generators, boats and machinery."
+      },
+      {
+        question: "How do I calculate mileage per litre?",
+        answer: "Divide the distance by the fuel used: km ÷ liters. A car that covers 360 km on 24 liters returns 15 km/L. In South Asia this figure is often called the car's average."
+      },
+      {
+        question: "What is normal fuel consumption?",
+        answer: "For a modern petrol car, 5.0 to 7.0 L/100km is good and 7.0 to 9.5 L/100km is typical for sedans and compact SUVs. Above 10 L/100km is high. Full hybrids reach about 4.0 to 4.8 L/100km."
+      },
+      {
+        question: "Why is my real fuel consumption higher than the rated figure?",
+        answer: "Rated numbers come from lab tests. Fast driving, air conditioning, low tire pressure, heavy loads, short trips and cold starts all raise real-world consumption. Measure over several fill-ups for a reliable figure."
       }
     ],
     content: `
       <div class="bg-emerald-50 border-l-4 border-emerald-500 p-5 rounded-r-2xl my-6">
-        <p class="text-emerald-950 font-semibold mb-1">Quick Answer (Definition):</p>
+        <p class="text-emerald-950 font-bold mb-1 text-base">Quick answer:</p>
         <p class="text-emerald-900 text-sm leading-relaxed">
-          <strong>Fuel consumption</strong> is the quantity of fuel a vehicle consumes to cover a standardized distance, most commonly measured in <strong>Liters per 100 Kilometers (L/100km)</strong> or <strong>gallons per 100 miles</strong>. Unlike fuel efficiency (which measures distance per volume), a <em>lower</em> fuel consumption figure indicates a more economical, money-saving vehicle.
+          <strong>Fuel consumption</strong> is how much fuel a vehicle uses to cover a set distance, usually in liters per 100 km (L/100km); <em>lower is better</em>. <strong>Fuel efficiency</strong>, also called fuel economy or mileage, is the reverse: how far the vehicle travels on one unit of fuel, in km/L or MPG; <em>higher is better</em>. To calculate yours, fill the tank, drive, refill, then use <strong>(liters ÷ km) × 100</strong> for consumption or <strong>km ÷ liters</strong> for efficiency.
         </p>
       </div>
 
-      <h2>What Is Fuel Consumption?</h2>
-      <p>When you turn the ignition key and press the gas pedal, your engine's combustion chambers burn a mixture of vaporized fuel and air to produce mechanical motion. <strong>Fuel consumption</strong> describes exactly how much fuel (in liters or gallons) your vehicle burns over a set distance.</p>
-      <p>Globally, fuel consumption is the preferred metric used by government regulators, automotive engineers, and environmental agencies across Europe, Australia, Canada, and New Zealand. If your car has a fuel consumption rating of <strong>6.0 L/100km</strong>, it means you require exactly 6 liters of petrol or diesel to travel 100 kilometers. You can verify your exact figures using our free <a href="/fuel-consumption-calculator"><strong>fuel consumption calculator</strong></a>.</p>
+      <h2>What is fuel consumption?</h2>
+      <p><strong>Fuel consumption</strong>, also called <strong>fuel usage</strong>, <strong>petrol consumption</strong> or <strong>gas consumption</strong>, is the volume of fuel a vehicle burns over a set distance. A car rated at 6.0 L/100km needs 6 liters to travel 100 km.</p>
+      <p>Globally, fuel consumption is the preferred metric used by government regulators, automotive engineers, and environmental agencies across Europe, Australia, Canada, and New Zealand. If your car has a fuel consumption rating of 6.0 L/100km, it means you require exactly 6 liters of petrol or diesel to travel 100 kilometers. You can verify your exact figures using our free <a href="/fuel-consumption-calculator"><strong>fuel consumption calculator</strong></a>.</p>
 
-      <h2>What Is Fuel Efficiency?</h2>
-      <p>While often used as a synonym for fuel consumption, <strong>fuel efficiency</strong> (often termed <em>fuel economy</em> or <em>mileage</em>) looks at the equation from the reverse perspective. Instead of asking "how much fuel do I need for this distance?", fuel efficiency asks: <strong>"How far can I travel on a single unit of fuel?"</strong></p>
+      <h2>What is fuel efficiency?</h2>
+      <p><strong>Fuel efficiency</strong> is the distance a vehicle travels on one unit of fuel. It is also called <strong>fuel economy</strong>, <strong>mileage</strong>, <strong>gas mileage</strong> or, in parts of South Asia, <strong>“average”</strong>. It is measured in km/L or miles per gallon (MPG); a higher number means the vehicle goes further on the same fuel.</p>
       <p>Common units of fuel efficiency include:</p>
       <ul>
         <li><strong>Miles Per Gallon (MPG):</strong> Standard in the United States and the United Kingdom. Calculate yours with our <a href="/mpg-calculator"><strong>MPG calculator</strong></a>.</li>
         <li><strong>Kilometers Per Liter (km/L):</strong> Standard in Japan, India, Pakistan, Brazil, and Southeast Asia. Compute yours with our <a href="/petrol-calculator"><strong>petrol calculator</strong></a>.</li>
       </ul>
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 my-4 text-sm text-blue-900">
+        <p><strong>MPG note:</strong> MPG is used in both the US and the UK, but the gallons differ. One US gallon is 3.785 liters and one imperial (UK) gallon is 4.546 liters, so the same car shows an MPG figure about 20% higher on the UK scale.</p>
+      </div>
 
-      <h2>Fuel Consumption vs. Fuel Efficiency: Key Differences</h2>
+      <h2>How to calculate fuel consumption</h2>
+      <p>The most reliable way to calculate your vehicle's true fuel consumption is the <strong>tank-to-tank method</strong>, which avoids the optimistic errors often displayed on dashboard computers:</p>
+
+      <h3>Steps (the tank-to-tank method)</h3>
+      <ol>
+        <li><strong>Fill the tank</strong> until the pump clicks off, then reset your trip meter to zero.</li>
+        <li><strong>Drive normally</strong> for at least 250 km (about 150 miles). A longer distance gives a steadier figure.</li>
+        <li><strong>Refill at the same pump</strong> and stop at the first click. Note the liters added and the trip meter reading.</li>
+        <li><strong>Divide the liters by the distance</strong>, then multiply by 100.</li>
+      </ol>
+
+      <h3>Formulas</h3>
+      <div class="overflow-x-auto my-6">
+        <table class="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-xl text-sm">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-4 py-3 text-left font-bold text-gray-900">Result</th>
+              <th class="px-4 py-3 text-left font-bold text-gray-900">Formula</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white">
+            <tr>
+              <td class="px-4 py-3 font-semibold text-gray-900">Fuel consumption (L/100km)</td>
+              <td class="px-4 py-3 font-mono text-gray-800">(liters used ÷ distance in km) × 100</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-semibold text-gray-900">Fuel efficiency (km/L)</td>
+              <td class="px-4 py-3 font-mono text-gray-800">distance in km ÷ liters used</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-semibold text-gray-900">Fuel efficiency (MPG, US)</td>
+              <td class="px-4 py-3 font-mono text-gray-800">miles ÷ US gallons used</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Worked example</h3>
+      <div class="bg-gray-900 text-green-400 p-5 rounded-2xl font-mono text-sm my-4">
+        <p class="text-white font-sans font-bold mb-2">Worked Example:</p>
+        <p>You add <strong>24.0 liters</strong> after driving <strong>360 km</strong>.</p>
+        <p class="mt-2 text-yellow-300">Fuel consumption: (24.0 ÷ 360) × 100 = <strong>6.67 L/100km</strong></p>
+        <p class="text-emerald-400">Fuel efficiency: 360 ÷ 24.0 = <strong>15 km/L</strong> (approx. <strong>35.3 US MPG</strong>)</p>
+      </div>
+
+      <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl my-4 text-sm text-amber-900">
+        <p><strong>Accuracy tip:</strong> Average two or three fill-ups. A single tank can be skewed by where the pump clicks off.</p>
+      </div>
+
+      <!-- EMBEDDED_CALCULATOR -->
+
+      <h2>Fuel consumption per km, per hour and per litre</h2>
+      <p>If you need to calculate fuel usage per unit distance, operating costs for commercial driving, or generator consumption rates, use these formulas. Example prices are illustrative; use your own currency:</p>
+
+      <div class="overflow-x-auto my-6">
+        <table class="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-xl text-sm">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-4 py-3 text-left font-bold text-gray-900">Question</th>
+              <th class="px-4 py-3 text-left font-bold text-gray-900">Formula</th>
+              <th class="px-4 py-3 text-left font-bold text-gray-900">Worked example</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white">
+            <tr>
+              <td class="px-4 py-3 font-semibold text-gray-900">Fuel consumption per km</td>
+              <td class="px-4 py-3 font-mono text-xs">liters ÷ km</td>
+              <td class="px-4 py-3 text-gray-700">24.0 L ÷ 360 km = 0.0667 L/km (about 67 mL per km)</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-semibold text-gray-900">Fuel consumption per hour</td>
+              <td class="px-4 py-3 font-mono text-xs">liters ÷ hours</td>
+              <td class="px-4 py-3 text-gray-700">A generator burns 18 L in 6 hours: 18 ÷ 6 = 3 L/h</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-semibold text-gray-900">Mileage per litre</td>
+              <td class="px-4 py-3 font-mono text-xs">km ÷ liters</td>
+              <td class="px-4 py-3 text-gray-700">360 km ÷ 24.0 L = 15 km/L</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-semibold text-gray-900">Fuel cost per km</td>
+              <td class="px-4 py-3 font-mono text-xs">price per liter ÷ km/L</td>
+              <td class="px-4 py-3 text-gray-700">1.50 per liter ÷ 15 km/L = 0.10 per km</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-semibold text-gray-900">Fuel needed for a trip</td>
+              <td class="px-4 py-3 font-mono text-xs">distance × (L/100km ÷ 100)</td>
+              <td class="px-4 py-3 text-gray-700">250 km × (6.67 ÷ 100) = 16.7 L</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 font-semibold text-gray-900">Trip fuel cost</td>
+              <td class="px-4 py-3 font-mono text-xs">liters needed × price per liter</td>
+              <td class="px-4 py-3 text-gray-700">16.7 L × 1.50 = about 25</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Converting L/100km, km/L and MPG</h2>
+      <p>A lower L/100km and a higher km/L or MPG both mean better efficiency, because the scales run in opposite directions. Use this conversion reference:</p>
+
+      <div class="overflow-x-auto my-6">
+        <table class="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-xl text-sm">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-4 py-3 text-center font-bold text-gray-900">From</th>
+              <th class="px-4 py-3 text-center font-bold text-gray-900">To</th>
+              <th class="px-4 py-3 text-left font-bold text-gray-900">Formula</th>
+              <th class="px-4 py-3 text-left font-bold text-gray-900">Example</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white">
+            <tr>
+              <td class="px-4 py-3 text-center font-semibold text-gray-900">L/100km</td>
+              <td class="px-4 py-3 text-center font-semibold text-emerald-700">km/L</td>
+              <td class="px-4 py-3 font-mono text-xs">100 ÷ L/100km</td>
+              <td class="px-4 py-3 text-gray-700">8 L/100km = 12.5 km/L</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 text-center font-semibold text-gray-900">km/L</td>
+              <td class="px-4 py-3 text-center font-semibold text-emerald-700">L/100km</td>
+              <td class="px-4 py-3 font-mono text-xs">100 ÷ km/L</td>
+              <td class="px-4 py-3 text-gray-700">12.5 km/L = 8 L/100km</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 text-center font-semibold text-gray-900">MPG (US)</td>
+              <td class="px-4 py-3 text-center font-semibold text-emerald-700">L/100km</td>
+              <td class="px-4 py-3 font-mono text-xs">235.215 ÷ MPG</td>
+              <td class="px-4 py-3 text-gray-700">30 MPG = 7.84 L/100km</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 text-center font-semibold text-gray-900">L/100km</td>
+              <td class="px-4 py-3 text-center font-semibold text-emerald-700">MPG (US)</td>
+              <td class="px-4 py-3 font-mono text-xs">235.215 ÷ L/100km</td>
+              <td class="px-4 py-3 text-gray-700">7.84 L/100km = 30 MPG</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 text-center font-semibold text-gray-900">km/L</td>
+              <td class="px-4 py-3 text-center font-semibold text-emerald-700">MPG (US)</td>
+              <td class="px-4 py-3 font-mono text-xs">km/L × 2.35215</td>
+              <td class="px-4 py-3 text-gray-700">12.5 km/L = 29.4 MPG</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 text-center font-semibold text-gray-900">MPG (imperial)</td>
+              <td class="px-4 py-3 text-center font-semibold text-emerald-700">MPG (US)</td>
+              <td class="px-4 py-3 font-mono text-xs">MPG × 0.832674</td>
+              <td class="px-4 py-3 text-gray-700">36.04 MPG imperial = 30 MPG US</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-3 text-center font-semibold text-gray-900">L/100km</td>
+              <td class="px-4 py-3 text-center font-semibold text-emerald-700">MPG (imperial)</td>
+              <td class="px-4 py-3 font-mono text-xs">282.481 ÷ L/100km</td>
+              <td class="px-4 py-3 text-gray-700">7.84 L/100km = 36.0 MPG imperial</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>How is fuel efficiency measured?</h2>
+      <p>Official manufacturer ratings come from standardized laboratory dynamometer test benches where indoor rollers simulate real driving conditions:</p>
+      <ul>
+        <li><a href="https://unece.org/transport/vehicle-regulations/wp29" target="_blank" rel="noopener noreferrer"><strong>WLTP (Worldwide Harmonised Light Vehicle Test Procedure)</strong></a>: The current international standard simulating low, medium, high, and extra-high highway speeds across 30 minutes.</li>
+        <li><a href="https://www.fueleconomy.gov" target="_blank" rel="noopener noreferrer"><strong>US EPA 5-Cycle Test</strong></a>: Administered by the United States EPA, simulating city driving, highway driving, high-speed aggressive driving (up to 80 mph), air conditioning load at 95°F (35°C), and cold start ambient temperatures (20°F / -7°C).</li>
+      </ul>
+
+      <h2>Fuel consumption vs fuel efficiency</h2>
       <p>Understanding this distinction is vital when comparing vehicles or reading window stickers. Here is the direct side-by-side comparison:</p>
 
       <div class="overflow-x-auto my-6">
@@ -89,26 +286,8 @@ export const blogData = [
         </table>
       </div>
 
-      <h2>How Is Fuel Efficiency Measured?</h2>
-      <p>Fuel efficiency and consumption are measured using two primary approaches:</p>
-      <h3>1. Standardized Laboratory Protocols (EPA & WLTP)</h3>
-      <p>Automakers submit vehicles to government-certified dynamometer test benches where indoor rollers simulate standard drive cycles:</p>
-      <ul>
-        <li><strong>WLTP (Worldwide Harmonised Light Vehicle Test Procedure):</strong> The current international standard simulating low, medium, high, and extra-high highway speeds across 30 minutes.</li>
-        <li><strong>US EPA 5-Cycle Test:</strong> Simulates city driving, highway driving, high-speed aggressive driving (up to 80 mph), air conditioning load at 95°F (35°C), and cold start ambient temperatures (20°F / -7°C).</li>
-      </ul>
-
-      <h3>2. The "Full Tank to Full Tank" Method (Real-World)</h3>
-      <p>To measure your own vehicle's true fuel consumption, follow this 4-step real-world routine:</p>
-      <ol>
-        <li>Fill your fuel tank completely until the pump nozzle clicks off automatically. Reset your trip odometer to zero.</li>
-        <li>Drive your normal daily commute for 250 to 400 km (or 150 to 250 miles).</li>
-        <li>Return to the same fuel station and fill the tank completely again. Record the exact liters pumped (e.g. 24.0 L) and your trip odometer (e.g. 360 km).</li>
-        <li>Divide fuel by distance and multiply by 100: <strong>(24.0 ÷ 360) × 100 = 6.67 L/100km</strong>. In km/L: <strong>360 ÷ 24 = 15 km/L</strong>.</li>
-      </ol>
-
-      <h2>What Is Considered Good Fuel Consumption?</h2>
-      <p>What qualifies as "good" fuel consumption depends heavily on vehicle classification, curb weight, and engine displacement. Here is an industry benchmark guide for 2026:</p>
+      <h2>What is normal fuel consumption?</h2>
+      <p>Normal fuel consumption depends on vehicle type and engine size. For a modern petrol car, 5.0 to 7.0 L/100km (14 to 20 km/L) is good. Midsize sedans and compact SUVs typically land between 7.0 and 9.5 L/100km, and anything above 10 L/100km is high.</p>
 
       <div class="overflow-x-auto my-6">
         <table class="min-w-full divide-y divide-gray-200 border border-gray-200 rounded-xl text-sm">
@@ -167,6 +346,8 @@ export const blogData = [
           </tbody>
         </table>
       </div>
+
+      <p>Rated figures come from lab tests such as WLTP and the EPA cycle. Real-world consumption is often higher because of speed, air conditioning, tire pressure, extra weight, short trips and cold starts. Track your own figure over several fill-ups and compare it with the rated number.</p>
 
       <h2>How to Calculate Your Own Fuel Cost</h2>
       <p>Once you understand your vehicle's fuel consumption, calculating the financial cost of any trip or daily commute takes just seconds. Multiply the liters consumed by your local price per liter. To skip manual math, test your numbers on our free <a href="/fuel-cost-calculator"><strong>fuel cost calculator</strong></a> or our comprehensive <a href="/fuel-efficiency-calculator"><strong>fuel efficiency calculator</strong></a>.</p>

@@ -28,24 +28,30 @@ export default function Header() {
           </div>
 
           {/* Center: Navigation Links */}
-          <nav className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-6 w-max" aria-label="Main navigation">
-            <Link href="/" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+          <nav className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-4 xl:space-x-6 w-max" aria-label="Main navigation">
+            <Link href="/" className="text-gray-700 hover:text-primary-600 font-medium transition-colors text-sm xl:text-base">
               Home
             </Link>
-            <Link href="/fuel-cost-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+            <Link href="/fuel-cost-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors text-sm xl:text-base">
               Cost Calculator
             </Link>
-            <Link href="/fuel-mileage-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+            <Link href="/fuel-mileage-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors text-sm xl:text-base">
               Mileage
             </Link>
-            <Link href="/mpg-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+            <Link href="/mpg-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors text-sm xl:text-base">
               MPG
             </Link>
-            <Link href="/fuel-consumption-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+            <Link href="/fuel-consumption-calculator" className="text-gray-700 hover:text-primary-600 font-medium transition-colors text-sm xl:text-base">
               Consumption
             </Link>
-            <Link href="/blog" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+            <Link href="/blog" className="text-gray-700 hover:text-primary-600 font-medium transition-colors text-sm xl:text-base">
               Blog
+            </Link>
+            <Link href="/about" className="text-gray-700 hover:text-primary-600 font-medium transition-colors text-sm xl:text-base">
+              About
+            </Link>
+            <Link href="/contact" className="text-gray-700 hover:text-primary-600 font-medium transition-colors text-sm xl:text-base">
+              Contact
             </Link>
           </nav>
 
@@ -131,6 +137,20 @@ export default function Header() {
               className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
             >
               Blog
+            </Link>
+            <Link 
+              href="/about" 
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+            >
+              About
+            </Link>
+            <Link 
+              href="/contact" 
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50 transition-colors"
+            >
+              Contact
             </Link>
             <div className="pt-2">
               <Link 

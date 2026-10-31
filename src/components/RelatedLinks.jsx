@@ -20,6 +20,30 @@ export default function RelatedLinks() {
       <h3 className="text-2xl font-bold text-gray-900 mb-2 text-center">Explore All Fuel Calculators</h3>
       <p className="text-gray-500 text-center text-sm mb-6">Free tools to calculate fuel cost, mileage, MPG, petrol average, and more</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <Link 
+          href="/blog/understanding-fuel-consumption-efficiency" 
+          className="block p-4 rounded-xl border border-emerald-300 bg-emerald-50/80 hover:bg-emerald-100/80 hover:border-emerald-400 hover:shadow-md transition-all group md:col-span-2 lg:col-span-3"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider bg-emerald-200/70 px-2 py-0.5 rounded-full">
+                  Featured Guide
+                </span>
+                <span className="text-xs text-emerald-700 font-medium">Formulas &amp; Worked Examples</span>
+              </div>
+              <h4 className="font-bold text-emerald-950 group-hover:text-emerald-800 transition-colors text-base">
+                How to Calculate Fuel Consumption &amp; Efficiency (Meaning, Formulas &amp; Real-World Guide)
+              </h4>
+              <p className="text-xs text-emerald-800 mt-0.5">
+                Learn how to calculate fuel consumption in L/100km, km/L, and MPG using the tank-to-tank method with conversion tables.
+              </p>
+            </div>
+            <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 bg-white/80 px-3 py-1.5 rounded-lg border border-emerald-200 group-hover:translate-x-1 transition-all flex-shrink-0 self-start sm:self-auto">
+              How to Calculate Fuel Consumption &rarr;
+            </span>
+          </div>
+        </Link>
         {tools.map(({ href, title, desc }) => (
           <Link key={href} href={href} className="block p-4 rounded-xl border border-gray-100 hover:border-primary-500 hover:shadow-md transition-all group">
             <h4 className="font-bold text-gray-900 group-hover:text-primary-700 transition-colors flex justify-between items-center">

@@ -1,5 +1,6 @@
 import FuelCalculator from '../../components/FuelCalculator';
 import RelatedLinks from '../../components/RelatedLinks';
+import Link from 'next/link';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -85,8 +86,11 @@ export default function Page() {
           {/* Fuel consumption vs efficiency */}
           <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Fuel Consumption vs Fuel Efficiency</h2>
-            <p className="text-gray-600 leading-relaxed mb-6">
+            <p className="text-gray-600 leading-relaxed mb-4">
               These two terms are often confused. <strong>Fuel consumption</strong> measures how much fuel you use per distance (L/100km, gallons/100 miles), while <strong>fuel efficiency</strong> measures distance per unit of fuel (km/L, MPG). A lower consumption number means a more efficient vehicle.
+            </p>
+            <p className="text-sm text-gray-700 bg-gray-50 border border-gray-200 p-3.5 rounded-xl mb-6">
+              Looking for the step-by-step tank-to-tank formula? Read our complete guide on <Link href="/blog/understanding-fuel-consumption-efficiency" className="font-semibold text-primary-600 hover:text-primary-700 underline">how to calculate fuel consumption</Link> with worked examples and conversion matrices.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-red-50 border border-red-200 rounded-xl p-6">
