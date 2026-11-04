@@ -1,15 +1,33 @@
-import FuelCalculator from '../../components/FuelCalculator';
+import FuelExpenseCalculator from '../../components/FuelExpenseCalculator';
 import RelatedLinks from '../../components/RelatedLinks';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Fuel Expense Calculator',
+          item: 'https://www.nextcodehub.com/fuel-expense-calculator',
+        },
+      ],
+    },
+    {
       '@type': 'WebApplication',
       '@id': 'https://www.nextcodehub.com/fuel-expense-calculator',
-      name: 'Fuel Expense Calculator',
+      name: 'Fuel Expense & Commute Budget Calculator',
       url: 'https://www.nextcodehub.com/fuel-expense-calculator',
-      description: 'Free fuel expense calculator and petrol expense calculator. Track your daily, monthly, and annual fuel expenses to manage your transport budget.',
+      description: 'Free fuel expense and commute budget calculator. Track your daily, weekly, monthly, and annual fuel spending to manage your transport budget.',
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Web Browser',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -21,17 +39,17 @@ const jsonLd = {
         {
           '@type': 'Question',
           name: 'How do I calculate my monthly fuel expense?',
-          acceptedAnswer: { '@type': 'Answer', text: 'To calculate monthly fuel expense: (Monthly distance ÷ Fuel mileage) × Fuel price per liter = Monthly fuel expense. Our calculator lets you compute daily, weekly, or monthly fuel expenses instantly.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'To calculate monthly fuel expense: multiply your daily commute distance by the days driven per month, divide by your fuel mileage, and multiply by fuel price per unit. Our budget calculator does this automatically.' },
         },
         {
           '@type': 'Question',
-          name: 'How can I reduce my fuel expenses?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Reduce fuel expenses by carpooling, using fuel-efficient routes, maintaining proper tire pressure, avoiding peak traffic, and keeping up with regular vehicle maintenance to maximize your fuel average.' },
+          name: 'How can I reduce my monthly commute fuel expense?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Reduce commute fuel expenses by carpooling, working from home 1-2 days per week, maintaining proper tire pressure, avoiding peak rush-hour traffic, and driving smoothly.' },
         },
         {
           '@type': 'Question',
           name: 'What is the difference between fuel expense and fuel cost?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Fuel expense usually refers to your total fuel spending over a period (daily, monthly, annually), while fuel cost typically refers to the cost for a specific trip or journey. Our fuel expense calculator helps track both.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'Fuel expense refers to recurring spending over a set time period (daily commute, monthly budget, annual cost), whereas fuel cost usually refers to the single price tag of a specific trip or journey.' },
         },
       ],
     },
@@ -39,24 +57,14 @@ const jsonLd = {
 };
 
 export const metadata = {
-  title: "Fuel Expense Calculator: Monthly Fuel Budget & Costs",
-  description: "Calculate daily, monthly, and annual fuel expenses easily. Budget petrol costs, track commute expenses, and find out where you can save on gas.",
-  keywords: [
-    "fuel expense calculator",
-    "petrol expense calculator",
-    "monthly fuel expense",
-    "fuel budget calculator",
-    "calculate fuel expense",
-    "annual fuel cost calculator",
-    "daily fuel expense",
-    "transport expense calculator",
-  ],
+  title: "Fuel Expense Calculator: Monthly Commute & Fuel Budget Planner",
+  description: "Calculate daily commute fuel costs, monthly gas budget, and annual petrol expenses. Discover how much you can save with carpooling and remote work.",
   alternates: {
     canonical: 'https://www.nextcodehub.com/fuel-expense-calculator',
   },
   openGraph: {
-    title: "Fuel Expense Calculator - Track Petrol & Monthly Fuel Costs",
-    description: "Calculate daily, monthly, and annual fuel expenses with our free fuel expense calculator. Manage your petrol expense budget effectively.",
+    title: "Fuel Expense Calculator - Monthly Commute & Fuel Budget",
+    description: "Calculate daily commute costs, monthly gas budget, and annual fuel expenses with our free calculator.",
     url: 'https://www.nextcodehub.com/fuel-expense-calculator',
   },
 };
@@ -69,16 +77,17 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Breadcrumbs items={[{ name: 'Fuel Expense Calculator' }]} />
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-            Fuel Expense Calculator
+            Fuel Expense &amp; Budget Calculator
           </h1>
           <p className="text-lg text-gray-600">
-            Track and calculate your daily, monthly, and annual fuel expenses. Our petrol expense calculator helps you budget your transport costs and identify opportunities to save on fuel.
+            Track and budget your daily commute, monthly petrol expenses, and annual transport costs. Discover actionable savings from remote work and carpooling.
           </p>
         </div>
 
-        <FuelCalculator />
+        <FuelExpenseCalculator />
 
         <div className="mt-16 max-w-4xl mx-auto space-y-12">
 

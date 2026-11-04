@@ -36,6 +36,17 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'nextcodehub.com',
+          },
+        ],
+        destination: 'https://www.nextcodehub.com/:path*',
+        permanent: true,
+      },
+      {
         source: '/tools/fuel-cost-calculator',
         destination: '/fuel-cost-calculator',
         permanent: true,

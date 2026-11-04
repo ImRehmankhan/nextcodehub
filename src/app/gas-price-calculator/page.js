@@ -1,15 +1,33 @@
-import FuelCalculator from '../../components/FuelCalculator';
+import GasPriceCalculator from '../../components/GasPriceCalculator';
 import RelatedLinks from '../../components/RelatedLinks';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Gas Price Calculator',
+          item: 'https://www.nextcodehub.com/gas-price-calculator',
+        },
+      ],
+    },
+    {
       '@type': 'WebApplication',
       '@id': 'https://www.nextcodehub.com/gas-price-calculator',
-      name: 'Gas Price Calculator',
+      name: 'Gas Price Impact & Fuel Grade Calculator',
       url: 'https://www.nextcodehub.com/gas-price-calculator',
-      description: 'Free gas price calculator and gas bill calculator. Estimate your total gas bill based on current fuel prices, distance, and vehicle mileage.',
+      description: 'Free gas price calculator to analyze the impact of fuel price fluctuations and compare fuel costs between Regular and Premium gasoline.',
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Web Browser',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -20,18 +38,18 @@ const jsonLd = {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'How do I calculate my gas bill?',
-          acceptedAnswer: { '@type': 'Answer', text: 'To calculate your gas bill: multiply your monthly miles driven by your car\'s fuel consumption rate (gallons per mile), then multiply by the current gas price per gallon. Our gas bill calculator does this instantly.' },
+          name: 'How do gas price increases impact my monthly bill?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Every $0.10 increase in gas price per gallon adds about $4.00 per month for every 1,000 miles driven in a 25 MPG car ($48/year). Use our gas price calculator to see the exact impact on your vehicle.' },
         },
         {
           '@type': 'Question',
-          name: 'How does the gas price affect my monthly fuel expense?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Every $0.10 increase in gas price per gallon adds about $1.50–$3 to your monthly gas bill if you drive 300-600 miles per month in a 30 MPG car. Use our gas price calculator to see the exact impact.' },
+          name: 'Is Premium gas worth the extra cost over Regular?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Unless your vehicle manufacturer explicitly requires Premium (91+ octane) for turbocharged or high-compression engines, Regular (87 octane) performs identically and typically saves you $0.60–$0.80 per gallon.' },
         },
         {
           '@type': 'Question',
           name: 'What is the average monthly gas bill?',
-          acceptedAnswer: { '@type': 'Answer', text: 'The average American household spends $150–$300 per month on gasoline, depending on vehicle type, number of vehicles, local gas prices, and driving habits.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'The average American driver spends between $150 and $250 per month on gasoline, depending on miles driven, vehicle fuel efficiency, and state fuel taxes.' },
         },
       ],
     },
@@ -39,24 +57,14 @@ const jsonLd = {
 };
 
 export const metadata = {
-  title: "Gas Price Calculator: Estimate Monthly Gas Bill & Cost",
-  description: "Estimate your monthly gas bill and trip fuel expenses based on current fuel prices. Budget gas costs accurately and see how fuel price changes affect you.",
-  keywords: [
-    "gas price calculator",
-    "gas bill calculator",
-    "fuel price calculator",
-    "calculate gas bill",
-    "monthly gas bill calculator",
-    "gas cost per month",
-    "fuel price estimator",
-    "gas expense calculator",
-  ],
+  title: "Gas Price Calculator: Fuel Price Increase & Grade Comparison",
+  description: "Calculate the exact financial impact of gas price increases and compare fuel costs between Regular, Midgrade, and Premium fuel grades. 100% Free.",
   alternates: {
     canonical: 'https://www.nextcodehub.com/gas-price-calculator',
   },
   openGraph: {
-    title: "Gas Price Calculator - Gas Bill & Fuel Price Calculator",
-    description: "Calculate your gas bill and estimate fuel price impact with our free gas price calculator.",
+    title: "Gas Price Calculator - Fuel Price Increase & Grade Comparison",
+    description: "Calculate how fuel price hikes and gas grades impact your monthly budget with our free calculator.",
     url: 'https://www.nextcodehub.com/gas-price-calculator',
   },
 };
@@ -69,16 +77,17 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Breadcrumbs items={[{ name: 'Gas Price Calculator' }]} />
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-            Gas Price Calculator
+            Gas Price Impact Calculator
           </h1>
           <p className="text-lg text-gray-600">
-            Calculate your gas bill and see exactly how gas prices affect your fuel budget. Enter your distance, MPG, and current gas price to get your estimated gas expense instantly.
+            Compare fuel prices, test price hike scenarios, and see how switching between Regular and Premium fuel grades changes your monthly and annual budget.
           </p>
         </div>
 
-        <FuelCalculator />
+        <GasPriceCalculator />
 
         <div className="mt-16 max-w-4xl mx-auto space-y-12">
 

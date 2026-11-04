@@ -1,9 +1,27 @@
-import FuelCalculator from '../../components/FuelCalculator';
+import FuelMileageCalculator from '../../components/FuelMileageCalculator';
 import RelatedLinks from '../../components/RelatedLinks';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Fuel Mileage Calculator',
+          item: 'https://www.nextcodehub.com/fuel-mileage-calculator',
+        },
+      ],
+    },
     {
       '@type': 'WebApplication',
       '@id': 'https://www.nextcodehub.com/fuel-mileage-calculator',
@@ -41,16 +59,6 @@ const jsonLd = {
 export const metadata = {
   title: "Fuel Mileage Calculator: Calculate Exact Petrol Mileage",
   description: "Calculate your vehicle's exact fuel mileage and petrol average in km/L or MPG. Enter distance and fuel used to check efficiency instantly. 100% Free.",
-  keywords: [
-    "fuel mileage calculator",
-    "petrol mileage calculator",
-    "gas mileage calculator",
-    "fuel average calculator",
-    "petrol average calculator",
-    "gas and mileage calculator",
-    "gas mileage estimator",
-    "vehicle mileage calculator",
-  ],
   alternates: {
     canonical: 'https://www.nextcodehub.com/fuel-mileage-calculator',
   },
@@ -69,6 +77,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Breadcrumbs items={[{ name: 'Fuel Mileage Calculator' }]} />
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
             Fuel Mileage Calculator
@@ -78,7 +87,7 @@ export default function Page() {
           </p>
         </div>
 
-        <FuelCalculator />
+        <FuelMileageCalculator />
 
         <div className="mt-16 max-w-4xl mx-auto space-y-12">
 

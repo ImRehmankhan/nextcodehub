@@ -1,9 +1,27 @@
-import FuelCalculator from '../../components/FuelCalculator';
+import MpgCalculator from '../../components/MpgCalculator';
 import RelatedLinks from '../../components/RelatedLinks';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'MPG Calculator',
+          item: 'https://www.nextcodehub.com/mpg-calculator',
+        },
+      ],
+    },
     {
       '@type': 'WebApplication',
       '@id': 'https://www.nextcodehub.com/mpg-calculator',
@@ -22,6 +40,16 @@ const jsonLd = {
           '@type': 'Question',
           name: 'How do I calculate miles per gallon (MPG)?',
           acceptedAnswer: { '@type': 'Answer', text: 'To calculate MPG, divide the miles driven by the gallons of gas used. For example, 300 miles on 10 gallons = 30 MPG. Our MPG calculator automates this for you.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'How do I calculate MPG cost for a trip?',
+          acceptedAnswer: { '@type': 'Answer', text: 'To calculate MPG cost: divide your trip distance by your vehicle\'s MPG to find gallons needed, then multiply by the gas price per gallon. Example: 450 miles ÷ 30 MPG = 15 gallons × $3.50/gal = $52.50 total trip cost ($0.117 per mile).' },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is the cost per mile for a 30 MPG car?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Divide gas price by MPG: at $3.60 per gallon, a 30 MPG car costs $3.60 ÷ 30 = $0.12 per mile (12 cents/mile). At $4.00 per gallon, it costs $0.133 per mile.' },
         },
         {
           '@type': 'Question',
@@ -44,24 +72,14 @@ const jsonLd = {
 };
 
 export const metadata = {
-  title: "MPG Calculator: Calculate Exact Miles Per Gallon [Free]",
-  description: "Calculate your car's exact miles per gallon (MPG) instantly. Supports US and UK imperial gallons, cost per mile, and fuel efficiency tracking. Fast & Free.",
-  keywords: [
-    "mpg calculator",
-    "miles per gallon calculator",
-    "gas mileage calculator",
-    "gas mileage estimator",
-    "fuel efficiency calculator",
-    "mpg calculator free",
-    "calculate miles per gallon",
-    "car mpg calculator",
-  ],
+  title: "MPG Calculator Cost: Calculate Miles Per Gallon & Gas Cost",
+  description: "Calculate miles per gallon (MPG) and exact gas costs for any trip. Includes worked MPG cost formulas, cost per mile examples, and MPG to km/L conversion tables.",
   alternates: {
     canonical: 'https://www.nextcodehub.com/mpg-calculator',
   },
   openGraph: {
-    title: "MPG Calculator - Free Miles Per Gallon Calculator",
-    description: "Calculate miles per gallon (MPG) for any vehicle with our free MPG calculator. Track fuel efficiency and estimate gas costs.",
+    title: "MPG Calculator Cost - Miles Per Gallon & Gas Cost Estimator",
+    description: "Calculate miles per gallon (MPG) and trip gas cost with our free MPG calculator. Includes cost per mile and conversion tables.",
     url: 'https://www.nextcodehub.com/mpg-calculator',
   },
 };
@@ -74,18 +92,141 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Breadcrumbs items={[{ name: 'MPG Calculator' }]} />
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-            MPG Calculator
+            MPG Calculator &amp; Cost Estimator
           </h1>
           <p className="text-lg text-gray-600">
-            Calculate your vehicle&apos;s miles per gallon (MPG) accurately. Track fuel efficiency, compare vehicles, and estimate gas costs with our free miles per gallon calculator.
+            Calculate your vehicle&apos;s miles per gallon and estimate your <strong>mpg calculator cost</strong> for any journey. Find out your exact gas cost per mile, total trip cost, and convert between US MPG, UK Imperial MPG, and km/L.
           </p>
         </div>
 
-        <FuelCalculator />
+        <MpgCalculator />
 
         <div className="mt-16 max-w-4xl mx-auto space-y-12">
+
+          {/* Worked MPG Cost Section */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">MPG Calculator Cost: How to Calculate Gas Cost from MPG</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              To calculate your total trip gas cost from your vehicle&apos;s miles per gallon (MPG), you need three figures: your <strong>trip distance (miles)</strong>, your <strong>vehicle&apos;s fuel efficiency (MPG)</strong>, and the <strong>gas price ($/gallon)</strong>.
+            </p>
+            <div className="grid md:grid-cols-3 gap-4 my-6">
+              <div className="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Step 1: Fuel Needed</p>
+                <p className="font-mono text-sm text-primary-700 font-bold">Gallons = Miles ÷ MPG</p>
+                <p className="text-xs text-gray-500 mt-2">Example: 450 mi ÷ 30 MPG = 15.0 Gal</p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Step 2: Total Cost</p>
+                <p className="font-mono text-sm text-emerald-700 font-bold">Cost = Gallons × Gas Price</p>
+                <p className="text-xs text-gray-500 mt-2">Example: 15.0 × $3.50 = $52.50</p>
+              </div>
+              <div className="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Step 3: Cost Per Mile</p>
+                <p className="font-mono text-sm text-blue-700 font-bold">Cost/Mile = Price ÷ MPG</p>
+                <p className="text-xs text-gray-500 mt-2">Example: $3.50 ÷ 30 = $0.117/mi</p>
+              </div>
+            </div>
+
+            {/* Worked Example Highlight */}
+            <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl p-6 my-6">
+              <h3 className="font-bold text-emerald-950 text-lg mb-2">Worked Example: 450-Mile Road Trip</h3>
+              <p className="text-emerald-900 text-sm leading-relaxed mb-3">
+                Suppose you are driving <strong>450 miles</strong> in a car that averages <strong>30 MPG</strong>, with regular gasoline costing <strong>$3.50 per gallon</strong>:
+              </p>
+              <ul className="space-y-1.5 text-sm text-emerald-900 font-medium">
+                <li>• <strong>Gallons of gasoline required:</strong> 450 ÷ 30 = <strong>15.0 gallons</strong></li>
+                <li>• <strong>Total MPG gas cost:</strong> 15.0 × $3.50 = <strong>$52.50</strong></li>
+                <li>• <strong>Cost per passenger (3 people split):</strong> $52.50 ÷ 3 = <strong>$17.50 per person</strong></li>
+                <li>• <strong>Fuel cost per mile:</strong> $3.50 ÷ 30 = <strong>11.7 cents per mile</strong></li>
+              </ul>
+            </div>
+
+            {/* MPG Cost Lookup Table */}
+            <h3 className="font-bold text-gray-900 text-lg mb-3">MPG Trip Cost Lookup Table (Calculated at $3.50/Gallon)</h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 text-gray-700 font-semibold">
+                    <th className="text-left p-3 rounded-tl-lg">Vehicle Efficiency</th>
+                    <th className="text-left p-3">Cost / Mile</th>
+                    <th className="text-left p-3">100 Miles</th>
+                    <th className="text-left p-3">300 Miles</th>
+                    <th className="text-left p-3">500 Miles</th>
+                    <th className="text-left p-3 rounded-tr-lg">1,000 Miles</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[
+                    ['20 MPG (Truck / Large SUV)', '$0.175', '$17.50', '$52.50', '$87.50', '$175.00'],
+                    ['25 MPG (Midsize Crossover)', '$0.140', '$14.00', '$42.00', '$70.00', '$140.00'],
+                    ['30 MPG (Standard Sedan)', '$0.117', '$11.67', '$35.00', '$58.33', '$116.67'],
+                    ['35 MPG (Compact Car)', '$0.100', '$10.00', '$30.00', '$50.00', '$100.00'],
+                    ['45 MPG (Full Hybrid)', '$0.078', '$7.78', '$23.33', '$38.89', '$77.78'],
+                    ['55 MPG (Plug-in / Eco Hybrid)', '$0.064', '$6.36', '$19.09', '$31.82', '$63.64'],
+                  ].map(([mpg, cpm, m100, m300, m500, m1000], idx) => (
+                    <tr key={mpg} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
+                      <td className="p-3 font-semibold text-gray-900">{mpg}</td>
+                      <td className="p-3 font-mono text-gray-600">{cpm}</td>
+                      <td className="p-3 font-medium text-emerald-700">{m100}</td>
+                      <td className="p-3 font-medium text-emerald-700">{m300}</td>
+                      <td className="p-3 font-medium text-emerald-700">{m500}</td>
+                      <td className="p-3 font-bold text-emerald-800">{m1000}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-400 mt-2">*Gas prices vary by region. Multiply the gallons needed by your local price per gallon for exact figures.</p>
+          </section>
+
+          {/* MPG to km/L and L/100km Conversion Table */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">MPG Conversion Table (US MPG ⇄ UK MPG ⇄ km/L ⇄ L/100km)</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Need to convert between American MPG, British Imperial MPG, and metric fuel figures? Use this instant conversion chart:
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 text-gray-700 font-semibold">
+                    <th className="text-left p-3 rounded-tl-lg">US MPG</th>
+                    <th className="text-left p-3">UK Imperial MPG</th>
+                    <th className="text-left p-3">Metric (km/L)</th>
+                    <th className="text-left p-3 rounded-tr-lg">Metric (L/100km)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100 font-mono text-xs">
+                  {[
+                    ['15 MPG', '18.0 UK MPG', '6.38 km/L', '15.68 L/100km'],
+                    ['20 MPG', '24.0 UK MPG', '8.50 km/L', '11.76 L/100km'],
+                    ['25 MPG', '30.0 UK MPG', '10.63 km/L', '9.41 L/100km'],
+                    ['30 MPG', '36.0 UK MPG', '12.75 km/L', '7.84 L/100km'],
+                    ['35 MPG', '42.0 UK MPG', '14.88 km/L', '6.72 L/100km'],
+                    ['40 MPG', '48.0 UK MPG', '17.01 km/L', '5.88 L/100km'],
+                    ['45 MPG', '54.0 UK MPG', '19.13 km/L', '5.23 L/100km'],
+                    ['50 MPG', '60.0 UK MPG', '21.26 km/L', '4.70 L/100km'],
+                    ['55 MPG', '66.1 UK MPG', '23.38 km/L', '4.28 L/100km'],
+                  ].map(([us, uk, kml, l100]) => (
+                    <tr key={us} className="hover:bg-gray-50">
+                      <td className="p-3 font-bold text-gray-900">{us}</td>
+                      <td className="p-3 text-gray-700">{uk}</td>
+                      <td className="p-3 text-emerald-700 font-semibold">{kml}</td>
+                      <td className="p-3 text-blue-700 font-semibold">{l100}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3 mt-4 text-xs text-gray-600 bg-gray-50 p-4 rounded-xl">
+              <p>• <strong>US MPG to km/L:</strong> km/L = US MPG ÷ 2.352</p>
+              <p>• <strong>US MPG to L/100km:</strong> L/100km = 235.215 ÷ US MPG</p>
+              <p>• <strong>UK MPG to US MPG:</strong> US MPG = UK MPG × 0.8327</p>
+              <p>• <strong>km/L to US MPG:</strong> US MPG = km/L × 2.352</p>
+            </div>
+          </section>
 
           {/* What is MPG */}
           <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">

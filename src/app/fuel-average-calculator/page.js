@@ -1,9 +1,27 @@
-import FuelCalculator from '../../components/FuelCalculator';
+import FuelAverageCalculator from '../../components/FuelAverageCalculator';
 import RelatedLinks from '../../components/RelatedLinks';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Fuel Average Calculator',
+          item: 'https://www.nextcodehub.com/fuel-average-calculator',
+        },
+      ],
+    },
     {
       '@type': 'WebApplication',
       '@id': 'https://www.nextcodehub.com/fuel-average-calculator',
@@ -41,16 +59,6 @@ const jsonLd = {
 export const metadata = {
   title: "Fuel Average Calculator: Calculate Petrol Average (km/L)",
   description: "Calculate your vehicle's average fuel consumption in km/L or MPG easily. Enter odometer distance and fuel filled to see your exact petrol average.",
-  keywords: [
-    "fuel average calculator",
-    "petrol average calculator",
-    "fuel mileage calculator",
-    "petrol mileage calculator",
-    "calculate fuel average",
-    "vehicle fuel average",
-    "average fuel consumption",
-    "km per liter calculator",
-  ],
   alternates: {
     canonical: 'https://www.nextcodehub.com/fuel-average-calculator',
   },
@@ -69,6 +77,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Breadcrumbs items={[{ name: 'Fuel Average Calculator' }]} />
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
             Fuel Average Calculator
@@ -78,7 +87,7 @@ export default function Page() {
           </p>
         </div>
 
-        <FuelCalculator />
+        <FuelAverageCalculator />
 
         <div className="mt-16 max-w-4xl mx-auto space-y-12">
 

@@ -1,13 +1,14 @@
 import Link from 'next/link';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = {
-  title: "Disclaimer - NextCodeHub | Fuel Cost & Mileage Calculation Notice",
+  title: "Disclaimer: Fuel Cost & Calculation Accuracy Notice",
   description: "Read the official NextCodeHub disclaimer regarding automotive calculations, fuel price volatility, EPA vs real-world mileage estimates, and advertising disclosures.",
   alternates: {
     canonical: 'https://www.nextcodehub.com/disclaimer',
   },
   openGraph: {
-    title: "Disclaimer - NextCodeHub",
+    title: "Disclaimer | NextCodeHub",
     description: "Important information regarding fuel calculation estimates, mileage variances, and financial decisions on NextCodeHub.",
     url: 'https://www.nextcodehub.com/disclaimer',
   },
@@ -15,16 +16,37 @@ export const metadata = {
 
 const disclaimerJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  '@id': 'https://www.nextcodehub.com/disclaimer',
-  name: 'NextCodeHub Disclaimer',
-  url: 'https://www.nextcodehub.com/disclaimer',
-  description: 'Legal disclaimer and accuracy disclosure for NextCodeHub fuel calculation tools.',
-  publisher: {
-    '@type': 'Organization',
-    name: 'NextCodeHub',
-    url: 'https://www.nextcodehub.com',
-  },
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Disclaimer',
+          item: 'https://www.nextcodehub.com/disclaimer',
+        },
+      ],
+    },
+    {
+      '@type': 'WebPage',
+      '@id': 'https://www.nextcodehub.com/disclaimer',
+      name: 'NextCodeHub Disclaimer',
+      url: 'https://www.nextcodehub.com/disclaimer',
+      description: 'Legal disclaimer and accuracy disclosure for NextCodeHub fuel calculation tools.',
+      publisher: {
+        '@type': 'Organization',
+        name: 'NextCodeHub',
+        url: 'https://www.nextcodehub.com',
+      },
+    },
+  ],
 };
 
 export default function DisclaimerPage() {
@@ -35,8 +57,9 @@ export default function DisclaimerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(disclaimerJsonLd) }}
       />
       
-      <div className="bg-gray-50 min-h-screen py-16">
+      <div className="bg-gray-50 min-h-screen py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[{ name: 'Disclaimer' }]} />
           
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-12">

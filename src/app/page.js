@@ -41,26 +41,13 @@ const jsonLd = {
 
 
 export const metadata = {
-  title: "NextCodeHub: Free Fuel Cost & Gas Mileage Calculators",
+  title: "Free Fuel Cost & Gas Mileage Calculators",
   description: "Calculate trip fuel costs, gas mileage, and MPG instantly. Free, accurate automotive calculators to save money on gas, track mileage, and budget journeys.",
-  keywords: [
-    "fuel cost calculator",
-    "gas mileage calculator",
-    "fuel calculator",
-    "mpg calculator",
-    "fuel mileage calculator",
-    "petrol calculator",
-    "fuel economy calculator",
-    "miles per gallon calculator",
-    "fuel consumption calculator",
-    "fuel cost estimator",
-    "gas mileage estimator",
-  ],
   alternates: {
     canonical: 'https://www.nextcodehub.com',
   },
   openGraph: {
-    title: "Free Fuel Cost Calculator & Gas Mileage Calculator",
+    title: "Free Fuel Cost Calculator & Gas Mileage Calculator | NextCodeHub",
     description: "Calculate fuel costs, gas mileage, MPG, and petrol expenses with our free online calculators. Plan smarter trips and save money on fuel.",
     url: 'https://www.nextcodehub.com',
   },

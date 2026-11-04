@@ -8,6 +8,7 @@ export default function FuelCalculator({ defaultMode = 'cost' }) {
   const [unit, setUnit] = useState('Metric');
   const [currency, setCurrency] = useState('USD');
   const [tripType, setTripType] = useState('One Way');
+  const [passengers, setPassengers] = useState('1');
   const [distance, setDistance] = useState('');
   const [efficiency, setEfficiency] = useState('');
   const [price, setPrice] = useState('');
@@ -18,6 +19,7 @@ export default function FuelCalculator({ defaultMode = 'cost' }) {
     const d = parseFloat(distance);
     const ef = parseFloat(efficiency);
     const p = parseFloat(price);
+    const pass = parseInt(passengers, 10) || 1;
     
     if (d > 0 && ef > 0) {
       const finalDistance = tripType === 'Round Trip' ? d * 2 : d;
@@ -26,11 +28,14 @@ export default function FuelCalculator({ defaultMode = 'cost' }) {
       
       const cost = p > 0 ? fuelNeeded * p : 0;
       const costPerDist = p > 0 ? cost / finalDistance : 0;
+      const costPerPassenger = pass > 1 && cost > 0 ? cost / pass : 0;
       
       setResult({ 
         fuel: fuelNeeded.toFixed(1), 
         cost: cost.toFixed(2),
         costPerDistance: costPerDist.toFixed(2),
+        costPerPassenger: costPerPassenger.toFixed(2),
+        passengers: pass,
         totalDistance: finalDistance.toFixed(1),
         consumptionRate: consRate.toFixed(1),
         efficiency: ef.toFixed(1)
@@ -42,6 +47,7 @@ export default function FuelCalculator({ defaultMode = 'cost' }) {
     setDistance('');
     setEfficiency('');
     setPrice('');
+    setPassengers('1');
     setResult(null);
   };
 
@@ -123,7 +129,7 @@ export default function FuelCalculator({ defaultMode = 'cost' }) {
                   aria-label="Select Currency"
                   value={currency} 
                   onChange={(e) => setCurrency(e.target.value)}
-                  className="w-full px-4 py-3 bg-white text-black font-medium rounded-xl border-none outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer appearance-none"
+                  className="w-full bg-[#2a2a2c] text-white px-3 py-2 rounded-xl text-sm border border-[#444] focus:outline-none focus:border-emerald-500 cursor-pointer"
                 >
                   {allCurrencies.map(c => (
                     <option key={c.code} value={c.code}>{c.code} - {c.currency}</option>
@@ -132,29 +138,51 @@ export default function FuelCalculator({ defaultMode = 'cost' }) {
               </div>
             </div>
 
-            {/* Trip Type */}
-            <div>
-              <label className="flex items-center gap-2 text-sm font-semibold text-gray-300 mb-3" id="trip-type-label">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
-                Trip Type | سفر کی قسم
-              </label>
-              <div className="flex bg-[#333] rounded-xl p-1 gap-1" role="group" aria-labelledby="trip-type-label">
-                <button 
-                  type="button" 
-                  aria-pressed={tripType === 'One Way'}
-                  onClick={() => setTripType('One Way')} 
-                  className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${tripType === 'One Way' ? 'bg-emerald-700 text-white shadow-md font-semibold' : 'text-gray-300 hover:text-white hover:bg-[#444]'}`}
+            {/* Trip Type & Passenger Splitting */}
+            <div className="grid grid-cols-3 gap-3">
+              <div className="col-span-2">
+                <label className="flex items-center gap-2 text-sm font-semibold text-gray-300 mb-3" id="trip-type-label">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                  Trip Type | سفر کی قسم
+                </label>
+                <div className="flex bg-[#333] rounded-xl p-1 gap-1" role="group" aria-labelledby="trip-type-label">
+                  <button 
+                    type="button" 
+                    aria-pressed={tripType === 'One Way'}
+                    onClick={() => setTripType('One Way')} 
+                    className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${tripType === 'One Way' ? 'bg-emerald-700 text-white shadow-md font-semibold' : 'text-gray-300 hover:text-white hover:bg-[#444]'}`}
+                  >
+                    One Way
+                  </button>
+                  <button 
+                    type="button" 
+                    aria-pressed={tripType === 'Round Trip'}
+                    onClick={() => setTripType('Round Trip')} 
+                    className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${tripType === 'Round Trip' ? 'bg-emerald-700 text-white shadow-md font-semibold' : 'text-gray-300 hover:text-white hover:bg-[#444]'}`}
+                  >
+                    Round Trip
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="passengers-input" className="flex items-center gap-1.5 text-sm font-semibold text-gray-300 mb-3">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  Split
+                </label>
+                <select
+                  id="passengers-input"
+                  value={passengers}
+                  onChange={(e) => setPassengers(e.target.value)}
+                  className="w-full bg-[#2a2a2c] text-white px-3 py-2 rounded-xl text-sm border border-[#444] focus:outline-none focus:border-emerald-500 cursor-pointer"
                 >
-                  One Way
-                </button>
-                <button 
-                  type="button" 
-                  aria-pressed={tripType === 'Round Trip'}
-                  onClick={() => setTripType('Round Trip')} 
-                  className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${tripType === 'Round Trip' ? 'bg-emerald-700 text-white shadow-md font-semibold' : 'text-gray-300 hover:text-white hover:bg-[#444]'}`}
-                >
-                  Round Trip
-                </button>
+                  <option value="1">1 Person</option>
+                  <option value="2">2 People</option>
+                  <option value="3">3 People</option>
+                  <option value="4">4 People</option>
+                  <option value="5">5 People</option>
+                  <option value="6">6 People</option>
+                </select>
               </div>
             </div>
 
@@ -328,6 +356,21 @@ export default function FuelCalculator({ defaultMode = 'cost' }) {
                   </div>
                   <svg className="absolute right-4 top-4 opacity-30 group-hover:scale-110 transition-transform" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                 </div>
+
+                {/* Optional Cost Per Passenger */}
+                {result.passengers > 1 && (
+                  <div className="bg-purple-600 rounded-2xl p-5 shadow-lg relative overflow-hidden group col-span-2">
+                    <div className="relative z-10 flex items-center justify-between">
+                      <div>
+                        <p className="text-white/90 text-sm font-semibold">Cost Per Passenger ({result.passengers} people)</p>
+                        <p className="text-3xl font-extrabold text-white mt-1">{currencySymbol}{result.costPerPassenger}</p>
+                      </div>
+                      <span className="text-xs text-purple-200 bg-purple-800/60 px-3 py-1.5 rounded-xl border border-purple-400/40">
+                        Total {currencySymbol}{result.cost} split evenly
+                      </span>
+                    </div>
+                  </div>
+                )}
                 
               </div>
               
@@ -337,6 +380,7 @@ export default function FuelCalculator({ defaultMode = 'cost' }) {
                 <p className="text-gray-300 leading-relaxed text-sm">
                   For a {tripType.toLowerCase()} trip of <strong className="text-white">{result.totalDistance} {distLabel}</strong>, you'll need <strong className="text-white">{result.fuel} {unit === 'Imperial' ? 'Gal' : 'L'}</strong> of fuel. 
                   {price > 0 && <span> This will cost a total of <strong className="text-white">{currencySymbol}{result.cost}</strong> at a price of {currencySymbol}{price} per {priceLabel}.</span>}
+                  {result.passengers > 1 && <span> Split among {result.passengers} people, each person pays <strong className="text-emerald-300">{currencySymbol}{result.costPerPassenger}</strong>.</span>}
                 </p>
               </div>
               

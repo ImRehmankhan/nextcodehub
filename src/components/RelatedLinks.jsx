@@ -1,17 +1,17 @@
 import Link from 'next/link';
 
 const tools = [
-  { href: '/fuel-cost-calculator', title: 'Fuel Cost Calculator', desc: 'Estimate trip expenses based on distance' },
+  { href: '/fuel-cost-calculator', title: 'Trip Fuel Cost Calculator', desc: 'Estimate road trip gas costs & split with passengers' },
+  { href: '/fuel-expense-calculator', title: 'Fuel Expense Calculator', desc: 'Budget daily commute & annual fuel spending' },
+  { href: '/gas-price-calculator', title: 'Gas Price Impact Calculator', desc: 'Compare price hikes & Regular vs Premium costs' },
+  { href: '/petrol-calculator', title: 'Petrol Tank & Range Calculator', desc: 'Calculate tank refill cost & driving range on full tank' },
   { href: '/fuel-mileage-calculator', title: 'Fuel Mileage Calculator', desc: 'Calculate petrol & gas mileage easily' },
   { href: '/mpg-calculator', title: 'MPG Calculator', desc: 'Calculate miles per gallon accurately' },
-  { href: '/petrol-calculator', title: 'Petrol Calculator', desc: 'Track petrol cost & petrol average' },
   { href: '/fuel-consumption-calculator', title: 'Fuel Consumption Calculator', desc: 'Determine how much fuel you consume' },
   { href: '/fuel-economy-calculator', title: 'Fuel Economy Calculator', desc: 'Find your vehicle\'s true fuel economy' },
   { href: '/gas-mileage-calculator', title: 'Gas Mileage Calculator', desc: 'Estimate gas mileage for any car' },
-  { href: '/gas-price-calculator', title: 'Gas Price Calculator', desc: 'Calculate your monthly gas bill' },
   { href: '/fuel-efficiency-calculator', title: 'Fuel Efficiency Calculator', desc: 'Measure & improve vehicle efficiency' },
   { href: '/fuel-average-calculator', title: 'Fuel Average Calculator', desc: 'Track petrol average in km/L or MPG' },
-  { href: '/fuel-expense-calculator', title: 'Fuel Expense Calculator', desc: 'Budget your monthly petrol expense' },
 ];
 
 export default function RelatedLinks() {
@@ -33,14 +33,14 @@ export default function RelatedLinks() {
                 <span className="text-xs text-emerald-700 font-medium">Formulas &amp; Worked Examples</span>
               </div>
               <h4 className="font-bold text-emerald-950 group-hover:text-emerald-800 transition-colors text-base">
-                How to Calculate Fuel Consumption &amp; Efficiency (Meaning, Formulas &amp; Real-World Guide)
+                Fuel Consumption and Fuel Efficiency: Meaning, Formula and How to Calculate
               </h4>
               <p className="text-xs text-emerald-800 mt-0.5">
-                Learn how to calculate fuel consumption in L/100km, km/L, and MPG using the tank-to-tank method with conversion tables.
+                Learn what fuel consumption and fuel efficiency mean, the formulas for L/100km, km/L and MPG, and how to calculate yours with worked examples.
               </p>
             </div>
             <span className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 bg-white/80 px-3 py-1.5 rounded-lg border border-emerald-200 group-hover:translate-x-1 transition-all flex-shrink-0 self-start sm:self-auto">
-              How to Calculate Fuel Consumption &rarr;
+              Read Guide &rarr;
             </span>
           </div>
         </Link>

@@ -112,7 +112,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               <li>
                 <Link href="/fuel-cost-calculator" className="text-gray-600 hover:text-primary-600 text-sm transition-colors block">
-                  Fuel Cost Calculator
+                  Trip Fuel Cost Calculator
                 </Link>
               </li>
               <li>
@@ -127,7 +127,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/petrol-calculator" className="text-gray-600 hover:text-primary-600 text-sm transition-colors block">
-                  Petrol Calculator
+                  Petrol &amp; Tank Calculator
                 </Link>
               </li>
               <li>
@@ -154,7 +154,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/gas-price-calculator" className="text-gray-600 hover:text-primary-600 text-sm transition-colors block">
-                  Gas Price Calculator
+                  Gas Price Impact Calculator
                 </Link>
               </li>
               <li>
@@ -169,7 +169,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/fuel-expense-calculator" className="text-gray-600 hover:text-primary-600 text-sm transition-colors block">
-                  Fuel Expense Calculator
+                  Fuel Expense &amp; Budget Calculator
                 </Link>
               </li>
             </ul>

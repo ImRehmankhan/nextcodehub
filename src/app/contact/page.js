@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { sendContactEmail } from '../actions/sendEmail';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -44,7 +45,10 @@ export default function ContactPage() {
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
       <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+          <Breadcrumbs items={[{ name: 'Contact' }]} />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary-50 text-primary-700 text-xs sm:text-sm font-semibold mb-4 border border-primary-100">
             <span className="w-2 h-2 rounded-full bg-primary-600 animate-pulse"></span>
             We&apos;re Here to Help

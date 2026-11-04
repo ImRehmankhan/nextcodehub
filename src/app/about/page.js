@@ -1,20 +1,14 @@
 import Link from 'next/link';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = {
-  title: "About Us - NextCodeHub | Mission, Team & Engineering Standards",
+  title: "About Us: Mission, Team & Engineering Standards",
   description: "Learn about NextCodeHub, our mission to simplify automotive fuel mathematics, our technical calculation methodology, and our founder Rehman Khan.",
-  keywords: [
-    "about NextCodeHub",
-    "fuel calculator mission",
-    "automotive calculation methodology",
-    "Rehman Khan developer",
-    "free fuel tools",
-  ],
   alternates: {
     canonical: 'https://www.nextcodehub.com/about',
   },
   openGraph: {
-    title: "About Us - NextCodeHub | Mission & Engineering Standards",
+    title: "About Us: Mission & Engineering Standards | NextCodeHub",
     description: "Learn about NextCodeHub, our mission to simplify automotive calculations, and our commitment to privacy and accuracy.",
     url: 'https://www.nextcodehub.com/about',
   },
@@ -23,6 +17,23 @@ export const metadata = {
 const aboutJsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'About',
+          item: 'https://www.nextcodehub.com/about',
+        },
+      ],
+    },
     {
       '@type': 'AboutPage',
       '@id': 'https://www.nextcodehub.com/about',
@@ -94,7 +105,10 @@ export default function AboutPage() {
       <div className="bg-gray-50 min-h-screen">
         {/* Hero Section */}
         <div className="bg-white border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+            <Breadcrumbs items={[{ name: 'About' }]} />
+          </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 text-center">
             <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-primary-50 text-primary-700 border border-primary-200 mb-6">
               Our Mission &amp; Engineering Story
             </span>

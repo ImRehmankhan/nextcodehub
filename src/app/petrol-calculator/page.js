@@ -1,15 +1,33 @@
-import FuelCalculator from '../../components/FuelCalculator';
+import PetrolCalculator from '../../components/PetrolCalculator';
 import RelatedLinks from '../../components/RelatedLinks';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Petrol Calculator',
+          item: 'https://www.nextcodehub.com/petrol-calculator',
+        },
+      ],
+    },
+    {
       '@type': 'WebApplication',
       '@id': 'https://www.nextcodehub.com/petrol-calculator',
-      name: 'Petrol Calculator',
+      name: 'Petrol Tank Refill & Range Calculator',
       url: 'https://www.nextcodehub.com/petrol-calculator',
-      description: 'Free petrol calculator for petrol cost, petrol mileage, and petrol expense calculations. Track petrol average and budget your fuel expenses.',
+      description: 'Free petrol calculator to calculate petrol tank refill costs, liters required, estimated driving range on a full tank, and cost per kilometer.',
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Web Browser',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -20,18 +38,28 @@ const jsonLd = {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'How do I calculate my petrol cost?',
-          acceptedAnswer: { '@type': 'Answer', text: 'To calculate petrol cost: divide your distance by petrol mileage (km/L) to get liters needed, then multiply by the petrol price per liter. Example: 200km ÷ 15 km/L × $1.50/L = $20 petrol cost.' },
+          name: 'What is the petrol average formula?',
+          acceptedAnswer: { '@type': 'Answer', text: 'The petrol average formula is: Petrol Average (km/L) = Total Distance Driven (km) ÷ Total Liters of Petrol Used. For example, if you drove 450 km on 30 liters of petrol, your petrol average is 450 ÷ 30 = 15 km/L.' },
         },
         {
           '@type': 'Question',
-          name: 'What is petrol average and how is it calculated?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Petrol average is the fuel efficiency of your vehicle, expressed as km per liter (km/L). Calculate it by dividing total distance driven by total liters of petrol consumed over that distance.' },
+          name: '1000 km me kitna petrol lagta hai?',
+          acceptedAnswer: { '@type': 'Answer', text: '1000 km safar me petrol gaari ke fuel average par depend karta hai. 15 km/L average wali car me 1000 ÷ 15 = 66.7 Liters petrol lagega. 70cc bike (50 km/L) me 20 Liters, aur Alto 660cc (18 km/L) me taqreeban 55.5 Liters petrol lagta hai.' },
         },
         {
           '@type': 'Question',
-          name: 'How much petrol do I need for a trip?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Divide your trip distance by your vehicle\'s petrol average (km/L) to get liters needed. Our petrol calculator does this automatically — just enter distance, mileage, and petrol price.' },
+          name: 'How do I calculate the cost to fill my petrol tank?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Determine remaining liters using your fuel gauge, subtract that from your tank capacity to find liters needed, and multiply by the petrol price per liter. Our petrol calculator does this instantly.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'How far can I drive on a full tank of petrol?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Multiply your petrol tank capacity (in liters) by your vehicle\'s average petrol mileage (in km/L). For example, a 50-liter tank at 14 km/L gives an estimated range of 700 kilometers.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'How do I calculate petrol cost for a bike?',
+          acceptedAnswer: { '@type': 'Answer', text: 'To calculate bike petrol cost: divide your distance (km) by bike mileage (typically 45–60 km/L for 70cc–125cc), then multiply by petrol price per liter. For 100 km on a 70cc bike (55 km/L) at Rs. 280/L: (100 ÷ 55) × 280 = Rs. 509.' },
         },
       ],
     },
@@ -39,24 +67,14 @@ const jsonLd = {
 };
 
 export const metadata = {
-  title: "Petrol Calculator: Estimate Petrol Cost & Trip Expense",
-  description: "Calculate petrol cost, petrol mileage, and journey expenses instantly. Find out how much petrol you need and budget daily or trip fuel costs easily.",
-  keywords: [
-    "petrol calculator",
-    "petrol cost calculator",
-    "petrol mileage calculator",
-    "petrol average calculator",
-    "petrol expense calculator",
-    "petrol price calculator",
-    "petrol consumption calculator",
-    "calculate petrol cost",
-  ],
+  title: "Petrol Calculator: Tank Refill Cost & Range Estimator",
+  description: "Calculate the exact cost to refill your petrol tank, check driving range on a full tank, and estimate petrol cost per kilometer. 100% Free.",
   alternates: {
     canonical: 'https://www.nextcodehub.com/petrol-calculator',
   },
   openGraph: {
-    title: "Petrol Calculator - Petrol Cost & Mileage Calculator",
-    description: "Calculate petrol cost, petrol mileage, petrol average, and petrol expense with our free petrol calculator.",
+    title: "Petrol Calculator - Tank Refill Cost & Range Estimator",
+    description: "Calculate petrol refill costs, liters required to fill your tank, and maximum driving range with our free petrol calculator.",
     url: 'https://www.nextcodehub.com/petrol-calculator',
   },
 };
@@ -69,18 +87,196 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Breadcrumbs items={[{ name: 'Petrol Calculator' }]} />
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-            Petrol Calculator
+            Petrol Tank Refill &amp; Range Calculator
           </h1>
           <p className="text-lg text-gray-600">
-            Calculate petrol cost, petrol mileage, and petrol expense for any journey. Our dedicated petrol calculator gives you accurate petrol average and budgeting figures instantly.
+            Find out how much it costs to fill your petrol tank, how many liters you need, and your vehicle&apos;s maximum driving range on a full tank.
           </p>
         </div>
 
-        <FuelCalculator />
+        <PetrolCalculator />
 
         <div className="mt-16 max-w-4xl mx-auto space-y-12">
+
+          {/* Petrol Average Formula Section */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Petrol Average Formula: How to Calculate km per Liter</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Your <strong>petrol average formula</strong> measures how many kilometers your vehicle travels per single liter of fuel. Calculating your real-world petrol average is simple using the standard distance-over-fuel equation:
+            </p>
+            <div className="bg-gray-900 text-teal-300 p-6 rounded-xl font-mono text-sm space-y-2 my-4 shadow-inner">
+              <p className="text-white font-bold text-base">Petrol Average Formula:</p>
+              <p className="text-xl text-teal-400 font-extrabold">Petrol Average (km/L) = Total Distance Driven (km) ÷ Total Liters Used (L)</p>
+              <p className="text-gray-400 pt-2 border-t border-gray-800">
+                Worked Example: If you drove <span className="text-yellow-400 font-bold">450 km</span> and needed <span className="text-yellow-400 font-bold">30 Liters</span> to refill the tank:
+              </p>
+              <p className="text-white font-bold">450 km ÷ 30 Liters = <span className="text-teal-400 text-lg">15 km/L</span> Petrol Average</p>
+            </div>
+            <div className="grid sm:grid-cols-3 gap-4 mt-6 text-sm">
+              <div className="bg-teal-50 border border-teal-200 p-4 rounded-xl">
+                <p className="font-bold text-teal-950 mb-1">Step 1: Top Up</p>
+                <p className="text-teal-900 text-xs">Fill tank completely until the pump clicks off. Record your odometer reading.</p>
+              </div>
+              <div className="bg-teal-50 border border-teal-200 p-4 rounded-xl">
+                <p className="font-bold text-teal-950 mb-1">Step 2: Drive</p>
+                <p className="text-teal-900 text-xs">Drive normally for 200–400 km in mixed city and highway traffic conditions.</p>
+              </div>
+              <div className="bg-teal-50 border border-teal-200 p-4 rounded-xl">
+                <p className="font-bold text-teal-950 mb-1">Step 3: Refill &amp; Divide</p>
+                <p className="text-teal-900 text-xs">Refill tank to full, note exact liters on receipt, and divide km driven by liters.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Petrol Cost for X km Lookup Table */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Petrol Cost for 100 km, 500 km &amp; 1000 km (Distance Lookup Table)</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Wondering how much petrol you need and what it will cost for common trip distances? Use this quick reference table across different vehicle types:
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 text-gray-700 font-semibold">
+                    <th className="text-left p-3 rounded-tl-lg">Vehicle Category</th>
+                    <th className="text-left p-3">Mileage</th>
+                    <th className="text-left p-3">100 km</th>
+                    <th className="text-left p-3">300 km</th>
+                    <th className="text-left p-3">500 km</th>
+                    <th className="text-left p-3 rounded-tr-lg">1,000 km</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {[
+                    ['70cc / 125cc Motorbike', '50 km/L', '2.0 L ($3.00)', '6.0 L ($9.00)', '10.0 L ($15.00)', '20.0 L ($30.00)'],
+                    ['Small Car (Alto, Picanto)', '18 km/L', '5.5 L ($8.25)', '16.7 L ($25.05)', '27.8 L ($41.70)', '55.5 L ($83.25)'],
+                    ['Sedan (City, Corolla, Civic)', '14 km/L', '7.1 L ($10.65)', '21.4 L ($32.10)', '35.7 L ($53.55)', '71.4 L ($107.10)'],
+                    ['Compact SUV / Crossover', '11 km/L', '9.1 L ($13.65)', '27.3 L ($40.95)', '45.5 L ($68.25)', '90.9 L ($136.35)'],
+                    ['Large SUV / 4x4 (Fortuner, Prado)', '8 km/L', '12.5 L ($18.75)', '37.5 L ($56.25)', '62.5 L ($93.75)', '125.0 L ($187.50)'],
+                  ].map(([veh, eff, k100, k300, k500, k1000], idx) => (
+                    <tr key={veh} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
+                      <td className="p-3 font-semibold text-gray-900">{veh}</td>
+                      <td className="p-3 font-mono text-teal-700 font-bold">{eff}</td>
+                      <td className="p-3 text-gray-700">{k100}</td>
+                      <td className="p-3 text-gray-700">{k300}</td>
+                      <td className="p-3 text-gray-700 font-medium">{k500}</td>
+                      <td className="p-3 font-bold text-gray-900">{k1000}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-400 mt-2">*Cost calculated at standard benchmark $1.50/L. Enter your local fuel price in our calculator above for exact currency results.</p>
+          </section>
+
+          {/* Bike & Motorcycle Petrol Calculator Section */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Bike Petrol Calculator: Motorcycle Fuel Average &amp; Refill Cost</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Searching for a <strong>petrol calculator for bike</strong> or motorcycle? Two-wheelers have smaller fuel tanks (typically 8 to 14 Liters) but significantly higher fuel mileage (35 to 65 km/L). Here is how fuel costs breakdown for common bike engines:
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+              {[
+                { title: '70cc Motorcycle', avg: '55 – 65 km/L', tank: '9 Liters', range: '500 – 580 km', costPer100: '1.6 L / 100km' },
+                { title: '100cc – 110cc Bike', avg: '48 – 58 km/L', tank: '10 Liters', range: '480 – 550 km', costPer100: '1.9 L / 100km' },
+                { title: '125cc Motorcycle', avg: '42 – 50 km/L', tank: '11 Liters', range: '460 – 520 km', costPer100: '2.2 L / 100km' },
+                { title: '150cc – 250cc Sport', avg: '30 – 40 km/L', tank: '13 Liters', range: '390 – 480 km', costPer100: '2.9 L / 100km' },
+              ].map(({ title, avg, tank, range, costPer100 }) => (
+                <div key={title} className="bg-gradient-to-b from-gray-50 to-white p-5 rounded-2xl border border-gray-200 shadow-2xs">
+                  <div className="text-2xl mb-2">🏍️</div>
+                  <h3 className="font-bold text-gray-900 text-sm mb-2">{title}</h3>
+                  <div className="space-y-1 text-xs text-gray-600 font-medium">
+                    <p>• Average: <span className="text-teal-700 font-bold">{avg}</span></p>
+                    <p>• Tank Size: <span className="text-gray-900 font-bold">{tank}</span></p>
+                    <p>• Tank Range: <span className="text-emerald-700 font-bold">{range}</span></p>
+                    <p>• 100km Fuel: <span className="text-blue-700 font-bold">{costPer100}</span></p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-gray-500">
+              💡 <strong>Bike Tip:</strong> Motorcycle carburetors and fuel injectors perform best when refueled before entering reserve mode (the bottom 1.5–2 liters), preventing tank sediment from clogging the jet nozzles.
+            </p>
+          </section>
+
+          {/* Pakistan Specific Section */}
+          <section className="bg-gradient-to-br from-emerald-50 via-teal-50 to-white p-8 rounded-2xl border border-emerald-200">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-3xl">🇵🇰</span>
+              <div>
+                <h2 className="text-2xl font-bold text-emerald-950">Fuel Cost Calculator Pakistan (Petrol Price in PKR)</h2>
+                <p className="text-emerald-800 text-sm">Calculate petrol cost for Pakistani cars, bikes &amp; intercity motorway routes</p>
+              </div>
+            </div>
+            <p className="text-emerald-900 text-sm leading-relaxed mb-6">
+              With fluctuating petrol prices in Pakistan (estimated benchmark ~<strong>Rs. 280 / Liter</strong>), planning fuel expenses is essential for daily office commutes and highway road trips. Here is the estimated petrol cost for common Pakistani vehicles:
+            </p>
+            <div className="overflow-x-auto bg-white rounded-xl border border-emerald-200 shadow-xs mb-6">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-emerald-100/60 text-emerald-950 font-semibold text-xs uppercase">
+                    <th className="text-left p-3">Popular Vehicle</th>
+                    <th className="text-left p-3">Fuel Average</th>
+                    <th className="text-left p-3">Cost per km</th>
+                    <th className="text-left p-3">Lahore ⇄ Isb (380 km)</th>
+                    <th className="text-left p-3">Full Tank Refill</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-emerald-100 text-xs">
+                  {[
+                    ['Honda CD 70 Bike', '60 km/L', 'Rs. 4.67 / km', 'Rs. 1,773 (6.3 L)', 'Rs. 2,520 (9 L tank)'],
+                    ['Honda CG 125 Bike', '45 km/L', 'Rs. 6.22 / km', 'Rs. 2,364 (8.4 L)', 'Rs. 3,080 (11 L tank)'],
+                    ['Suzuki Alto 660cc', '19 km/L', 'Rs. 14.74 / km', 'Rs. 5,600 (20.0 L)', 'Rs. 7,560 (27 L tank)'],
+                    ['Suzuki Cultus / Wagon R', '16.5 km/L', 'Rs. 16.97 / km', 'Rs. 6,448 (23.0 L)', 'Rs. 9,800 (35 L tank)'],
+                    ['Toyota Yaris / Honda City', '14 km/L', 'Rs. 20.00 / km', 'Rs. 7,600 (27.1 L)', 'Rs. 11,200 (40 L tank)'],
+                    ['Toyota Corolla 1.6 / 1.8', '12 km/L', 'Rs. 23.33 / km', 'Rs. 8,867 (31.7 L)', 'Rs. 14,000 (50 L tank)'],
+                    ['Sportage / Tucson / Oshan X7', '9 km/L', 'Rs. 31.11 / km', 'Rs. 11,822 (42.2 L)', 'Rs. 15,400 (55 L tank)'],
+                  ].map(([car, avg, perkm, route, tank]) => (
+                    <tr key={car} className="hover:bg-emerald-50/50">
+                      <td className="p-3 font-bold text-gray-900">{car}</td>
+                      <td className="p-3 font-semibold text-emerald-800">{avg}</td>
+                      <td className="p-3 font-mono text-gray-700">{perkm}</td>
+                      <td className="p-3 font-bold text-teal-800">{route}</td>
+                      <td className="p-3 text-gray-800">{tank}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Roman Urdu FAQ Box */}
+            <div className="bg-white rounded-xl p-6 border border-emerald-200">
+              <h3 className="font-bold text-emerald-950 text-base mb-3 flex items-center gap-2">
+                <span>💬</span> Roman Urdu Guide: 1000 km me kitna petrol lagta hai?
+              </h3>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                <strong>1000 km safar ke liye kitna petrol lagega</strong> yeh mukammal tor par aapki gaari ya bike ke petrol average par munhasir hota hai. Formula bohat asaan hai: <strong>1000 ÷ Petrol Average (km/L) = Total Petrol (Liters)</strong>.
+              </p>
+              <div className="grid sm:grid-cols-3 gap-3 font-mono text-xs mb-4">
+                <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                  <p className="font-bold text-gray-900">70cc Bike (50 km/L):</p>
+                  <p className="text-teal-700 font-bold mt-1">1000 ÷ 50 = 20 Liters</p>
+                  <p className="text-gray-500 mt-0.5">Taqreeban Rs. 5,600</p>
+                </div>
+                <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                  <p className="font-bold text-gray-900">Suzuki Alto (18 km/L):</p>
+                  <p className="text-teal-700 font-bold mt-1">1000 ÷ 18 = 55.5 Liters</p>
+                  <p className="text-gray-500 mt-0.5">Taqreeban Rs. 15,540</p>
+                </div>
+                <div className="p-3 bg-gray-50 rounded-lg border border-gray-200">
+                  <p className="font-bold text-gray-900">1.3L / 1.5L Sedan (14 km/L):</p>
+                  <p className="text-teal-700 font-bold mt-1">1000 ÷ 14 = 71.4 Liters</p>
+                  <p className="text-gray-500 mt-0.5">Taqreeban Rs. 19,992</p>
+                </div>
+              </div>
+              <p className="text-xs text-gray-600">
+                100 km ke liye: Bike me <strong>2 Liters</strong>, Alto me <strong>5.5 Liters</strong>, aur Sedan me <strong>7.1 Liters</strong> petrol lagta hai.
+              </p>
+            </div>
+          </section>
 
           {/* Petrol cost explained */}
           <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">

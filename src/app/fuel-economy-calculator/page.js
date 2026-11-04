@@ -1,9 +1,27 @@
-import FuelCalculator from '../../components/FuelCalculator';
+import FuelEconomyCalculator from '../../components/FuelEconomyCalculator';
 import RelatedLinks from '../../components/RelatedLinks';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Fuel Economy Calculator',
+          item: 'https://www.nextcodehub.com/fuel-economy-calculator',
+        },
+      ],
+    },
     {
       '@type': 'WebApplication',
       '@id': 'https://www.nextcodehub.com/fuel-economy-calculator',
@@ -41,16 +59,6 @@ const jsonLd = {
 export const metadata = {
   title: "Fuel Economy Calculator: Check & Convert MPG to km/L",
   description: "Check your vehicle's fuel economy rating and convert between MPG, km/L, and L/100km. Discover how to improve gas mileage and save money on fuel.",
-  keywords: [
-    "fuel economy calculator",
-    "fuel efficiency calculator",
-    "vehicle fuel economy",
-    "check fuel economy",
-    "fuel economy rating",
-    "mpg to km/l converter",
-    "fuel efficiency rating",
-    "improve fuel economy",
-  ],
   alternates: {
     canonical: 'https://www.nextcodehub.com/fuel-economy-calculator',
   },
@@ -69,6 +77,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Breadcrumbs items={[{ name: 'Fuel Economy Calculator' }]} />
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
             Fuel Economy Calculator
@@ -78,7 +87,7 @@ export default function Page() {
           </p>
         </div>
 
-        <FuelCalculator />
+        <FuelEconomyCalculator />
 
         <div className="mt-16 max-w-4xl mx-auto space-y-12">
 

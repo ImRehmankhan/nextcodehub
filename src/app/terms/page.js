@@ -1,15 +1,48 @@
 import Link from 'next/link';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = {
-  title: "Terms of Service - NextCodeHub",
+  title: "Terms of Service",
   description: "Terms and conditions for using NextCodeHub calculators and tools.",
+  alternates: {
+    canonical: 'https://www.nextcodehub.com/terms',
+  },
+};
+
+const termsJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Terms of Service',
+          item: 'https://www.nextcodehub.com/terms',
+        },
+      ],
+    },
+  ],
 };
 
 export default function TermsOfServicePage() {
   return (
-    <div className="bg-gray-50 min-h-screen py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(termsJsonLd) }}
+      />
+      <div className="bg-gray-50 min-h-screen py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[{ name: 'Terms of Service' }]} />
+          <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
           
           <div className="border-b border-gray-100 pb-8 mb-8 text-center">
             <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
@@ -193,5 +226,6 @@ export default function TermsOfServicePage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

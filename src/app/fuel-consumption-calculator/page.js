@@ -1,10 +1,28 @@
-import FuelCalculator from '../../components/FuelCalculator';
+import FuelConsumptionCalculator from '../../components/FuelConsumptionCalculator';
 import RelatedLinks from '../../components/RelatedLinks';
+import Breadcrumbs from '../../components/Breadcrumbs';
 import Link from 'next/link';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Fuel Consumption Calculator',
+          item: 'https://www.nextcodehub.com/fuel-consumption-calculator',
+        },
+      ],
+    },
     {
       '@type': 'WebApplication',
       '@id': 'https://www.nextcodehub.com/fuel-consumption-calculator',
@@ -40,24 +58,14 @@ const jsonLd = {
 };
 
 export const metadata = {
-  title: "Fuel Consumption Calculator: Gas Per Mile & L/100km",
-  description: "Calculate your vehicle's fuel consumption in L/100km, km/L, or MPG. Estimate gas burned per mile and total fuel required for any journey accurately.",
-  keywords: [
-    "fuel consumption calculator",
-    "gas per mile calculator",
-    "fuel usage calculator",
-    "liters per 100km calculator",
-    "L/100km calculator",
-    "vehicle fuel consumption",
-    "calculate fuel consumption",
-    "fuel burn rate calculator",
-  ],
+  title: "How to Calculate Fuel Consumption: L/100km & Gas Per Mile",
+  description: "Learn how to calculate fuel consumption in L/100km, km/L, or MPG. Includes step-by-step formulas, worked examples, gas burned per mile, and free calculators.",
   alternates: {
     canonical: 'https://www.nextcodehub.com/fuel-consumption-calculator',
   },
   openGraph: {
-    title: "Fuel Consumption Calculator - Calculate Gas Per Mile & L/100km",
-    description: "Calculate fuel consumption per mile, per 100km, and total fuel usage with our free fuel consumption calculator.",
+    title: "How to Calculate Fuel Consumption - L/100km & Gas Per Mile Calculator",
+    description: "Calculate fuel consumption per mile, per 100km, and total fuel usage with our free fuel consumption calculator and worked formula guides.",
     url: 'https://www.nextcodehub.com/fuel-consumption-calculator',
   },
 };
@@ -70,18 +78,59 @@ export default function Page() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <Breadcrumbs items={[{ name: 'Fuel Consumption Calculator' }]} />
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-4">
-            Fuel Consumption Calculator
+            How to Calculate Fuel Consumption
           </h1>
           <p className="text-lg text-gray-600">
-            Measure exactly how much fuel your vehicle consumes. Calculate gas per mile, liters per 100km, and total fuel usage for any trip or daily commute.
+            Learn <strong>how to calculate fuel consumption</strong> accurately using standard formulas. Calculate your vehicle&apos;s liters per 100 km (L/100km), fuel usage per km, and gas per mile with our free calculator and worked examples.
           </p>
         </div>
 
-        <FuelCalculator />
+        <FuelConsumptionCalculator />
 
         <div className="mt-16 max-w-4xl mx-auto space-y-12">
+
+          {/* How to Calculate Fuel Consumption Step-by-Step */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Calculate Fuel Consumption (Step-by-Step Formula)</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              To calculate fuel consumption without relying on inaccurate dashboard computers, use the empirical <strong>tank-to-tank method</strong>:
+            </p>
+            <div className="grid md:grid-cols-4 gap-3 my-6 text-sm">
+              <div className="bg-gray-50 border border-gray-200 p-4 rounded-xl">
+                <span className="w-6 h-6 rounded-full bg-primary-100 text-primary-700 font-bold inline-flex items-center justify-center text-xs mb-2">1</span>
+                <p className="font-bold text-gray-900">Fill Tank Full</p>
+                <p className="text-xs text-gray-500 mt-1">Fill to auto shut-off. Note odometer reading (e.g., 40,000 km).</p>
+              </div>
+              <div className="bg-gray-50 border border-gray-200 p-4 rounded-xl">
+                <span className="w-6 h-6 rounded-full bg-primary-100 text-primary-700 font-bold inline-flex items-center justify-center text-xs mb-2">2</span>
+                <p className="font-bold text-gray-900">Drive Normally</p>
+                <p className="text-xs text-gray-500 mt-1">Drive at least 250–350 km in regular city and highway traffic.</p>
+              </div>
+              <div className="bg-gray-50 border border-gray-200 p-4 rounded-xl">
+                <span className="w-6 h-6 rounded-full bg-primary-100 text-primary-700 font-bold inline-flex items-center justify-center text-xs mb-2">3</span>
+                <p className="font-bold text-gray-900">Refill &amp; Record</p>
+                <p className="text-xs text-gray-500 mt-1">Fill to full again. Note liters pumped (e.g. 24.5 L) and new odometer (40,350 km).</p>
+              </div>
+              <div className="bg-gray-50 border border-gray-200 p-4 rounded-xl">
+                <span className="w-6 h-6 rounded-full bg-primary-100 text-primary-700 font-bold inline-flex items-center justify-center text-xs mb-2">4</span>
+                <p className="font-bold text-gray-900">Apply Formula</p>
+                <p className="text-xs text-gray-500 mt-1">Execute: (Liters ÷ Distance in km) × 100 for your true L/100km.</p>
+              </div>
+            </div>
+
+            <div className="bg-gray-900 text-green-400 p-5 rounded-xl font-mono text-sm space-y-1.5 my-4">
+              <p className="text-white font-bold">Standard Fuel Consumption Equations:</p>
+              <p>• <strong>L/100km:</strong> (Fuel Used in Liters ÷ Distance in km) × 100</p>
+              <p>• <strong>Liters per km:</strong> Fuel Used in Liters ÷ Distance in km</p>
+              <p>• <strong>Gallons per 100 miles:</strong> (Gallons Used ÷ Miles Driven) × 100</p>
+              <p className="text-gray-400 pt-2 border-t border-gray-800">
+                Worked Example: 24.5 Liters used over 350 km = (24.5 ÷ 350) × 100 = <span className="text-yellow-400 font-bold">7.0 L/100km</span> (or 0.070 L/km).
+              </p>
+            </div>
+          </section>
 
           {/* Fuel consumption vs efficiency */}
           <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
@@ -90,7 +139,7 @@ export default function Page() {
               These two terms are often confused. <strong>Fuel consumption</strong> measures how much fuel you use per distance (L/100km, gallons/100 miles), while <strong>fuel efficiency</strong> measures distance per unit of fuel (km/L, MPG). A lower consumption number means a more efficient vehicle.
             </p>
             <p className="text-sm text-gray-700 bg-gray-50 border border-gray-200 p-3.5 rounded-xl mb-6">
-              Looking for the step-by-step tank-to-tank formula? Read our complete guide on <Link href="/blog/understanding-fuel-consumption-efficiency" className="font-semibold text-primary-600 hover:text-primary-700 underline">how to calculate fuel consumption</Link> with worked examples and conversion matrices.
+              Looking for the step-by-step tank-to-tank formula? Read our complete guide on <Link href="/blog/how-to-calculate-fuel-consumption-formula-examples" className="font-semibold text-primary-600 hover:text-primary-700 underline">how to calculate fuel consumption</Link> with worked examples and conversion matrices.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-red-50 border border-red-200 rounded-xl p-6">
@@ -159,6 +208,54 @@ export default function Page() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </section>
+
+          {/* L/100km, km/L, and MPG Conversion Matrix */}
+          <section className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">L/100km to km/L and MPG Conversion Matrix</h2>
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Need to convert between metric fuel consumption (L/100km), metric efficiency (km/L), and US or UK MPG? Use this comprehensive lookup chart:
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-50 text-gray-700 font-semibold text-xs uppercase">
+                    <th className="text-left p-3 rounded-tl-lg">L/100km</th>
+                    <th className="text-left p-3">km/L (Metric)</th>
+                    <th className="text-left p-3">US MPG</th>
+                    <th className="text-left p-3">UK Imperial MPG</th>
+                    <th className="text-left p-3 rounded-tr-lg">Fuel Burn Category</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100 font-mono text-xs">
+                  {[
+                    ['4.0 L/100km', '25.0 km/L', '58.8 MPG', '70.6 UK MPG', '⭐⭐⭐⭐⭐ Ultra High Efficiency (Hybrids)'],
+                    ['5.0 L/100km', '20.0 km/L', '47.0 MPG', '56.5 UK MPG', '⭐⭐⭐⭐⭐ Excellent (Small Diesels / Hybrids)'],
+                    ['6.0 L/100km', '16.7 km/L', '39.2 MPG', '47.1 UK MPG', '⭐⭐⭐⭐ Great (Modern Compacts)'],
+                    ['7.0 L/100km', '14.3 km/L', '33.6 MPG', '40.4 UK MPG', '⭐⭐⭐⭐ Good (Midsize Sedans)'],
+                    ['8.0 L/100km', '12.5 km/L', '29.4 MPG', '35.3 UK MPG', '⭐⭐⭐ Average (Family Sedans)'],
+                    ['9.0 L/100km', '11.1 km/L', '26.1 MPG', '31.4 UK MPG', '⭐⭐⭐ Moderate (Compact Crossovers)'],
+                    ['10.0 L/100km', '10.0 km/L', '23.5 MPG', '28.2 UK MPG', '⭐⭐ Below Average (Medium SUVs)'],
+                    ['12.0 L/100km', '8.3 km/L', '19.6 MPG', '23.5 UK MPG', '⭐ High Consumption (Large SUVs)'],
+                    ['15.0 L/100km', '6.7 km/L', '15.7 MPG', '18.8 UK MPG', '⭐ Heavy Consumption (V8 / Trucks)'],
+                  ].map(([l100, kml, usmpg, ukmpg, cat], idx) => (
+                    <tr key={l100} className={idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
+                      <td className="p-3 font-bold text-red-700">{l100}</td>
+                      <td className="p-3 font-semibold text-teal-700">{kml}</td>
+                      <td className="p-3 font-semibold text-blue-700">{usmpg}</td>
+                      <td className="p-3 text-gray-700">{ukmpg}</td>
+                      <td className="p-3 font-sans text-[11px] text-gray-600">{cat}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-3 mt-4 text-xs font-mono bg-gray-50 p-4 rounded-xl border border-gray-200">
+              <p>• <strong>km/L = 100 ÷ L/100km</strong></p>
+              <p>• <strong>L/100km = 100 ÷ km/L</strong></p>
+              <p>• <strong>US MPG = 235.215 ÷ L/100km</strong></p>
+              <p>• <strong>UK MPG = 282.481 ÷ L/100km</strong></p>
             </div>
           </section>
 

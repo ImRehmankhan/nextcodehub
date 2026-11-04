@@ -20,7 +20,9 @@ export async function generateMetadata({ params }) {
   }
 
   const postUrl = `https://www.nextcodehub.com/blog/${resolvedParams.slug}`;
-  const pageTitle = post.metaTitle || post.title;
+  const rawTitle = post.metaTitle || post.title;
+  // Ensure no duplicate brand suffix is appended by layout template
+  const pageTitle = rawTitle.replace(/\s*[|\-–]\s*NextCodeHub\s*$/i, '').trim();
   const pageDescription = post.metaDescription || post.excerpt;
 
   return {
@@ -30,7 +32,7 @@ export async function generateMetadata({ params }) {
       canonical: postUrl,
     },
     openGraph: {
-      title: pageTitle,
+      title: `${pageTitle} | NextCodeHub`,
       description: pageDescription,
       url: postUrl,
       type: 'article',
@@ -39,7 +41,7 @@ export async function generateMetadata({ params }) {
     },
     twitter: {
       card: 'summary_large_image',
-      title: pageTitle,
+      title: `${pageTitle} | NextCodeHub`,
       description: pageDescription,
     },
   };
@@ -192,13 +194,13 @@ export default async function BlogPostPage({ params }) {
                     dangerouslySetInnerHTML={{ __html: part1 }}
                   />
                   <div className="my-10 not-prose">
-                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl border border-gray-700">
+                    <div className="">
                       <div className="mb-6 text-center max-w-2xl mx-auto">
                         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 mb-2">
                           Interactive Tool
                         </span>
-                        <h3 className="text-2xl font-bold text-white">Fuel Consumption &amp; Efficiency Calculator</h3>
-                        <p className="text-gray-300 text-sm mt-1">
+                        <h3 className="text-2xl font-bold text-gray-600">Fuel Consumption &amp; Efficiency Calculator</h3>
+                        <p className="text-gray-500 text-sm mt-1">
                           Calculate your trip fuel consumption, cost per km, and efficiency in real-time:
                         </p>
                       </div>

@@ -1,13 +1,14 @@
 import Link from 'next/link';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = {
-  title: "Privacy Policy - NextCodeHub | Data Protection & AdSense Compliance",
+  title: "Privacy Policy: Data Protection & AdSense Compliance",
   description: "Read the NextCodeHub privacy policy detailing how we protect your information, use Google AdSense cookies, respect GDPR & CCPA privacy rights, and keep calculations client-side.",
   alternates: {
     canonical: 'https://www.nextcodehub.com/privacy-policy',
   },
   openGraph: {
-    title: "Privacy Policy - NextCodeHub",
+    title: "Privacy Policy | NextCodeHub",
     description: "Detailed privacy notice explaining our commitment to zero calculation tracking, Google AdSense compliance, and your data protection rights.",
     url: 'https://www.nextcodehub.com/privacy-policy',
   },
@@ -15,16 +16,37 @@ export const metadata = {
 
 const privacyJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  '@id': 'https://www.nextcodehub.com/privacy-policy',
-  name: 'NextCodeHub Privacy Policy',
-  url: 'https://www.nextcodehub.com/privacy-policy',
-  description: 'Official privacy policy for NextCodeHub digital tools and services.',
-  publisher: {
-    '@type': 'Organization',
-    name: 'NextCodeHub',
-    url: 'https://www.nextcodehub.com',
-  },
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Privacy Policy',
+          item: 'https://www.nextcodehub.com/privacy-policy',
+        },
+      ],
+    },
+    {
+      '@type': 'WebPage',
+      '@id': 'https://www.nextcodehub.com/privacy-policy',
+      name: 'NextCodeHub Privacy Policy',
+      url: 'https://www.nextcodehub.com/privacy-policy',
+      description: 'Official privacy policy for NextCodeHub digital tools and services.',
+      publisher: {
+        '@type': 'Organization',
+        name: 'NextCodeHub',
+        url: 'https://www.nextcodehub.com',
+      },
+    },
+  ],
 };
 
 export default function PrivacyPolicyPage() {
@@ -35,8 +57,9 @@ export default function PrivacyPolicyPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(privacyJsonLd) }}
       />
 
-      <div className="bg-gray-50 min-h-screen py-16">
+      <div className="bg-gray-50 min-h-screen py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[{ name: 'Privacy Policy' }]} />
           <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
             
             <div className="border-b border-gray-100 pb-8 mb-8 text-center">

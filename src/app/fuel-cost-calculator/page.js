@@ -1,16 +1,34 @@
 import FuelCalculator from '../../components/FuelCalculator';
 import Link from 'next/link';
 import RelatedLinks from '../../components/RelatedLinks';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Fuel Cost Calculator',
+          item: 'https://www.nextcodehub.com/fuel-cost-calculator',
+        },
+      ],
+    },
+    {
       '@type': 'WebApplication',
       '@id': 'https://www.nextcodehub.com/fuel-cost-calculator',
-      name: 'Fuel Cost Calculator',
+      name: 'Trip Fuel Cost Calculator',
       url: 'https://www.nextcodehub.com/fuel-cost-calculator',
-      description: 'Free online fuel cost calculator to estimate trip expenses based on distance, fuel efficiency, and gas price.',
+      description: 'Free online trip fuel cost calculator to estimate road trip gas expenses and split travel costs per passenger based on distance, fuel efficiency, and gas price.',
       applicationCategory: 'UtilityApplication',
       operatingSystem: 'Web Browser',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -21,8 +39,13 @@ const jsonLd = {
       mainEntity: [
         {
           '@type': 'Question',
-          name: 'How do I calculate fuel cost for a trip?',
-          acceptedAnswer: { '@type': 'Answer', text: 'To calculate fuel cost, divide your trip distance by your vehicle\'s fuel efficiency to get fuel required, then multiply by the current fuel price. Our calculator does this automatically.' },
+          name: 'How do I calculate fuel cost for a road trip?',
+          acceptedAnswer: { '@type': 'Answer', text: 'To calculate fuel cost, divide your trip distance by your vehicle\'s fuel efficiency to get fuel required, then multiply by the current fuel price. Our calculator also lets you split the cost evenly across passengers.' },
+        },
+        {
+          '@type': 'Question',
+          name: 'How do I split gas costs with passengers?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Calculate the total fuel cost for the journey (Round Trip distance ÷ Fuel Economy × Fuel Price) and divide the final sum by the total number of people sharing the vehicle.' },
         },
         {
           '@type': 'Question',
@@ -31,13 +54,8 @@ const jsonLd = {
         },
         {
           '@type': 'Question',
-          name: 'How can I reduce my fuel costs?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Maintain proper tire pressure, avoid aggressive driving, reduce excess weight, use cruise control on highways, and keep your engine well-maintained. These can improve fuel efficiency by 10-25%.' },
-        },
-        {
-          '@type': 'Question',
-          name: 'What factors affect fuel consumption?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Driving habits, vehicle condition, tire pressure, air conditioning usage, traffic conditions, terrain, and vehicle load all significantly impact fuel consumption.' },
+          name: 'How can I reduce fuel costs on long road trips?',
+          acceptedAnswer: { '@type': 'Answer', text: 'Maintain proper tire pressure, avoid aggressive driving, reduce excess luggage weight, use cruise control on highways, and plan routes to avoid heavy traffic.' },
         },
         {
           '@type': 'Question',
@@ -55,24 +73,14 @@ const jsonLd = {
 };
 
 export const metadata = {
-  title: "Fuel Cost Calculator: Estimate Exact Trip Gas Cost [Free]",
-  description: "Calculate exact fuel costs for any trip instantly. Enter distance, fuel price, and MPG to estimate total gas expense and cost per passenger. 100% Free.",
-  keywords: [
-    "fuel cost calculator",
-    "fuel cost estimator",
-    "gas bill calculator",
-    "fuel expense calculator",
-    "petrol expense calculator",
-    "fuel price calculator",
-    "trip fuel cost",
-    "road trip fuel calculator",
-  ],
+  title: "Trip Fuel Cost Calculator: Estimate Road Trip Gas & Split Cost",
+  description: "Calculate exact fuel costs for any road trip instantly. Enter distance, fuel price, and MPG to estimate total travel gas expense and cost per passenger split.",
   alternates: {
     canonical: 'https://www.nextcodehub.com/fuel-cost-calculator',
   },
   openGraph: {
-    title: "Fuel Cost Calculator - Estimate Trip Fuel Expenses",
-    description: "Free fuel cost calculator to estimate trip expenses based on distance, fuel efficiency, and gas price.",
+    title: "Trip Fuel Cost Calculator - Road Trip & Travel Gas Estimator",
+    description: "Free trip fuel cost calculator to estimate journey gas expenses and split travel costs per passenger based on distance, fuel efficiency, and gas price.",
     url: 'https://www.nextcodehub.com/fuel-cost-calculator',
   },
 };
@@ -87,13 +95,16 @@ export default function Page() {
 
     <div className="bg-gray-50 min-h-screen pb-20">
       {/* Hero Section */}
-      <div className="bg-white border-b border-gray-200 pt-16 pb-12">
+      <div className="bg-white border-b border-gray-200 pt-8 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[{ name: 'Fuel Cost Calculator' }]} />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-6">
-            Fuel Cost <span className="text-[var(--color-primary-500)]">Calculator</span>
+            Trip Fuel Cost <span className="text-[var(--color-primary-500)]">Calculator</span>
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Estimate your total fuel expenses for any journey instantly. Plan your road trips, daily commutes, or monthly budgets with precision.
+            Estimate your total fuel expenses for any road trip or journey instantly. Calculate fuel required, total cost, and split expenses evenly among passengers.
           </p>
         </div>
       </div>
@@ -188,11 +199,83 @@ export default function Page() {
           </div>
         </section>
 
-        {/* AdSense Placeholder */}
-        <div className="bg-gray-200 text-gray-400 w-full h-32 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300">
-          <span className="font-medium">Advertisement</span>
-          <span className="text-sm">[ AdSense Slot - mid-content ]</span>
-        </div>
+        {/* Cost Per Km & Cost Per Mile Section */}
+        <section className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Cost Per Km &amp; Cost Per Mile: Formulas &amp; Guide</h2>
+          <p className="text-gray-600 leading-relaxed mb-6">
+            Knowing your vehicle&apos;s direct <strong>cost per km</strong> or <strong>cost per mile</strong> makes budgeting commutes, splitting road trip gas, and claiming tax travel deductions straightforward. Here is how to calculate both:
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 p-6 rounded-2xl">
+              <h3 className="font-bold text-emerald-950 text-lg mb-2">🚗 How to Calculate Cost Per Km</h3>
+              <p className="text-emerald-900 text-sm mb-3">Divide the fuel price per liter by your vehicle&apos;s fuel efficiency (km/L):</p>
+              <div className="bg-white p-3.5 rounded-xl border border-emerald-200 font-mono text-xs text-emerald-950 mb-3">
+                <p className="font-bold">Cost per km = Fuel Price ($/L) ÷ Mileage (km/L)</p>
+                <p className="text-emerald-700 mt-1">Example: $1.50/L ÷ 15 km/L = <strong>$0.10 per km</strong></p>
+                <p className="text-emerald-700">In Pakistan: Rs. 280/L ÷ 14 km/L = <strong>Rs. 20.00 per km</strong></p>
+              </div>
+              <p className="text-xs text-emerald-800">For a 200 km trip: 200 km × $0.10/km = $20.00 total fuel cost.</p>
+            </div>
+
+            <div className="bg-gradient-to-br from-blue-50 to-sky-50 border border-blue-200 p-6 rounded-2xl">
+              <h3 className="font-bold text-blue-950 text-lg mb-2">🚙 How to Calculate Cost Per Mile</h3>
+              <p className="text-blue-900 text-sm mb-3">Divide the fuel price per gallon by your vehicle&apos;s MPG (Miles Per Gallon):</p>
+              <div className="bg-white p-3.5 rounded-xl border border-blue-200 font-mono text-xs text-blue-950 mb-3">
+                <p className="font-bold">Cost per Mile = Fuel Price ($/gal) ÷ MPG</p>
+                <p className="text-blue-700 mt-1">Example: $3.60/gal ÷ 30 MPG = <strong>$0.12 per mile (12¢/mi)</strong></p>
+                <p className="text-blue-700">At 20 MPG: $3.60/gal ÷ 20 MPG = <strong>$0.18 per mile (18¢/mi)</strong></p>
+              </div>
+              <p className="text-xs text-blue-800">For a 300 mile journey: 300 miles × $0.12/mile = $36.00 total gas cost.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Pakistan Intercity Trip Cost Calculator Section */}
+        <section className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-3xl">🇵🇰</span>
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900">Fuel Cost Calculator Pakistan (PKR Highway Routes)</h2>
+              <p className="text-gray-500 text-sm">Estimated fuel cost and liters for major motorway and highway journeys in Pakistan</p>
+            </div>
+          </div>
+          <p className="text-gray-600 leading-relaxed mb-6">
+            Planning an intercity trip across Pakistan? Based on an estimated petrol price of <strong>Rs. 280 per liter</strong>, here are fuel requirements and total costs for popular routes across different vehicle classes:
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-gray-50 text-gray-700 font-semibold text-xs uppercase">
+                  <th className="text-left p-3 rounded-tl-lg">Intercity Route</th>
+                  <th className="text-left p-3">Distance</th>
+                  <th className="text-left p-3">Bike (50 km/L)</th>
+                  <th className="text-left p-3">Alto 660cc (19 km/L)</th>
+                  <th className="text-left p-3">1.3L–1.6L Sedan (14 km/L)</th>
+                  <th className="text-left p-3 rounded-tr-lg">SUV (9 km/L)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 text-xs">
+                {[
+                  ['Islamabad to Lahore (M2)', '380 km', 'Rs. 2,128 (7.6 L)', 'Rs. 5,600 (20.0 L)', 'Rs. 7,600 (27.1 L)', 'Rs. 11,822 (42.2 L)'],
+                  ['Islamabad to Murree', '70 km', 'Rs. 392 (1.4 L)', 'Rs. 1,032 (3.7 L)', 'Rs. 1,400 (5.0 L)', 'Rs. 2,178 (7.8 L)'],
+                  ['Karachi to Hyderabad (M9)', '160 km', 'Rs. 896 (3.2 L)', 'Rs. 2,358 (8.4 L)', 'Rs. 3,200 (11.4 L)', 'Rs. 4,978 (17.8 L)'],
+                  ['Islamabad to Peshawar (M1)', '180 km', 'Rs. 1,008 (3.6 L)', 'Rs. 2,653 (9.5 L)', 'Rs. 3,600 (12.9 L)', 'Rs. 5,600 (20.0 L)'],
+                  ['Lahore to Multan (M4)', '350 km', 'Rs. 1,960 (7.0 L)', 'Rs. 5,158 (18.4 L)', 'Rs. 7,000 (25.0 L)', 'Rs. 10,889 (38.9 L)'],
+                ].map(([route, dist, bike, alto, sedan, suv]) => (
+                  <tr key={route} className="hover:bg-gray-50">
+                    <td className="p-3 font-bold text-gray-900">{route}</td>
+                    <td className="p-3 text-gray-600 font-mono">{dist}</td>
+                    <td className="p-3 text-teal-700 font-medium">{bike}</td>
+                    <td className="p-3 text-emerald-700 font-medium">{alto}</td>
+                    <td className="p-3 text-blue-700 font-bold">{sedan}</td>
+                    <td className="p-3 text-gray-800">{suv}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
 
         {/* Features */}
         <section>
@@ -266,12 +349,6 @@ export default function Page() {
 
           </div>
         </section>
-        
-        {/* AdSense Placeholder */}
-        <div className="bg-gray-200 text-gray-400 w-full h-32 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300">
-          <span className="font-medium">Advertisement</span>
-          <span className="text-sm">[ AdSense Slot - mid-content ]</span>
-        </div>
 
         {/* Pro Tips & Related Calculators */}
         <section className="grid md:grid-cols-2 gap-8">

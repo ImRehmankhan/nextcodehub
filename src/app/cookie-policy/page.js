@@ -1,7 +1,8 @@
 import Link from 'next/link';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 export const metadata = {
-  title: "Cookie Policy - NextCodeHub",
+  title: "Cookie Policy",
   description: "Learn how NextCodeHub uses cookies, Google AdSense advertising cookies, and how you can manage your cookie preferences.",
   alternates: {
     canonical: 'https://www.nextcodehub.com/cookie-policy',
@@ -12,11 +13,40 @@ export const metadata = {
   },
 };
 
+const cookieJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Cookie Policy',
+          item: 'https://www.nextcodehub.com/cookie-policy',
+        },
+      ],
+    },
+  ],
+};
+
 export default function CookiePolicyPage() {
   return (
-    <div className="bg-gray-50 min-h-screen py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(cookieJsonLd) }}
+      />
+      <div className="bg-gray-50 min-h-screen py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Breadcrumbs items={[{ name: 'Cookie Policy' }]} />
+          <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
           
           {/* Header */}
           <div className="border-b border-gray-100 pb-8 mb-8 text-center">
@@ -220,5 +250,6 @@ export default function CookiePolicyPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

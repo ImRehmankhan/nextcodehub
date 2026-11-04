@@ -355,7 +355,10 @@ export const blogData = [
   },
   {
     slug: "how-to-calculate-fuel-consumption-formula-examples",
+    metaTitle: "How to Calculate Fuel Consumption: Formula & Examples",
     title: "How to Calculate Fuel Consumption: Formula, Step-by-Step Examples & Calculator",
+    h1: "How to Calculate Fuel Consumption: Formula, Step-by-Step Examples & Calculator",
+    metaDescription: "Step-by-step tutorial on how to calculate fuel consumption in L/100km, km/L and MPG. Includes worked petrol and diesel examples, formulas, and free calculators.",
     excerpt: "Learn how to calculate fuel consumption, fuel usage per km, and petrol usage per hour. Includes step-by-step formulas, worked examples for petrol and diesel, and free calculators.",
     date: "2026-10-25",
     author: "NextCodeHub Automotive Team",

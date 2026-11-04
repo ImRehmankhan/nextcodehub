@@ -1,22 +1,15 @@
 import Link from "next/link";
 import { blogData } from "./blogData";
+import Breadcrumbs from "../../components/Breadcrumbs";
 
 export const metadata = {
-  title: "Automotive Fuel Insights & Mileage Guides | NextCodeHub Blog",
+  title: "Automotive Fuel Insights & Mileage Guides",
   description: "Expert guides on improving gas mileage, lowering petrol expenses, calculating fuel consumption in L/100km & MPG, and selecting fuel-efficient vehicles.",
-  keywords: [
-    "fuel economy blog",
-    "gas mileage tips",
-    "calculate petrol mileage",
-    "fuel cost saving guide",
-    "mpg calculator guide",
-    "best fuel efficient cars 2026",
-  ],
   alternates: {
     canonical: 'https://www.nextcodehub.com/blog',
   },
   openGraph: {
-    title: "Automotive Fuel Insights & Mileage Guides - NextCodeHub",
+    title: "Automotive Fuel Insights & Mileage Guides | NextCodeHub",
     description: "In-depth articles and analytical guides to help drivers optimize fuel efficiency, minimize trip expenses, and understand automotive metrics.",
     url: 'https://www.nextcodehub.com/blog',
   },
@@ -25,6 +18,23 @@ export const metadata = {
 const blogIndexJsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.nextcodehub.com',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: 'https://www.nextcodehub.com/blog',
+        },
+      ],
+    },
     {
       '@type': 'CollectionPage',
       '@id': 'https://www.nextcodehub.com/blog',
@@ -63,6 +73,7 @@ export default function BlogPage() {
 
       <div className="bg-gray-50 min-h-screen py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          <Breadcrumbs items={[{ name: 'Blog' }]} />
           
           {/* Hero Banner */}
           <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -127,7 +138,7 @@ export default function BlogPage() {
                   href={`/blog/${featuredPost.slug}`}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-primary-600 hover:bg-primary-700 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"
                 >
-                  <span>How to Calculate Fuel Consumption &rarr;</span>
+                  <span>Read Full Guide &rarr;</span>
                 </Link>
               </div>
             </div>
